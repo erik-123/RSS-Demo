@@ -135,5 +135,10 @@ namespace RSS_Demo
             // user file and close it.
             CategoryRepo.SaveCategories(categoryList);
         }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
