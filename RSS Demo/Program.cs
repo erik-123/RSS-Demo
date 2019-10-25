@@ -20,7 +20,7 @@ namespace RSS_Demo
             var podcasts = new List<Podcast>();
             podcasts.Add(podcast);
 
-
+            var hej = "";
 
 
             PodcastRepo.SavePodcasts(podcasts);
