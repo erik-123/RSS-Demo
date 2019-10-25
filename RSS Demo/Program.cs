@@ -15,17 +15,30 @@ namespace RSS_Demo
         [STAThread]
         static void Main()
         {
-            var podcast = new Podcast("giant", "bomb", 1, "", "", default);
-
-            var podcasts = new List<Podcast>();
-            podcasts.Add(podcast);
-
-            var hej = "";
 
 
-            PodcastRepo.SavePodcasts(podcasts);
 
-            podcasts = PodcastRepo.LoadPodcasts();
+
+
+            //var episod = new Episode("Hej", "det här är hej", default);
+
+            //var episodLista = new List<Episode>();
+            //episodLista.Add(episod);
+            
+            //var podcast = new Podcast("giant", "bomb", 1, "", "", episodLista);
+            //var podcasts = new List<Podcast>();
+            //podcasts.Add(podcast);
+            
+            //PodcastRepo.SavePodcasts(podcasts);
+
+
+
+            //var hej = "";
+
+
+            //PodcastRepo.SavePodcasts(podcasts);
+
+            //podcasts = PodcastRepo.LoadPodcasts();
 
             //var giantBomb = podcasts.Where(podcast => podcast.Title == "abc").FirstOrDefault();
             //if (giantBomb != null)

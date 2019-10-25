@@ -14,6 +14,7 @@ using System.ServiceModel.Syndication;
 using System.Xml.Serialization;
 using System.IO;
 using System.Diagnostics;
+using RSS_Demo.Data;
 //using System.ServiceModel.Web;//
 
 
@@ -23,9 +24,17 @@ namespace RSS_Demo
 {
     public partial class Form1 : Form
     {
+        private List<string> categoryList = new List<string>();
         public Form1()
         {
             InitializeComponent();
+            categoryList = CategoryRepo.LoadCategories();
+            foreach(string category in categoryList)
+            {
+                comboBoxKategori.Items.Add(category);
+            }
+
+            Application.ApplicationExit += new EventHandler(this.OnApplicationExit);
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
@@ -37,6 +46,7 @@ namespace RSS_Demo
         {
 
         }
+
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -79,6 +89,7 @@ namespace RSS_Demo
                 {
                     listaKategorier.Items.Add(kategoriInput);
                     comboBoxKategori.Items.Add(kategoriInput);
+                    categoryList.Add(kategoriInput);
                     
                 }
                 textBoxKategori.Clear();
@@ -117,6 +128,12 @@ namespace RSS_Demo
         private void buttonSparaKategorier_Click(object sender, EventArgs e)
         {
             //XmlSerializer serializer = new XmlSerializer(typeof());
+        }
+        private void OnApplicationExit(object sender, EventArgs e)
+        {
+            // When the application is exiting, write the application data to the
+            // user file and close it.
+            CategoryRepo.SaveCategories(categoryList);
         }
     }
 }
