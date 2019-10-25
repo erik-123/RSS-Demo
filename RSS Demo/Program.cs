@@ -1,11 +1,11 @@
-﻿using ProjektArbete.Data;
+﻿using RSS_Demo.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ProjektArbete
+namespace RSS_Demo
 {
     static class Program
     {

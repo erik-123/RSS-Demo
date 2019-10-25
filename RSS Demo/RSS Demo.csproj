@@ -47,6 +47,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\Episode.cs" />
+    <Compile Include="Data\Podcast.cs" />
+    <Compile Include="Data\PodcastRepo.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

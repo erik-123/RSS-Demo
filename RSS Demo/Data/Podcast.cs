@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 
-namespace ProjektArbete.Data
+namespace RSS_Demo.Data
 {
     public class Podcast
     {
@@ -11,7 +11,6 @@ namespace ProjektArbete.Data
         public int Intervall { get; set; }
         public string Category { get; set; }
         public string Link { get; set; }
-        
         public List<Episode> EpisodeList {get; set;}
 
         public Podcast(string title, string description, int intervall, string category, string link, List<Episode> episodeList)

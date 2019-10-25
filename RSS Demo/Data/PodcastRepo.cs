@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace ProjektArbete.Data
+namespace RSS_Demo.Data
 {
 
     static class PodcastRepo
