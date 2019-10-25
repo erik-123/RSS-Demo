@@ -15,6 +15,7 @@ using System.Xml.Serialization;
 using System.IO;
 using System.Diagnostics;
 using RSS_Demo.Data;
+using RSS_Demo.Mellanlager;
 //using System.ServiceModel.Web;//
 
 
@@ -33,6 +34,21 @@ namespace RSS_Demo
             {
                 comboBoxKategori.Items.Add(category);
             }
+
+
+            var podcastList = PodcastRepo.LoadPodcasts();
+
+            var podcast = podcastList.ElementAt(0);
+
+            var episodeList = podcast.EpisodeList;
+
+            var episode = episodeList.ElementAt(0);
+
+            listViewEpisode.Items.Add(FormSetup.setAvsnittListItems(episode));
+
+
+
+
 
             Application.ApplicationExit += new EventHandler(this.OnApplicationExit);
         }
@@ -58,7 +74,6 @@ namespace RSS_Demo
 
 
 
-                tabControl1.TabPages.Add(FD_tab);
 
                 ListBox FD_list = new ListBox();
 
@@ -137,6 +152,16 @@ namespace RSS_Demo
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listViewPodcasts_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listView3_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

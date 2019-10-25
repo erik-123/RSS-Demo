@@ -18,8 +18,7 @@ namespace RSS_Demo
 
 
 
-
-
+            
             //var episod = new Episode("Hej", "det här är hej", default);
 
             //var episodLista = new List<Episode>();
