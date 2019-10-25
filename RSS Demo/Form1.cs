@@ -118,5 +118,10 @@ namespace RSS_Demo
         {
             //XmlSerializer serializer = new XmlSerializer(typeof());
         }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
