@@ -69,11 +69,19 @@ namespace RSS_Demo
         private void button1_Click(object sender, EventArgs e)
         {
             //hämtar podcast titel och lägger till den  i en ListView
-            var titel = ListItemsHelper.getPodcastTitel(textBox1.Text);
-            listViewPodcasts.Items.Add(titel);
+            //hämtar antalAvsnitt och lägger till den i en Listview
+            // Lägger till kategori i listView
+           
+            
+                var titel = ListItemsHelper.getPodcastTitel(textBox1.Text);
+                var kategori = comboBoxKategori.SelectedItem.ToString();
+                var antalAvsnitt = ListItemsHelper.getPodcastAntalAvsnitt(textBox1.Text);
 
-            
-            
+
+
+                var lvi = new ListViewItem(new[] { titel, kategori, antalAvsnitt.ToString() });
+                listViewPodcasts.Items.Add(lvi);          
+           
         }
 
         private void buttonLaggTillKategori_Click(object sender, EventArgs e)

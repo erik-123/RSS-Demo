@@ -20,11 +20,20 @@ namespace RSS_Demo
             var podcastTitel = xe.DescendantsAndSelf("channel").Elements("title").First().Value;
 
             return podcastTitel;
-        }   
+        }
+        public static int getPodcastAntalAvsnitt(string url)
+        {
+            var xe = XElement.Load(url);       
+            var antalAvsnitt = xe.DescendantsAndSelf("channel").Elements("title").First().Value.Count();
 
-       
+            //alternativt sökord title eller item        
 
-        
+
+            return antalAvsnitt;
+        }
+
+
+
     }
 }
 
