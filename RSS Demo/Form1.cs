@@ -16,7 +16,9 @@ using System.IO;
 using System.Diagnostics;
 using RSS_Demo.Data;
 using RSS_Demo.Mellanlager;
+using System.Net;
 //using System.ServiceModel.Web;//
+
 
 
 
@@ -42,9 +44,9 @@ namespace RSS_Demo
 
             var episodeList = podcast.EpisodeList;
 
-            var episode = episodeList.ElementAt(0);
+            //var episode = episodeList.ElementAt(0);
 
-            listViewEpisode.Items.Add(FormSetup.setAvsnittListItems(episode));
+           // listViewEpisode.Items.Add(FormSetup.setAvsnittListItems(episode));
 
 
 
@@ -66,33 +68,12 @@ namespace RSS_Demo
 
         private void button1_Click(object sender, EventArgs e)
         {
-            try {
-                XmlReader FD_readxml = XmlReader.Create(textBox1.Text);
-                SyndicationFeed FD_feed = SyndicationFeed.Load(FD_readxml);
+            //hämtar podcast titel och lägger till den  i en ListView
+            var titel = ListItemsHelper.getPodcastTitel(textBox1.Text);
+            listViewPodcasts.Items.Add(titel);
 
-                TabPage FD_tab = new TabPage(FD_feed.Title.Text);
-
-
-
-
-                ListBox FD_list = new ListBox();
-
-                FD_tab.Controls.Add(FD_list);
-
-                FD_list.Dock = DockStyle.Fill;
-                FD_list.HorizontalScrollbar = true;
-
-                foreach (SyndicationItem FD_item in FD_feed.Items)
-                {
-                    FD_list.Items.Add(FD_item.Title.Text);
-                    FD_list.Items.Add(FD_item.Summary.Text);
-                    FD_list.Items.Add("----------------");
-
-
-                }
-
-
-            } catch { }
+            
+            
         }
 
         private void buttonLaggTillKategori_Click(object sender, EventArgs e)
