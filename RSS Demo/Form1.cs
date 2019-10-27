@@ -32,7 +32,7 @@ namespace RSS_Demo
         {
             InitializeComponent();
             categoryList = CategoryRepo.LoadCategories();
-            foreach(string category in categoryList)
+            foreach (string category in categoryList)
             {
                 comboBoxKategori.Items.Add(category);
             }
@@ -46,7 +46,7 @@ namespace RSS_Demo
 
             //var episode = episodeList.ElementAt(0);
 
-           // listViewEpisode.Items.Add(FormSetup.setAvsnittListItems(episode));
+            // listViewEpisode.Items.Add(FormSetup.setAvsnittListItems(episode));
 
 
 
@@ -71,32 +71,42 @@ namespace RSS_Demo
             //hämtar podcast titel och lägger till den  i en ListView
             //hämtar antalAvsnitt och lägger till den i en Listview
             // Lägger till kategori i listView
-           
-            
-                var titel = ListItemsHelper.getPodcastTitel(textBox1.Text);
-                var kategori = comboBoxKategori.SelectedItem.ToString();
-                var antalAvsnitt = ListItemsHelper.getPodcastAntalAvsnitt(textBox1.Text);
+            try {
+                if (Validering.kontrolleraOmTextfaltArTomt(textBox1) == false && Validering.KontrollOmComboBoxArTom(comboBoxKategori) == true)
+                {
+
+                    var titel = ListItemsHelper.getPodcastTitel(textBox1.Text);
+                    var kategori = comboBoxKategori.SelectedItem.ToString();
+                    var antalAvsnitt = ListItemsHelper.getPodcastAntalAvsnitt(textBox1.Text);
 
 
 
-                var lvi = new ListViewItem(new[] { titel, kategori, antalAvsnitt.ToString() });
-                listViewPodcasts.Items.Add(lvi);          
-           
-        }
+                    var lvi = new ListViewItem(new[] { titel, kategori, antalAvsnitt.ToString() });
+                    listViewPodcasts.Items.Add(lvi);
+                }
+            }catch(WebException){
+             MessageBox.Show("URLen är ej giltig, försök med en ny.");
+             }
+            }
 
         private void buttonLaggTillKategori_Click(object sender, EventArgs e)
         {
-            try {
-                string kategoriInput = textBoxKategori.Text.Trim();
-
-                if (kategoriInput.Length != 0)
+            try
+            {
+                if (Validering.kontrolleraOmTextfaltArTomt(textBoxKategori) == false && Validering.kontrollOmTextfaltHarSiffra(textBoxKategori) == true)
                 {
-                    listaKategorier.Items.Add(kategoriInput);
-                    comboBoxKategori.Items.Add(kategoriInput);
-                    categoryList.Add(kategoriInput);
-                    
+                    string kategoriInput = textBoxKategori.Text.Trim();
+
+                    if (kategoriInput.Length != 0)
+                    {
+                        listaKategorier.Items.Add(kategoriInput);
+                        comboBoxKategori.Items.Add(kategoriInput);
+                        categoryList.Add(kategoriInput);
+
+                    }
+                    textBoxKategori.Clear();
+
                 }
-                textBoxKategori.Clear();
             }
             catch (Exception ex)
             {

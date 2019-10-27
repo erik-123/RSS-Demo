@@ -15,7 +15,7 @@ namespace RSS_Demo
                
 
         public static string getPodcastTitel(string url)
-        {
+        { 
             var xe = XElement.Load(url);
             var podcastTitel = xe.DescendantsAndSelf("channel").Elements("title").First().Value;
 
