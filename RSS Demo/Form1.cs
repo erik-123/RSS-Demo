@@ -28,6 +28,7 @@ namespace RSS_Demo
     public partial class Form1 : Form
     {
         private List<string> categoryList = new List<string>();
+        private List<Podcast> podcastLista = PodcastRepo.LoadPodcasts();
         public Form1()
         {
             InitializeComponent();
@@ -38,11 +39,7 @@ namespace RSS_Demo
             }
 
 
-            var podcastList = PodcastRepo.LoadPodcasts();
-
-            var podcast = podcastList.ElementAt(0);
-
-            var episodeList = podcast.EpisodeList;
+           
 
             //var episode = episodeList.ElementAt(0);
 
@@ -68,25 +65,34 @@ namespace RSS_Demo
 
         private void button1_Click(object sender, EventArgs e)
         {
+            try
+            {
+                    var podcast = rssReader.getPodcastFromURL(textBox1.Text, comboBoxKategori.Text, default);
+                    podcastLista.Add(podcast);
+
+                    var lvi = new ListViewItem(new[] { podcast.Title, podcast.Category, podcast.EpisodeCount.ToString() });
+                    listViewPodcasts.Items.Add(lvi);
+            }
+            catch (WebException) { }
+            
             //hämtar podcast titel och lägger till den  i en ListView
             //hämtar antalAvsnitt och lägger till den i en Listview
             // Lägger till kategori i listView
-            try {
-                if (Validering.kontrolleraOmTextfaltArTomt(textBox1) == false && Validering.KontrollOmComboBoxArTom(comboBoxKategori) == true)
-                {
+            //try {
+            //    if (Validering.kontrolleraOmTextfaltArTomt(textBox1) == false && Validering.KontrollOmComboBoxArTom(comboBoxKategori) == true)
+            //    {
 
-                    var titel = ListItemsHelper.getPodcastTitel(textBox1.Text);
-                    var kategori = comboBoxKategori.SelectedItem.ToString();
-                    var antalAvsnitt = ListItemsHelper.getPodcastAntalAvsnitt(textBox1.Text);
+            //        var titel = ListItemsHelper.getPodcastTitel(textBox1.Text);
+            //        var kategori = comboBoxKategori.SelectedItem.ToString();
+            //        var antalAvsnitt = ListItemsHelper.getPodcastAntalAvsnitt(textBox1.Text);
 
 
 
-                    var lvi = new ListViewItem(new[] { titel, kategori, antalAvsnitt.ToString() });
-                    listViewPodcasts.Items.Add(lvi);
-                }
-            }catch(WebException){
-             MessageBox.Show("URLen är ej giltig, försök med en ny.");
-             }
+            //        
+            //    }
+            //}catch(WebException){
+            // MessageBox.Show("URLen är ej giltig, försök med en ny.");
+            // }
             }
 
         private void buttonLaggTillKategori_Click(object sender, EventArgs e)

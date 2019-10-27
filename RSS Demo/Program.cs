@@ -18,16 +18,21 @@ namespace RSS_Demo
 
 
 
-            
+
+
+
+
+
+
             //var episod = new Episode("Hej", "det här är hej", default);
 
             //var episodLista = new List<Episode>();
             //episodLista.Add(episod);
-            
+
             //var podcast = new Podcast("giant", "bomb", 1, "", "", episodLista);
             //var podcasts = new List<Podcast>();
             //podcasts.Add(podcast);
-            
+
             //PodcastRepo.SavePodcasts(podcasts);
 
 
