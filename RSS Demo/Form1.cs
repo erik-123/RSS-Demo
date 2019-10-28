@@ -70,29 +70,45 @@ namespace RSS_Demo
             {
                 if (Validering.KontrolleraOmURLArGiltig(textBox1.Text).Length > 0)
                 {
-                    if (Validering.kontrolleraOmTextfaltArTomt(textBox1) == false && Validering.KontrollOmComboBoxArTom(comboBoxKategori))
-                    {
+                    //if (Validering.kontrolleraOmTextfaltArTomt(textBox1) == false && Validering.KontrollOmComboBoxArTom(comboBoxKategori))
+                    //{
                         var podcast = rssReader.getPodcastFromURL(textBox1.Text, comboBoxKategori.Text, default);
-                        int iteration = 0; 
+                        int iteration = 0;
 
-                        foreach(var podcastInList in podcastList)
+
+                        if (podcastList.Count() < 0)
                         {
-                            var podcastLookup = podcastList.Where(podcastX => podcastInList.Title == podcast.Title);
-                            iteration++;
-                            if(podcastLookup.Count() > 0)
+                            foreach (var podcastInList in podcastList)
                             {
-                                MessageBox.Show("Podcasten är redan inläst");
-                            }
-                            else if((podcastLookup.Count() == 0)&&(podcastList.Count() == iteration))
-                            {
-                                var lvi = new ListViewItem(new[] { podcast.Title, podcast.Category, podcast.EpisodeCount.ToString() });
-                                podcastList.Add(podcast);
-                                listViewPodcasts.Items.Add(lvi);
-                                PodcastRepo.SavePodcasts(podcastList);
+
+
+                                var podcastLookup = podcastList.Where(podcastX => podcastInList.Title == podcast.Title);
+                                iteration++;
+                                if (podcastLookup.Count() > 0)
+                                {
+                                    MessageBox.Show("Podcasten är redan inläst");
+                                }
+                                else if ((podcastLookup.Count() == 0) && (podcastList.Count() == iteration))
+                                {
+                                    var lvi = new ListViewItem(new[] { podcast.Title, podcast.Category, podcast.EpisodeCount.ToString() });
+                                    podcastList.Add(podcast);
+                                    listViewPodcasts.Items.Add(lvi);
+                                    PodcastRepo.SavePodcasts(podcastList);
+                                }
                             }
                         }
-                    }
+                        else 
+                        {
+                            podcastList.Add(podcast);
+                            var lvi = new ListViewItem(new[] { podcast.Title, podcast.Category, podcast.EpisodeCount.ToString() });
+                            podcastList.Add(podcast);
+                            listViewPodcasts.Items.Add(lvi);
+                            PodcastRepo.SavePodcasts(podcastList);
+
+                        }
+                    //}
                 }
+                
                 else
                 {
                     MessageBox.Show("Du har skrivit in ett felaktigt url!");
