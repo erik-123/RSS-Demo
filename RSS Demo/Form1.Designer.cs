@@ -31,6 +31,7 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -53,7 +54,6 @@
             this.columnPubliceringsdatum = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnSpeltid = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnAvnittLink = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.button2 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -68,12 +68,12 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(12, 361);
+            this.button1.Location = new System.Drawing.Point(6, 253);
             this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(74, 35);
             this.button1.TabIndex = 1;
-            this.button1.Text = "Add";
+            this.button1.Text = "Lagg till";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -98,6 +98,16 @@
             this.groupBox1.Text = "ControlBox";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(6, 293);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(74, 30);
+            this.button2.TabIndex = 7;
+            this.button2.Text = "Ta bort";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -110,7 +120,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 249);
+            this.label2.Location = new System.Drawing.Point(12, 172);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(61, 17);
             this.label2.TabIndex = 5;
@@ -128,7 +138,7 @@
             // comboBoxKategori
             // 
             this.comboBoxKategori.FormattingEnabled = true;
-            this.comboBoxKategori.Location = new System.Drawing.Point(12, 280);
+            this.comboBoxKategori.Location = new System.Drawing.Point(12, 207);
             this.comboBoxKategori.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.comboBoxKategori.Name = "comboBoxKategori";
             this.comboBoxKategori.Size = new System.Drawing.Size(121, 24);
@@ -151,7 +161,7 @@
             this.Avsnitt});
             this.listViewPodcasts.HideSelection = false;
             this.listViewPodcasts.Location = new System.Drawing.Point(239, 39);
-            this.listViewPodcasts.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.listViewPodcasts.Margin = new System.Windows.Forms.Padding(4);
             this.listViewPodcasts.Name = "listViewPodcasts";
             this.listViewPodcasts.Size = new System.Drawing.Size(583, 227);
             this.listViewPodcasts.TabIndex = 15;
@@ -178,7 +188,7 @@
             // 
             this.listaKategorier.HideSelection = false;
             this.listaKategorier.Location = new System.Drawing.Point(848, 39);
-            this.listaKategorier.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.listaKategorier.Margin = new System.Windows.Forms.Padding(4);
             this.listaKategorier.Name = "listaKategorier";
             this.listaKategorier.Size = new System.Drawing.Size(487, 237);
             this.listaKategorier.TabIndex = 16;
@@ -188,7 +198,7 @@
             // buttonLaggTillKategori
             // 
             this.buttonLaggTillKategori.Location = new System.Drawing.Point(848, 313);
-            this.buttonLaggTillKategori.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonLaggTillKategori.Margin = new System.Windows.Forms.Padding(4);
             this.buttonLaggTillKategori.Name = "buttonLaggTillKategori";
             this.buttonLaggTillKategori.Size = new System.Drawing.Size(100, 28);
             this.buttonLaggTillKategori.TabIndex = 17;
@@ -199,7 +209,7 @@
             // buttonTaBortKategori
             // 
             this.buttonTaBortKategori.Location = new System.Drawing.Point(969, 313);
-            this.buttonTaBortKategori.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonTaBortKategori.Margin = new System.Windows.Forms.Padding(4);
             this.buttonTaBortKategori.Name = "buttonTaBortKategori";
             this.buttonTaBortKategori.Size = new System.Drawing.Size(100, 28);
             this.buttonTaBortKategori.TabIndex = 18;
@@ -210,7 +220,7 @@
             // textBoxKategori
             // 
             this.textBoxKategori.Location = new System.Drawing.Point(848, 282);
-            this.textBoxKategori.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxKategori.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxKategori.Name = "textBoxKategori";
             this.textBoxKategori.Size = new System.Drawing.Size(315, 22);
             this.textBoxKategori.TabIndex = 19;
@@ -265,7 +275,7 @@
             this.columnAvnittLink});
             this.listViewEpisode.HideSelection = false;
             this.listViewEpisode.Location = new System.Drawing.Point(239, 282);
-            this.listViewEpisode.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.listViewEpisode.Margin = new System.Windows.Forms.Padding(4);
             this.listViewEpisode.Name = "listViewEpisode";
             this.listViewEpisode.Size = new System.Drawing.Size(583, 246);
             this.listViewEpisode.TabIndex = 25;
@@ -290,15 +300,6 @@
             // columnAvnittLink
             // 
             this.columnAvnittLink.Text = "Länk";
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(13, 170);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(74, 28);
-            this.button2.TabIndex = 7;
-            this.button2.Text = "Add";
-            this.button2.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 

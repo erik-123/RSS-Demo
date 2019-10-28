@@ -33,14 +33,7 @@ namespace RSS_Demo
 
                 return antalAvsnitt;
             }
-            catch (FileNotFoundException e)
-            {
-                int test = 5;
-                Console.WriteLine(e);
-                return test;
-
-
-            }
+            
             
 
 
@@ -50,5 +43,5 @@ namespace RSS_Demo
 
 
         }
-}
+
 

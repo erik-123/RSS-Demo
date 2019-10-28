@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.Xml.Linq;
 
 namespace RSS_Demo
 {
@@ -43,5 +43,15 @@ namespace RSS_Demo
             return cb.SelectedItem != null ? true : false;
 
         }
+    public static string KontrolleraOmURLArGiltig(string url)
+    {
+
+        try { var podcastData = XDocument.Load(url); return url; }
+        catch (Exception)
+        {
+            MessageBox.Show("Du har skrivit in ett felaktigt url!");
+            return "";
+        }
     }
+}
 
