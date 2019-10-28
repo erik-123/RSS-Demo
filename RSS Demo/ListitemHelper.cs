@@ -9,15 +9,15 @@ using System.Windows.Forms;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 
-namespace RSS_Demo
+namespace RSS_Demo.Mellanlager
 {
-  
+
     public class ListItemsHelper
     {
-               
+
 
         public static string getPodcastTitel(string url)
-        { 
+        {
             var xe = XElement.Load(url);
             var podcastTitel = xe.DescendantsAndSelf("channel").Elements("title").First().Value;
 
@@ -25,30 +25,19 @@ namespace RSS_Demo
         }
         public static int getPodcastAntalAvsnitt(string url)
         {
-            var xe = XElement.Load(url);       
+            var xe = XElement.Load(url);
             var antalAvsnitt = xe.DescendantsAndSelf("channel").Elements("title").First().Value.Count();
 
             //alternativt sökord title eller item        
 
 
-                return antalAvsnitt;
-            }
-            catch (FileNotFoundException e)
-            {
-                int test = 5;
-                Console.WriteLine(e);
-                return test;
-
-
-            }
-            
-
-
-
+            return antalAvsnitt;
         }
 
 
 
-        }
+
+    }
+       
 }
 

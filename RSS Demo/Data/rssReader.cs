@@ -16,15 +16,14 @@ namespace RSS_Demo.Data
             XNamespace ns = "http://www.itunes.com/dtds/podcast-1.0.dtd";
             var episodeData = podcastData.Descendants("item");
             var podcast = new Podcast();
-            var episode = new Episode();
             List<Episode> episodeList = new List<Episode>();
 
 
 
-            //DescendantsAndSelf("channel").Elements("title").First().Value.Count();
             
             foreach (var item in episodeData)
             {
+                var episode = new Episode();
                 episode.Title = item.Element("title").Value;
                 episode.Description = item.Element("description").Value;
                 episode.Runtime = item.Element(ns + "duration").Value;

@@ -31,9 +31,8 @@ namespace RSS_Demo.Mellanlager
 
 
             ListViewItem podcastItem = new ListViewItem(episode.Title);
-            podcastItem.SubItems.Add(episode.Title);
 
-            podcastItem.SubItems.Add(episode.PubDate.ToString());
+            podcastItem.SubItems.Add(episode.PubDate);
 
             podcastItem.SubItems.Add(episode.Runtime);
 
