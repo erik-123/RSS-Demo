@@ -198,6 +198,7 @@ namespace RSS_Demo
             this.listaKategorier.TabIndex = 16;
             this.listaKategorier.UseCompatibleStateImageBehavior = false;
             this.listaKategorier.View = System.Windows.Forms.View.List;
+            this.listaKategorier.SelectedIndexChanged += new System.EventHandler(this.listaKategorier_SelectedIndexChanged);
             // 
             // buttonLaggTillKategori
             // 
