@@ -1,4 +1,6 @@
-﻿namespace RSS_Demo
+﻿using System;
+
+namespace RSS_Demo
 {
     partial class Form1
     {
@@ -60,7 +62,7 @@
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(9, 32);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(2);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(129, 20);
             this.textBox1.TabIndex = 0;
@@ -89,9 +91,9 @@
             this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Left;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox1.Size = new System.Drawing.Size(160, 497);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
@@ -150,7 +152,7 @@
             // 
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(9, 102);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(92, 21);
             this.comboBox1.TabIndex = 2;
@@ -162,7 +164,7 @@
             this.Kategori,
             this.Avsnitt});
             this.listViewPodcasts.HideSelection = false;
-            this.listViewPodcasts.Location = new System.Drawing.Point(239, 39);
+            this.listViewPodcasts.Location = new System.Drawing.Point(166, 43);
             this.listViewPodcasts.Margin = new System.Windows.Forms.Padding(4);
             this.listViewPodcasts.Name = "listViewPodcasts";
             this.listViewPodcasts.Size = new System.Drawing.Size(438, 185);
@@ -189,7 +191,7 @@
             // listaKategorier
             // 
             this.listaKategorier.HideSelection = false;
-            this.listaKategorier.Location = new System.Drawing.Point(848, 39);
+            this.listaKategorier.Location = new System.Drawing.Point(637, 32);
             this.listaKategorier.Margin = new System.Windows.Forms.Padding(4);
             this.listaKategorier.Name = "listaKategorier";
             this.listaKategorier.Size = new System.Drawing.Size(366, 193);
@@ -199,7 +201,7 @@
             // 
             // buttonLaggTillKategori
             // 
-            this.buttonLaggTillKategori.Location = new System.Drawing.Point(848, 313);
+            this.buttonLaggTillKategori.Location = new System.Drawing.Point(786, 229);
             this.buttonLaggTillKategori.Margin = new System.Windows.Forms.Padding(4);
             this.buttonLaggTillKategori.Name = "buttonLaggTillKategori";
             this.buttonLaggTillKategori.Size = new System.Drawing.Size(75, 23);
@@ -210,7 +212,7 @@
             // 
             // buttonTaBortKategori
             // 
-            this.buttonTaBortKategori.Location = new System.Drawing.Point(969, 313);
+            this.buttonTaBortKategori.Location = new System.Drawing.Point(869, 231);
             this.buttonTaBortKategori.Margin = new System.Windows.Forms.Padding(4);
             this.buttonTaBortKategori.Name = "buttonTaBortKategori";
             this.buttonTaBortKategori.Size = new System.Drawing.Size(75, 23);
@@ -221,7 +223,7 @@
             // 
             // textBoxKategori
             // 
-            this.textBoxKategori.Location = new System.Drawing.Point(848, 282);
+            this.textBoxKategori.Location = new System.Drawing.Point(637, 262);
             this.textBoxKategori.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxKategori.Name = "textBoxKategori";
             this.textBoxKategori.Size = new System.Drawing.Size(237, 20);
@@ -239,8 +241,8 @@
             // 
             // buttonAndra
             // 
-            this.buttonAndra.Location = new System.Drawing.Point(807, 254);
-            this.buttonAndra.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonAndra.Location = new System.Drawing.Point(637, 231);
+            this.buttonAndra.Margin = new System.Windows.Forms.Padding(2);
             this.buttonAndra.Name = "buttonAndra";
             this.buttonAndra.Size = new System.Drawing.Size(65, 21);
             this.buttonAndra.TabIndex = 21;
@@ -250,8 +252,8 @@
             // 
             // buttonSparaKategorier
             // 
-            this.buttonSparaKategorier.Location = new System.Drawing.Point(877, 254);
-            this.buttonSparaKategorier.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonSparaKategorier.Location = new System.Drawing.Point(706, 231);
+            this.buttonSparaKategorier.Margin = new System.Windows.Forms.Padding(2);
             this.buttonSparaKategorier.Name = "buttonSparaKategorier";
             this.buttonSparaKategorier.Size = new System.Drawing.Size(74, 19);
             this.buttonSparaKategorier.TabIndex = 22;
@@ -267,7 +269,7 @@
             this.columnSpeltid,
             this.columnAvnittLink});
             this.listViewEpisode.HideSelection = false;
-            this.listViewEpisode.Location = new System.Drawing.Point(239, 282);
+            this.listViewEpisode.Location = new System.Drawing.Point(166, 282);
             this.listViewEpisode.Margin = new System.Windows.Forms.Padding(4);
             this.listViewEpisode.Name = "listViewEpisode";
             this.listViewEpisode.Size = new System.Drawing.Size(438, 201);
@@ -296,10 +298,10 @@
             // 
             // episodeDetailsTextBox
             // 
-            this.episodeDetailsTextBox.Location = new System.Drawing.Point(636, 293);
+            this.episodeDetailsTextBox.Location = new System.Drawing.Point(637, 295);
             this.episodeDetailsTextBox.Multiline = true;
             this.episodeDetailsTextBox.Name = "episodeDetailsTextBox";
-            this.episodeDetailsTextBox.Size = new System.Drawing.Size(366, 137);
+            this.episodeDetailsTextBox.Size = new System.Drawing.Size(366, 190);
             this.episodeDetailsTextBox.TabIndex = 26;
             // 
             // Form1
@@ -318,7 +320,7 @@
             this.Controls.Add(this.listaKategorier);
             this.Controls.Add(this.listViewPodcasts);
             this.Controls.Add(this.groupBox1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.Text = "Podcast";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -327,6 +329,11 @@
             this.ResumeLayout(false);
             this.PerformLayout();
 
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion

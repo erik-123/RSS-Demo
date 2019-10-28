@@ -73,10 +73,24 @@ namespace RSS_Demo
                     if (Validering.kontrolleraOmTextfaltArTomt(textBox1) == false && Validering.KontrollOmComboBoxArTom(comboBoxKategori))
                     {
                         var podcast = rssReader.getPodcastFromURL(textBox1.Text, comboBoxKategori.Text, default);
-                        podcastLista.Add(podcast);
+                        int iteration = 0; 
 
-                        var lvi = new ListViewItem(new[] { podcast.Title, podcast.Category, podcast.EpisodeCount.ToString() });
-                        listViewPodcasts.Items.Add(lvi);
+                        foreach(var podcastInList in podcastList)
+                        {
+                            var podcastLookup = podcastList.Where(podcastX => podcastInList.Title == podcast.Title);
+                            iteration++;
+                            if(podcastLookup.Count() > 0)
+                            {
+                                MessageBox.Show("Podcasten är redan inläst");
+                            }
+                            else if((podcastLookup.Count() == 0)&&(podcastList.Count() == iteration))
+                            {
+                                var lvi = new ListViewItem(new[] { podcast.Title, podcast.Category, podcast.EpisodeCount.ToString() });
+                                podcastList.Add(podcast);
+                                listViewPodcasts.Items.Add(lvi);
+                                PodcastRepo.SavePodcasts(podcastList);
+                            }
+                        }
                     }
                 }
                 else
@@ -85,25 +99,6 @@ namespace RSS_Demo
                 }
             }
             catch (WebException) { }
-            
-            //hämtar podcast titel och lägger till den  i en ListView
-            //hämtar antalAvsnitt och lägger till den i en Listview
-            // Lägger till kategori i listView
-            //try {
-            //    if (Validering.kontrolleraOmTextfaltArTomt(textBox1) == false && Validering.KontrollOmComboBoxArTom(comboBoxKategori) == true)
-            //    {
-
-            //        var titel = ListItemsHelper.getPodcastTitel(textBox1.Text);
-            //        var kategori = comboBoxKategori.SelectedItem.ToString();
-            //        var antalAvsnitt = ListItemsHelper.getPodcastAntalAvsnitt(textBox1.Text);
-
-
-
-            //        
-            //    }
-            //}catch(WebException){
-            // MessageBox.Show("URLen är ej giltig, försök med en ny.");
-            // }
             }
 
         private void buttonLaggTillKategori_Click(object sender, EventArgs e)
@@ -150,8 +145,7 @@ namespace RSS_Demo
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Du måste välja en kategori, innan du kan ändra", "Felmeddelande",
-    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Du måste välja en kategori, innan du kan ändra", "Felmeddelande", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
