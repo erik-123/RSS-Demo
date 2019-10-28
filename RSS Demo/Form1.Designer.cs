@@ -68,12 +68,12 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(9, 293);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Location = new System.Drawing.Point(6, 253);
+            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(56, 19);
+            this.button1.Size = new System.Drawing.Size(74, 35);
             this.button1.TabIndex = 1;
-            this.button1.Text = "Add";
+            this.button1.Text = "Lagg till";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -100,13 +100,13 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(10, 138);
-            this.button2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button2.Location = new System.Drawing.Point(6, 293);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(56, 23);
+            this.button2.Size = new System.Drawing.Size(74, 30);
             this.button2.TabIndex = 7;
-            this.button2.Text = "Add";
+            this.button2.Text = "Ta bort";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // label3
             // 
@@ -121,8 +121,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(9, 202);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(12, 172);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(46, 13);
             this.label2.TabIndex = 5;
@@ -141,8 +140,8 @@
             // comboBoxKategori
             // 
             this.comboBoxKategori.FormattingEnabled = true;
-            this.comboBoxKategori.Location = new System.Drawing.Point(9, 228);
-            this.comboBoxKategori.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.comboBoxKategori.Location = new System.Drawing.Point(12, 207);
+            this.comboBoxKategori.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.comboBoxKategori.Name = "comboBoxKategori";
             this.comboBoxKategori.Size = new System.Drawing.Size(92, 21);
             this.comboBoxKategori.TabIndex = 3;
@@ -163,7 +162,8 @@
             this.Kategori,
             this.Avsnitt});
             this.listViewPodcasts.HideSelection = false;
-            this.listViewPodcasts.Location = new System.Drawing.Point(179, 32);
+            this.listViewPodcasts.Location = new System.Drawing.Point(239, 39);
+            this.listViewPodcasts.Margin = new System.Windows.Forms.Padding(4);
             this.listViewPodcasts.Name = "listViewPodcasts";
             this.listViewPodcasts.Size = new System.Drawing.Size(438, 185);
             this.listViewPodcasts.TabIndex = 15;
@@ -189,7 +189,8 @@
             // listaKategorier
             // 
             this.listaKategorier.HideSelection = false;
-            this.listaKategorier.Location = new System.Drawing.Point(636, 32);
+            this.listaKategorier.Location = new System.Drawing.Point(848, 39);
+            this.listaKategorier.Margin = new System.Windows.Forms.Padding(4);
             this.listaKategorier.Name = "listaKategorier";
             this.listaKategorier.Size = new System.Drawing.Size(366, 193);
             this.listaKategorier.TabIndex = 16;
@@ -198,7 +199,8 @@
             // 
             // buttonLaggTillKategori
             // 
-            this.buttonLaggTillKategori.Location = new System.Drawing.Point(636, 254);
+            this.buttonLaggTillKategori.Location = new System.Drawing.Point(848, 313);
+            this.buttonLaggTillKategori.Margin = new System.Windows.Forms.Padding(4);
             this.buttonLaggTillKategori.Name = "buttonLaggTillKategori";
             this.buttonLaggTillKategori.Size = new System.Drawing.Size(75, 23);
             this.buttonLaggTillKategori.TabIndex = 17;
@@ -208,7 +210,8 @@
             // 
             // buttonTaBortKategori
             // 
-            this.buttonTaBortKategori.Location = new System.Drawing.Point(727, 254);
+            this.buttonTaBortKategori.Location = new System.Drawing.Point(969, 313);
+            this.buttonTaBortKategori.Margin = new System.Windows.Forms.Padding(4);
             this.buttonTaBortKategori.Name = "buttonTaBortKategori";
             this.buttonTaBortKategori.Size = new System.Drawing.Size(75, 23);
             this.buttonTaBortKategori.TabIndex = 18;
@@ -218,7 +221,8 @@
             // 
             // textBoxKategori
             // 
-            this.textBoxKategori.Location = new System.Drawing.Point(636, 229);
+            this.textBoxKategori.Location = new System.Drawing.Point(848, 282);
+            this.textBoxKategori.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxKategori.Name = "textBoxKategori";
             this.textBoxKategori.Size = new System.Drawing.Size(237, 20);
             this.textBoxKategori.TabIndex = 19;
@@ -263,7 +267,8 @@
             this.columnSpeltid,
             this.columnAvnittLink});
             this.listViewEpisode.HideSelection = false;
-            this.listViewEpisode.Location = new System.Drawing.Point(179, 229);
+            this.listViewEpisode.Location = new System.Drawing.Point(239, 282);
+            this.listViewEpisode.Margin = new System.Windows.Forms.Padding(4);
             this.listViewEpisode.Name = "listViewEpisode";
             this.listViewEpisode.Size = new System.Drawing.Size(438, 201);
             this.listViewEpisode.TabIndex = 25;

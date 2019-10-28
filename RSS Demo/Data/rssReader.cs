@@ -11,6 +11,7 @@ namespace RSS_Demo.Data
     {
         public static Podcast getPodcastFromURL(string url, string category, int intervall)
         {
+            
             var i = 0;
             var podcastData = XDocument.Load(url);
             XNamespace ns = "http://www.itunes.com/dtds/podcast-1.0.dtd";

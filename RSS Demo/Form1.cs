@@ -68,11 +68,21 @@ namespace RSS_Demo
         {
             try
             {
-                    var podcast = rssReader.getPodcastFromURL(textBox1.Text, comboBoxKategori.Text, default);
-                    podcastList.Add(podcast);
+                if (Validering.KontrolleraOmURLArGiltig(textBox1.Text).Length > 0)
+                {
+                    if (Validering.kontrolleraOmTextfaltArTomt(textBox1) == false && Validering.KontrollOmComboBoxArTom(comboBoxKategori))
+                    {
+                        var podcast = rssReader.getPodcastFromURL(textBox1.Text, comboBoxKategori.Text, default);
+                        podcastLista.Add(podcast);
 
-                    var lvi = new ListViewItem(new[] { podcast.Title, podcast.Category, podcast.EpisodeCount.ToString() });
-                    listViewPodcasts.Items.Add(lvi);
+                        var lvi = new ListViewItem(new[] { podcast.Title, podcast.Category, podcast.EpisodeCount.ToString() });
+                        listViewPodcasts.Items.Add(lvi);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Du har skrivit in ett felaktigt url!");
+                }
             }
             catch (WebException) { }
             
