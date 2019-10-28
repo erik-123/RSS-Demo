@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Xml;
+using System.Windows.Forms;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 
@@ -31,9 +31,24 @@ namespace RSS_Demo
             //alternativt sökord title eller item        
 
 
-            return antalAvsnitt;
+                return antalAvsnitt;
+            }
+            catch (FileNotFoundException e)
+            {
+                int test = 5;
+                Console.WriteLine(e);
+                return test;
+
+
+            }
+            
+
+
+
         }
-        
-    }
+
+
+
+        }
 }
 

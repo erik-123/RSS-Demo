@@ -121,15 +121,9 @@ namespace RSS_Demo
         }
         private void buttonTaBortKategori_Click(object sender, EventArgs e)
         {
-            try
-            {
-                comboBoxKategori.Items.RemoveAt(0);
-                listaKategorier.Items.Remove(listaKategorier.SelectedItems[0]);
-            }
-            catch (ArgumentOutOfRangeException)
-            {
-                MessageBox.Show("Ingen kategori har valts");
-            }
+            comboBoxKategori.Items.RemoveAt(0);
+            listaKategorier.Items.Remove(listaKategorier.SelectedItems[0]);
+
         }
 
         private void buttonAndra_Click(object sender, EventArgs e)
