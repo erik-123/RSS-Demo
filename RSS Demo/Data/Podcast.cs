@@ -11,9 +11,10 @@ namespace RSS_Demo.Data
         public int Intervall { get; set; }
         public string Category { get; set; }
         public string Link { get; set; }
+        public int EpisodeCount { get; set; }
         public List<Episode> EpisodeList {get; set;}
 
-        public Podcast(string title, string description, int intervall, string category, string link, List<Episode> episodeList)
+        public Podcast(string title, string description, int intervall, string category, string link, int episodeCount, List<Episode> episodeList)
         {
 
             this.Title = title;
@@ -22,6 +23,7 @@ namespace RSS_Demo.Data
             this.Category = category;
             this.Link = link;
             this.EpisodeList = episodeList;
+            this.EpisodeCount = episodeCount;
         }
         public Podcast() { }
     }

@@ -15,8 +15,8 @@ namespace RSS_Demo.Data
         public string Runtime { get; set; }
 
         public string EpisodeLink { get; set; }
-        public DateTime PubDate { get; set; }
-        public Episode(string title, string description, DateTime pubDate)
+        public string PubDate { get; set; }
+        public Episode(string title, string description, string pubDate)
         {
             this.Title = title;
             this.Description = description;
