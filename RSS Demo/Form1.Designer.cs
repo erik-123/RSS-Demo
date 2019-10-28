@@ -61,19 +61,19 @@ namespace RSS_Demo
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(9, 32);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox1.Location = new System.Drawing.Point(12, 39);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(129, 20);
+            this.textBox1.Size = new System.Drawing.Size(171, 22);
             this.textBox1.TabIndex = 0;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(6, 253);
-            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button1.Location = new System.Drawing.Point(8, 311);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(74, 35);
+            this.button1.Size = new System.Drawing.Size(99, 43);
             this.button1.TabIndex = 1;
             this.button1.Text = "Lagg till";
             this.button1.UseVisualStyleBackColor = true;
@@ -91,10 +91,10 @@ namespace RSS_Demo
             this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Left;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox1.Size = new System.Drawing.Size(160, 497);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox1.Size = new System.Drawing.Size(213, 612);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "ControlBox";
@@ -102,9 +102,10 @@ namespace RSS_Demo
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(6, 293);
+            this.button2.Location = new System.Drawing.Point(8, 361);
+            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(74, 30);
+            this.button2.Size = new System.Drawing.Size(99, 37);
             this.button2.TabIndex = 7;
             this.button2.Text = "Ta bort";
             this.button2.UseVisualStyleBackColor = true;
@@ -113,49 +114,49 @@ namespace RSS_Demo
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(9, 80);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Location = new System.Drawing.Point(12, 98);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(109, 13);
+            this.label3.Size = new System.Drawing.Size(144, 17);
             this.label3.TabIndex = 6;
             this.label3.Text = "UppdateringFrekvens";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 172);
+            this.label2.Location = new System.Drawing.Point(16, 212);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(46, 13);
+            this.label2.Size = new System.Drawing.Size(61, 17);
             this.label2.TabIndex = 5;
             this.label2.Text = "Kategori";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(7, 15);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(9, 18);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(54, 13);
+            this.label1.Size = new System.Drawing.Size(69, 17);
             this.label1.TabIndex = 4;
             this.label1.Text = "URL-RSS";
             // 
             // comboBoxKategori
             // 
             this.comboBoxKategori.FormattingEnabled = true;
-            this.comboBoxKategori.Location = new System.Drawing.Point(12, 207);
-            this.comboBoxKategori.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.comboBoxKategori.Location = new System.Drawing.Point(16, 255);
+            this.comboBoxKategori.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.comboBoxKategori.Name = "comboBoxKategori";
-            this.comboBoxKategori.Size = new System.Drawing.Size(92, 21);
+            this.comboBoxKategori.Size = new System.Drawing.Size(121, 24);
             this.comboBoxKategori.TabIndex = 3;
             // 
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(9, 102);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.comboBox1.Location = new System.Drawing.Point(12, 126);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(92, 21);
+            this.comboBox1.Size = new System.Drawing.Size(121, 24);
             this.comboBox1.TabIndex = 2;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // listViewPodcasts
             // 
@@ -164,10 +165,10 @@ namespace RSS_Demo
             this.Kategori,
             this.Avsnitt});
             this.listViewPodcasts.HideSelection = false;
-            this.listViewPodcasts.Location = new System.Drawing.Point(166, 43);
-            this.listViewPodcasts.Margin = new System.Windows.Forms.Padding(4);
+            this.listViewPodcasts.Location = new System.Drawing.Point(221, 53);
+            this.listViewPodcasts.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.listViewPodcasts.Name = "listViewPodcasts";
-            this.listViewPodcasts.Size = new System.Drawing.Size(438, 185);
+            this.listViewPodcasts.Size = new System.Drawing.Size(583, 227);
             this.listViewPodcasts.TabIndex = 15;
             this.listViewPodcasts.UseCompatibleStateImageBehavior = false;
             this.listViewPodcasts.View = System.Windows.Forms.View.Details;
@@ -191,20 +192,20 @@ namespace RSS_Demo
             // listaKategorier
             // 
             this.listaKategorier.HideSelection = false;
-            this.listaKategorier.Location = new System.Drawing.Point(637, 32);
-            this.listaKategorier.Margin = new System.Windows.Forms.Padding(4);
+            this.listaKategorier.Location = new System.Drawing.Point(849, 39);
+            this.listaKategorier.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.listaKategorier.Name = "listaKategorier";
-            this.listaKategorier.Size = new System.Drawing.Size(366, 193);
+            this.listaKategorier.Size = new System.Drawing.Size(487, 237);
             this.listaKategorier.TabIndex = 16;
             this.listaKategorier.UseCompatibleStateImageBehavior = false;
             this.listaKategorier.View = System.Windows.Forms.View.List;
             // 
             // buttonLaggTillKategori
             // 
-            this.buttonLaggTillKategori.Location = new System.Drawing.Point(786, 229);
-            this.buttonLaggTillKategori.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonLaggTillKategori.Location = new System.Drawing.Point(1048, 282);
+            this.buttonLaggTillKategori.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.buttonLaggTillKategori.Name = "buttonLaggTillKategori";
-            this.buttonLaggTillKategori.Size = new System.Drawing.Size(75, 23);
+            this.buttonLaggTillKategori.Size = new System.Drawing.Size(100, 28);
             this.buttonLaggTillKategori.TabIndex = 17;
             this.buttonLaggTillKategori.Text = "Lägg till";
             this.buttonLaggTillKategori.UseVisualStyleBackColor = true;
@@ -212,10 +213,10 @@ namespace RSS_Demo
             // 
             // buttonTaBortKategori
             // 
-            this.buttonTaBortKategori.Location = new System.Drawing.Point(869, 231);
-            this.buttonTaBortKategori.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonTaBortKategori.Location = new System.Drawing.Point(1159, 284);
+            this.buttonTaBortKategori.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.buttonTaBortKategori.Name = "buttonTaBortKategori";
-            this.buttonTaBortKategori.Size = new System.Drawing.Size(75, 23);
+            this.buttonTaBortKategori.Size = new System.Drawing.Size(100, 28);
             this.buttonTaBortKategori.TabIndex = 18;
             this.buttonTaBortKategori.Text = "Ta bort...";
             this.buttonTaBortKategori.UseVisualStyleBackColor = true;
@@ -223,28 +224,27 @@ namespace RSS_Demo
             // 
             // textBoxKategori
             // 
-            this.textBoxKategori.Location = new System.Drawing.Point(637, 262);
-            this.textBoxKategori.Margin = new System.Windows.Forms.Padding(4);
+            this.textBoxKategori.Location = new System.Drawing.Point(849, 322);
+            this.textBoxKategori.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.textBoxKategori.Name = "textBoxKategori";
-            this.textBoxKategori.Size = new System.Drawing.Size(237, 20);
+            this.textBoxKategori.Size = new System.Drawing.Size(315, 22);
             this.textBoxKategori.TabIndex = 19;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(634, 7);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Location = new System.Drawing.Point(845, 9);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(55, 13);
+            this.label4.Size = new System.Drawing.Size(74, 17);
             this.label4.TabIndex = 20;
             this.label4.Text = "Kategorier";
             // 
             // buttonAndra
             // 
-            this.buttonAndra.Location = new System.Drawing.Point(637, 231);
-            this.buttonAndra.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonAndra.Location = new System.Drawing.Point(849, 284);
+            this.buttonAndra.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonAndra.Name = "buttonAndra";
-            this.buttonAndra.Size = new System.Drawing.Size(65, 21);
+            this.buttonAndra.Size = new System.Drawing.Size(87, 26);
             this.buttonAndra.TabIndex = 21;
             this.buttonAndra.Text = "Andra";
             this.buttonAndra.UseVisualStyleBackColor = true;
@@ -252,10 +252,10 @@ namespace RSS_Demo
             // 
             // buttonSparaKategorier
             // 
-            this.buttonSparaKategorier.Location = new System.Drawing.Point(706, 231);
-            this.buttonSparaKategorier.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonSparaKategorier.Location = new System.Drawing.Point(941, 284);
+            this.buttonSparaKategorier.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonSparaKategorier.Name = "buttonSparaKategorier";
-            this.buttonSparaKategorier.Size = new System.Drawing.Size(74, 19);
+            this.buttonSparaKategorier.Size = new System.Drawing.Size(99, 23);
             this.buttonSparaKategorier.TabIndex = 22;
             this.buttonSparaKategorier.Text = "Spara";
             this.buttonSparaKategorier.UseVisualStyleBackColor = true;
@@ -269,10 +269,10 @@ namespace RSS_Demo
             this.columnSpeltid,
             this.columnAvnittLink});
             this.listViewEpisode.HideSelection = false;
-            this.listViewEpisode.Location = new System.Drawing.Point(166, 282);
-            this.listViewEpisode.Margin = new System.Windows.Forms.Padding(4);
+            this.listViewEpisode.Location = new System.Drawing.Point(221, 347);
+            this.listViewEpisode.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.listViewEpisode.Name = "listViewEpisode";
-            this.listViewEpisode.Size = new System.Drawing.Size(438, 201);
+            this.listViewEpisode.Size = new System.Drawing.Size(583, 246);
             this.listViewEpisode.TabIndex = 25;
             this.listViewEpisode.UseCompatibleStateImageBehavior = false;
             this.listViewEpisode.View = System.Windows.Forms.View.Details;
@@ -298,17 +298,18 @@ namespace RSS_Demo
             // 
             // episodeDetailsTextBox
             // 
-            this.episodeDetailsTextBox.Location = new System.Drawing.Point(637, 295);
+            this.episodeDetailsTextBox.Location = new System.Drawing.Point(849, 363);
+            this.episodeDetailsTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.episodeDetailsTextBox.Multiline = true;
             this.episodeDetailsTextBox.Name = "episodeDetailsTextBox";
-            this.episodeDetailsTextBox.Size = new System.Drawing.Size(366, 190);
+            this.episodeDetailsTextBox.Size = new System.Drawing.Size(487, 233);
             this.episodeDetailsTextBox.TabIndex = 26;
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1024, 497);
+            this.ClientSize = new System.Drawing.Size(1365, 612);
             this.Controls.Add(this.episodeDetailsTextBox);
             this.Controls.Add(this.listViewEpisode);
             this.Controls.Add(this.buttonSparaKategorier);
@@ -320,7 +321,7 @@ namespace RSS_Demo
             this.Controls.Add(this.listaKategorier);
             this.Controls.Add(this.listViewPodcasts);
             this.Controls.Add(this.groupBox1);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Form1";
             this.Text = "Podcast";
             this.Load += new System.EventHandler(this.Form1_Load);
