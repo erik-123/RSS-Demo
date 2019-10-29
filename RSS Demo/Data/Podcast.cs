@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 
 
+
 namespace RSS_Demo.Data
 {
-    public class Podcast
+    public class Podcast : interfaces
     {
         public string Title { get; set; }
         public string Description { get; set; }
@@ -26,6 +27,21 @@ namespace RSS_Demo.Data
             this.EpisodeCount = episodeCount;
         }
         public Podcast() { }
+        public string GetCategoryName()
+
+        {
+            return Category;
+        }
+
+        public void SetCategoryName(string category)
+        {
+
+            if (Category.Trim().Length > 0 && Category.Length < 10)
+            {
+                this.Category = category;
+            }
+        }
+
     }
 }
 
