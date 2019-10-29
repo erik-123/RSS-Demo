@@ -49,6 +49,7 @@ namespace RSS_Demo
 
         private void groupBox1_Enter(object sender, EventArgs e)
         {
+            //hej
 
         }
 
