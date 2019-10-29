@@ -17,7 +17,6 @@ using System.Diagnostics;
 using RSS_Demo.Data;
 using RSS_Demo.Mellanlager;
 using System.Net;
-using System.Timers;
 //using System.ServiceModel.Web;//
 
 
@@ -140,8 +139,17 @@ namespace RSS_Demo
         }
         private void buttonTaBortKategori_Click(object sender, EventArgs e)
         {
-            comboBoxKategori.Items.RemoveAt(0);
-            listaKategorier.Items.Remove(listaKategorier.SelectedItems[0]);
+            try
+            {
+                comboBoxKategori.Items.RemoveAt(0);
+                listaKategorier.Items.Remove(listaKategorier.SelectedItems[0]);
+            }
+            catch (Exception) 
+            { 
+                MessageBox.Show("Den valda kategorin kunde inte tas bort!"); 
+            
+            }
+           
 
         }
 
