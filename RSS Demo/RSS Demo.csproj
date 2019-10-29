@@ -58,6 +58,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="interface.cs" />
     <Compile Include="ListitemHelper.cs" />
     <Compile Include="Mellanlager\FormSetup.cs" />
     <Compile Include="Program.cs" />
