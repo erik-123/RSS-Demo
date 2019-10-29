@@ -34,7 +34,7 @@ namespace RSS_Demo.Data
                 i++;
             }
             podcast.Title = podcastData.Descendants("title").FirstOrDefault().Value;
-            podcast.Description = podcastData.Descendants("title").FirstOrDefault().Value;
+            podcast.Description = podcastData.Descendants("description").FirstOrDefault().Value;
             podcast.Link = podcastData.Descendants("link").FirstOrDefault().Value;
             podcast.Intervall = intervall;
             podcast.Category = category;

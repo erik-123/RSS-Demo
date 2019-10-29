@@ -17,6 +17,7 @@ using System.Diagnostics;
 using RSS_Demo.Data;
 using RSS_Demo.Mellanlager;
 using System.Net;
+using System.Timers;
 //using System.ServiceModel.Web;//
 
 
@@ -32,6 +33,7 @@ namespace RSS_Demo
         public Form1()
         {
             InitializeComponent();
+            Form1.timer(2000);
             categoryList = CategoryRepo.LoadCategories();
             foreach (string category in categoryList)
             {
@@ -101,7 +103,7 @@ namespace RSS_Demo
                         {
                             podcastList.Add(podcast);
                             var lvi = new ListViewItem(new[] { podcast.Title, podcast.Category, podcast.EpisodeCount.ToString() });
-                            podcastList.Add(podcast);
+                                
                             listViewPodcasts.Items.Add(lvi);
                             PodcastRepo.SavePodcasts(podcastList);
 
@@ -238,6 +240,17 @@ namespace RSS_Demo
             //        }
             //    }
             //}
+        }
+        public static void timer(int nummer)
+        {
+            System.Timers.Timer timer = new System.Timers.Timer();
+            timer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
+            timer.Interval = nummer;
+            timer.Enabled = true;
+        }
+        private static void OnTimedEvent(object sender, ElapsedEventArgs e)
+        {
+            MessageBox.Show("Hej");
         }
     }
 }
