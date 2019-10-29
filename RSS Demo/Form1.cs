@@ -218,9 +218,26 @@ namespace RSS_Demo
             }
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void listaKategorier_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //if (listaKategorier.SelectedItems.Count > 0)
+            //{
+            //    for(var i = 0; i < podcastList.Count(); i++)
+            //    {
+            //        var podcastLookup = podcastList.Where(podcast => podcast.Category == listaKategorier.SelectedItems[0].Text);
+            //        if (podcastLookup != null)
+            //        {
 
+            //            episodeList = podcastLookup.EpisodeList;
+            //            if (listViewEpisode.SelectedItems.Count > 0)
+            //            {
+            //                var episodeLookup = episodeList.Where(episode => episode.Title == listViewEpisode.SelectedItems[0].Text).FirstOrDefault();
+            //                Uri uri = new Uri(episodeLookup.EpisodeLink);
+            //                episodeDetailsTextBox.Text = episodeLookup.Description + " " + uri;
+            //            }
+            //        }
+            //    }
+            //}
         }
     }
 }
