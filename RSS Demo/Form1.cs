@@ -44,6 +44,7 @@ namespace RSS_Demo
             {
                 FormSetup.createPodcastListview(podcastList, listViewPodcasts);
                 FormSetup.createEpisodeListview(podcastList.First().EpisodeList, listViewEpisode);
+                //ihfeoihfew
             }
 
             Application.ApplicationExit += new EventHandler(this.OnApplicationExit);
