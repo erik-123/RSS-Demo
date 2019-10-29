@@ -163,7 +163,7 @@ namespace RSS_Demo
             {
                 MessageBox.Show("Du måste välja en kategori, innan du kan ändra", "Felmeddelande", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
+             
         }
 
         private void buttonSparaKategorier_Click(object sender, EventArgs e)
