@@ -11,36 +11,46 @@ namespace RSS_Demo.Mellanlager
     class FormSetup
     {
         public FormSetup() { }
-        static public ListViewItem setPodcastListItems(Podcast podcast)
+        
+        static public ListView createEpisodeListview(List<Episode> episodeList, ListView episodeListView)
         {
-          
+            var updatedListview = episodeListView;
+            updatedListview.Items.Clear();
+            foreach(var episode in episodeList)
+            {
+                ListViewItem episodeItem = new ListViewItem(episode.Title);
 
+                episodeItem.SubItems.Add(episode.PubDate);
 
-            ListViewItem podcastItem = new ListViewItem(podcast.Title);
-            podcastItem.SubItems.Add(podcast.Category);
-            
-            podcastItem.SubItems.Add(podcast.Intervall.ToString());
+                episodeItem.SubItems.Add(episode.Runtime);
 
+                episodeItem.SubItems.Add(episode.EpisodeLink);
 
+                updatedListview.Items.Add(episodeItem);
+            }
 
-            return podcastItem;
+            return updatedListview;
         }
-        static public ListViewItem setAvsnittListItems(Episode episode)
+        static public ListView createPodcastListview(List<Podcast> podcastList, ListView podcastListView)
         {
+            var updatedListview = podcastListView;
+            updatedListview.Items.Clear();
 
+            foreach (var podcast in podcastList)
+            {
+                ListViewItem podcastItem = new ListViewItem(podcast.Title);
 
+                podcastItem.SubItems.Add(podcast.Title);
 
-            ListViewItem podcastItem = new ListViewItem(episode.Title);
+                podcastItem.SubItems.Add(podcast.Category);
 
-            podcastItem.SubItems.Add(episode.PubDate);
+                podcastItem.SubItems.Add(podcast.EpisodeCount.ToString());
 
-            podcastItem.SubItems.Add(episode.Runtime);
+                updatedListview.Items.Add(podcastItem);
+            }
+            updatedListview.Items[0].Selected = true;
 
-            podcastItem.SubItems.Add(episode.EpisodeLink);
-
-
-
-            return podcastItem;
+            return updatedListview;
         }
 
     }
