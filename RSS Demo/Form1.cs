@@ -250,7 +250,7 @@ namespace RSS_Demo
         }
         private static void OnTimedEvent(object sender, ElapsedEventArgs e)
         {
-            MessageBox.Show("Hej");
+            MessageBox.Show("Hej aklalalallasl");
         }
     }
 }
