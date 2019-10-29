@@ -33,6 +33,8 @@ namespace RSS_Demo
         public Form1()
         {
             InitializeComponent();
+            //lihqoihweroihwr
+            //äölkdfomfeös
             categoryList = CategoryRepo.LoadCategories();
             foreach (string category in categoryList)
             {
