@@ -17,7 +17,6 @@ using System.Diagnostics;
 using RSS_Demo.Data;
 using RSS_Demo.Mellanlager;
 using System.Net;
-using System.Timers;
 //using System.ServiceModel.Web;//
 
 
@@ -255,7 +254,7 @@ namespace RSS_Demo
         {
             System.Timers.Timer timer = new System.Timers.Timer();
             timer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
-            //timer.Interval = nummer;
+            timer.Interval = nummer;
             timer.Enabled = true;
         }
         private static void OnTimedEvent(object sender, ElapsedEventArgs e)
