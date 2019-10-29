@@ -37,7 +37,7 @@ namespace RSS_Demo
             foreach (string category in categoryList)
             {
                 comboBoxKategori.Items.Add(category);
-            }
+            }//nej
             if(podcastList != null)
             {
                 FormSetup.createPodcastListview(podcastList, listViewPodcasts);

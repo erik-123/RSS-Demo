@@ -11,7 +11,7 @@ namespace RSS_Demo.Mellanlager
     class FormSetup
     {
         public FormSetup() { }
-        
+        //nej
         static public ListView createEpisodeListview(List<Episode> episodeList, ListView episodeListView)
         {
             var updatedListview = episodeListView;
