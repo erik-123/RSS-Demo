@@ -32,18 +32,18 @@ namespace RSS_Demo
         public Form1()
         {
             InitializeComponent();
-            //lihqoihweroihwr
-            //äölkdfomfeös
+            
+            
             categoryList = CategoryRepo.LoadCategories();
             foreach (string category in categoryList)
             {
                 comboBoxKategori.Items.Add(category);
-            }//nej
+            }
             if(podcastList != null)
             {
                 FormSetup.createPodcastListview(podcastList, listViewPodcasts);
                 FormSetup.createEpisodeListview(podcastList.First().EpisodeList, listViewEpisode);
-                //ihfeoihfew
+                
             }
 
             Application.ApplicationExit += new EventHandler(this.OnApplicationExit);
