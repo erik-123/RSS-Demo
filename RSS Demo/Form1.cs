@@ -17,7 +17,7 @@ using System.Diagnostics;
 using RSS_Demo.Data;
 using RSS_Demo.Mellanlager;
 using System.Net;
-//using System.ServiceModel.Web;//
+using System.Timers;
 
 
 
@@ -29,10 +29,17 @@ namespace RSS_Demo
     {
         private List<string> categoryList = new List<string>();
         private List<Podcast> podcastList = PodcastRepo.LoadPodcasts();
+        private int interval = UpdateIntervalRepo.LoadUpdateInterval();
+        
         public Form1()
         {
             InitializeComponent();
-            
+            if(interval > 0)
+            {
+                string uppdateringsIntervall = (interval / 1000 / 60).ToString()+ " min";
+                comboBoxUpdateInterval.SelectedIndex = comboBoxUpdateInterval.FindStringExact(uppdateringsIntervall);
+                Timer(interval);
+            }
             
             categoryList = CategoryRepo.LoadCategories();
             foreach (string category in categoryList)
@@ -179,6 +186,7 @@ namespace RSS_Demo
         {
             // When the application is exiting, write the application data to the
             // user file and close it.
+            
             CategoryRepo.SaveCategories(categoryList);
         }
 
@@ -227,16 +235,44 @@ namespace RSS_Demo
             }
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        public void Timer(int interval)
         {
-            System.Timers.Timer timer = new System.Timers.Timer();
-            timer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
-            //timer.Interval = nummer;
-            timer.Enabled = true;
+            if (interval > 0)
+            {
+                System.Timers.Timer timer = new System.Timers.Timer();
+                timer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
+                timer.Interval = interval;
+                timer.Enabled = true;
+                
+            }
         }
-        private static void OnTimedEvent(object sender, ElapsedEventArgs e)
+        private void OnTimedEvent(object sender, ElapsedEventArgs e)
         {
-            
+            podcastList = rssReader.getNewEpisode(podcastList);
+            listViewPodcasts = FormSetup.createPodcastListview(podcastList, listViewPodcasts);
+        }
+
+        private void buttonSaveUpdateInterval_Click(object sender, EventArgs e)
+        {
+            switch (comboBoxUpdateInterval.Text) 
+            {
+                case "10 min":
+                    interval = 600000;
+                    break;
+                case "5 min":
+                    interval = 300000;
+                    break;
+                case "1 min":
+                    interval = 60000;
+                    break;
+            }
+            UpdateIntervalRepo.SaveUpdateInterval(interval);
+            //behöver funktion för att skriva över timer interval, eller skriva över hela timern med en ny
+        }
+
+        private void comboBoxUpdateInterval_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

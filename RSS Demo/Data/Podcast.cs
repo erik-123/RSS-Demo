@@ -7,9 +7,10 @@ namespace RSS_Demo.Data
 {
     public class Podcast : interfaces
     {
+
+        public string FeedLink { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
-        public int Intervall { get; set; }
         public string Category { get; set; }
         public string Link { get; set; }
         public int EpisodeCount { get; set; }
@@ -20,7 +21,6 @@ namespace RSS_Demo.Data
 
             this.Title = title;
             this.Description = description;
-            this.Intervall = intervall;
             this.Category = category;
             this.Link = link;
             this.EpisodeList = episodeList;

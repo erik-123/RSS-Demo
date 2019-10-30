@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\CategoryRepo.cs" />
+    <Compile Include="Data\UpdateIntervalRepo.cs" />
     <Compile Include="Data\rssReader.cs" />
     <Compile Include="Data\Episode.cs" />
     <Compile Include="Data\Podcast.cs" />
