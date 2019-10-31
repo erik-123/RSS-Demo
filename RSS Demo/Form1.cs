@@ -106,23 +106,26 @@ namespace RSS_Demo
 
         private void ButtonLaggTillKategori_Click(object sender, EventArgs e)
         {
+            
             try
             {
                 if (Validering.KontrolleraOmTextfaltArTomt(textBoxKategori) == false && Validering.KontrollOmTextfaltHarSiffra(textBoxKategori) == true)
                 {
-                   
-                    string kategoriInput = textBoxKategori.Text.Trim();
-
-                    if (kategoriInput.Length != 0)
+                    if (Validering.kontrolleraOmKategoriFinns(textBoxKategori))
                     {
-                        listaKategorier.Items.Add(kategoriInput);
-                        comboBoxKategori.Items.Add(kategoriInput);
-                        categoryList.Add(kategoriInput);
+                        string kategoriInput = textBoxKategori.Text.Trim();
 
+                        if (kategoriInput.Length != 0)
+                        {
+                            listaKategorier.Items.Add(kategoriInput);
+                            comboBoxKategori.Items.Add(kategoriInput);
+                            categoryList.Add(kategoriInput);
+
+
+                        }
+                        textBoxKategori.Clear();
 
                     }
-                    textBoxKategori.Clear();
-
                 }
             }
             catch (Exception ex)

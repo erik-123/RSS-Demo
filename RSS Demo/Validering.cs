@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RSS_Demo.Data;
+using System;
 using System.Windows.Forms;
 using System.Xml.Linq;
 
@@ -46,7 +47,24 @@ public static class Validering
         {
             MessageBox.Show("Du har skrivit in ett felaktigt url!");
             return "";
-            throw new RSS_Demo.ValidationException("Url:en är ogiltig!");
+            throw new RSS_Demo.ValidationException("Du har skrivit in ett felaktigt url!");
         }
     }
-}
+        public static bool kontrolleraOmKategoriFinns(TextBox textBox)
+        {
+           var befintligaKategorier = CategoryRepo.LoadCategories();
+
+            foreach(var kategori in befintligaKategorier)
+        {
+            if(textBox.Text == kategori)
+            {
+                MessageBox.Show("Det finns i kategorilistan");
+                return false;
+            }
+        }
+            return true;
+
+        }
+    }
+
+
