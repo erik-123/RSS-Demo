@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Serialization;
 
 namespace RSS_Demo.Data
 {
-    static class CategoryRepo
+    internal static class CategoryRepo
     {
         static public List<string> LoadCategories()
         {
@@ -25,6 +21,7 @@ namespace RSS_Demo.Data
                 return new List<string>();
             }
         }
+
         static public void SaveCategories(List<string> categories)
         {
             var xmlSerializer = new XmlSerializer(typeof(List<string>));

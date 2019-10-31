@@ -49,7 +49,7 @@
   <ItemGroup>
     <Compile Include="Data\CategoryRepo.cs" />
     <Compile Include="Data\UpdateIntervalRepo.cs" />
-    <Compile Include="Data\rssReader.cs" />
+    <Compile Include="Data\RssReader1.cs" />
     <Compile Include="Data\Episode.cs" />
     <Compile Include="Data\Podcast.cs" />
     <Compile Include="Data\PodcastRepo.cs" />
@@ -64,6 +64,7 @@
     <Compile Include="Mellanlager\FormSetup.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ValidationException.cs" />
     <Compile Include="Validering.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

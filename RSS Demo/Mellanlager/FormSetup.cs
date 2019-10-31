@@ -1,22 +1,21 @@
 ﻿using RSS_Demo.Data;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace RSS_Demo.Mellanlager
 {
-    class FormSetup
+    internal class FormSetup
     {
-        public FormSetup() { }
+        public FormSetup()
+        {
+        }
+
         //nej
-        static public ListView createEpisodeListview(List<Episode> episodeList, ListView episodeListView)
+        static public ListView CreateEpisodeListview(List<Episode> episodeList, ListView episodeListView)
         {
             var updatedListview = episodeListView;
             updatedListview.Items.Clear();
-            foreach(var episode in episodeList)
+            foreach (var episode in episodeList)
             {
                 ListViewItem episodeItem = new ListViewItem(episode.Title);
 
@@ -31,7 +30,8 @@ namespace RSS_Demo.Mellanlager
 
             return updatedListview;
         }
-        static public ListView createPodcastListview(List<Podcast> podcastList, ListView podcastListView)
+
+        static public ListView CreatePodcastListview(List<Podcast> podcastList, ListView podcastListView)
         {
             if (podcastList.Count > 0)
             {
@@ -51,10 +51,9 @@ namespace RSS_Demo.Mellanlager
                     updatedListview.Items.Add(podcastItem);
                 }
                 updatedListview.Items[0].Selected = true;
-            return updatedListview;
+                return updatedListview;
             }
             return podcastListView;
         }
-
     }
 }

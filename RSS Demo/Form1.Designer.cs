@@ -70,7 +70,7 @@ namespace RSS_Demo
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(129, 20);
             this.textBox1.TabIndex = 0;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.textBox1.TextChanged += new System.EventHandler(this.TextBox1_TextChanged);
             // 
             // button1
             // 
@@ -81,7 +81,7 @@ namespace RSS_Demo
             this.button1.TabIndex = 1;
             this.button1.Text = "Lagg till";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
             // groupBox1
             // 
@@ -100,7 +100,7 @@ namespace RSS_Demo
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "ControlBox";
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            this.groupBox1.Enter += new System.EventHandler(this.GroupBox1_Enter);
             // 
             // button2
             // 
@@ -162,7 +162,7 @@ namespace RSS_Demo
             this.comboBoxUpdateInterval.Name = "comboBoxUpdateInterval";
             this.comboBoxUpdateInterval.Size = new System.Drawing.Size(92, 21);
             this.comboBoxUpdateInterval.TabIndex = 2;
-            this.comboBoxUpdateInterval.SelectedIndexChanged += new System.EventHandler(this.comboBoxUpdateInterval_SelectedIndexChanged);
+            this.comboBoxUpdateInterval.SelectedIndexChanged += new System.EventHandler(this.ComboBoxUpdateInterval_SelectedIndexChanged);
             // 
             // listViewPodcasts
             // 
@@ -178,7 +178,7 @@ namespace RSS_Demo
             this.listViewPodcasts.TabIndex = 15;
             this.listViewPodcasts.UseCompatibleStateImageBehavior = false;
             this.listViewPodcasts.View = System.Windows.Forms.View.Details;
-            this.listViewPodcasts.SelectedIndexChanged += new System.EventHandler(this.listViewPodcasts_SelectedIndexChanged);
+            this.listViewPodcasts.SelectedIndexChanged += new System.EventHandler(this.ListViewPodcasts_SelectedIndexChanged);
             // 
             // Title
             // 
@@ -205,7 +205,7 @@ namespace RSS_Demo
             this.listaKategorier.TabIndex = 16;
             this.listaKategorier.UseCompatibleStateImageBehavior = false;
             this.listaKategorier.View = System.Windows.Forms.View.List;
-            this.listaKategorier.SelectedIndexChanged += new System.EventHandler(this.listaKategorier_SelectedIndexChanged);
+            this.listaKategorier.SelectedIndexChanged += new System.EventHandler(this.ListaKategorier_SelectedIndexChanged);
             // 
             // buttonLaggTillKategori
             // 
@@ -216,7 +216,7 @@ namespace RSS_Demo
             this.buttonLaggTillKategori.TabIndex = 17;
             this.buttonLaggTillKategori.Text = "Lägg till";
             this.buttonLaggTillKategori.UseVisualStyleBackColor = true;
-            this.buttonLaggTillKategori.Click += new System.EventHandler(this.buttonLaggTillKategori_Click);
+            this.buttonLaggTillKategori.Click += new System.EventHandler(this.ButtonLaggTillKategori_Click);
             // 
             // buttonTaBortKategori
             // 
@@ -227,7 +227,7 @@ namespace RSS_Demo
             this.buttonTaBortKategori.TabIndex = 18;
             this.buttonTaBortKategori.Text = "Ta bort...";
             this.buttonTaBortKategori.UseVisualStyleBackColor = true;
-            this.buttonTaBortKategori.Click += new System.EventHandler(this.buttonTaBortKategori_Click);
+            this.buttonTaBortKategori.Click += new System.EventHandler(this.ButtonTaBortKategori_Click);
             // 
             // textBoxKategori
             // 
@@ -256,7 +256,7 @@ namespace RSS_Demo
             this.buttonAndra.TabIndex = 21;
             this.buttonAndra.Text = "Andra";
             this.buttonAndra.UseVisualStyleBackColor = true;
-            this.buttonAndra.Click += new System.EventHandler(this.buttonAndra_Click);
+            this.buttonAndra.Click += new System.EventHandler(this.ButtonAndra_Click);
             // 
             // buttonSparaKategorier
             // 
@@ -267,7 +267,7 @@ namespace RSS_Demo
             this.buttonSparaKategorier.TabIndex = 22;
             this.buttonSparaKategorier.Text = "Spara";
             this.buttonSparaKategorier.UseVisualStyleBackColor = true;
-            this.buttonSparaKategorier.Click += new System.EventHandler(this.buttonSparaKategorier_Click);
+            this.buttonSparaKategorier.Click += new System.EventHandler(this.ButtonSparaKategorier_Click);
             // 
             // listViewEpisode
             // 
@@ -284,7 +284,7 @@ namespace RSS_Demo
             this.listViewEpisode.TabIndex = 25;
             this.listViewEpisode.UseCompatibleStateImageBehavior = false;
             this.listViewEpisode.View = System.Windows.Forms.View.Details;
-            this.listViewEpisode.SelectedIndexChanged += new System.EventHandler(this.listViewEpisode_SelectedIndexChanged);
+            this.listViewEpisode.SelectedIndexChanged += new System.EventHandler(this.ListViewEpisode_SelectedIndexChanged);
             // 
             // columnAvnittNamn
             // 
@@ -320,7 +320,7 @@ namespace RSS_Demo
             this.buttonSaveUpdateInterval.TabIndex = 27;
             this.buttonSaveUpdateInterval.Text = "button3";
             this.buttonSaveUpdateInterval.UseVisualStyleBackColor = true;
-            this.buttonSaveUpdateInterval.Click += new System.EventHandler(this.buttonSaveUpdateInterval_Click);
+            this.buttonSaveUpdateInterval.Click += new System.EventHandler(this.ButtonSaveUpdateInterval_Click);
             // 
             // labelUpdate
             // 
@@ -348,7 +348,7 @@ namespace RSS_Demo
             this.button3.TabIndex = 30;
             this.button3.Text = "button3";
             this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.button3.Click += new System.EventHandler(this.Button3_Click);
             // 
             // Form1
             // 

@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.IO;
 using System.Xml.Serialization;
 
 namespace RSS_Demo.Data
 {
-    static class UpdateIntervalRepo
+    internal static class UpdateIntervalRepo
     {
         static public int LoadUpdateInterval()
         {
@@ -25,6 +20,7 @@ namespace RSS_Demo.Data
                 return 0;
             }
         }
+
         static public void SaveUpdateInterval(int updateInterval)
         {
             var xmlSerializer = new XmlSerializer(typeof(int));
