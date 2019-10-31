@@ -29,8 +29,11 @@ public static class Validering
         foreach (char c in s)
         {
             if (!Char.IsLetter(c))
+            {
+
                 return false;
-            throw new RSS_Demo.ValidationException("Textfältet innehåller en eller flera siffror");
+                throw new RSS_Demo.ValidationException("Textfältet innehåller en eller flera siffror");
+            }
         }
         return true;
     }
