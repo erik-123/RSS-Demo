@@ -6,12 +6,10 @@ using System.Threading.Tasks;
 
 namespace RSS_Demo
 {
-    public interface interfaces
+    class ValidationException: System.Exception
     {
-       // string GetCategoryName();
-        void SetCategoryName(string category);
+        public ValidationException(string message): base (message) 
         
-
-
+        { }
     }
 }

@@ -22,7 +22,8 @@ namespace RSS_Demo
             else
             {
                 return false;
-            }
+                throw new RSS_Demo.ValidationException("Vänligen fyll i alla fält");
+        }
 
         }
     
@@ -34,6 +35,7 @@ namespace RSS_Demo
         {
             if (!Char.IsLetter(c))
                 return false;
+            throw new RSS_Demo.ValidationException("Textfältet innehåller en eller flera siffror");
         }
         return true;
               
@@ -51,6 +53,7 @@ namespace RSS_Demo
         {
             MessageBox.Show("Du har skrivit in ett felaktigt url!");
             return "";
+            throw new RSS_Demo.ValidationException("Url:en är ogiltig!");
         }
     }
 }
