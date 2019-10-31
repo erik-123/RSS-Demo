@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RSS_Demo.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -51,10 +52,23 @@ namespace RSS_Demo
         try { var podcastData = XDocument.Load(url); return url; }
         catch (Exception)
         {
-            MessageBox.Show("Du har skrivit in ett felaktigt url!");
+            //MessageBox.Show("Du har skrivit in ett felaktigt url!");
             return "";
-            throw new RSS_Demo.ValidationException("Url:en är ogiltig!");
+            throw new RSS_Demo.ValidationException("Du har skrivit in ett felaktigt url!");
         }
     }
-}
+        public static bool kontrolleraOmKategoriFinns(TextBox textBox)
+        {
+           var befintligaKategorier = CategoryRepo.LoadCategories();
+
+            if(textBox.Text.Trim() == befintligaKategorier.ToString())
+            {
+                return false;
+
+           }
+            return true;
+
+        }
+    }
+
 

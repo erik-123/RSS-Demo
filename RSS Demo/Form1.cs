@@ -128,19 +128,21 @@ namespace RSS_Demo
             {
                 if (Validering.kontrolleraOmTextfaltArTomt(textBoxKategori) == false && Validering.kontrollOmTextfaltHarSiffra(textBoxKategori) == true)
                 {
-                   
-                    string kategoriInput = textBoxKategori.Text.Trim();
-
-                    if (kategoriInput.Length != 0)
+                    if (Validering.kontrolleraOmKategoriFinns(textBoxKategori))
                     {
-                        listaKategorier.Items.Add(kategoriInput);
-                        comboBoxKategori.Items.Add(kategoriInput);
-                        categoryList.Add(kategoriInput);
+                        string kategoriInput = textBoxKategori.Text.Trim();
 
+                        if (kategoriInput.Length != 0)
+                        {
+                            listaKategorier.Items.Add(kategoriInput);
+                            comboBoxKategori.Items.Add(kategoriInput);
+                            categoryList.Add(kategoriInput);
+
+
+                        }
+                        textBoxKategori.Clear();
 
                     }
-                    textBoxKategori.Clear();
-
                 }
             }
             catch (Exception ex)
@@ -182,7 +184,7 @@ namespace RSS_Demo
 
                 textBoxKategori.Clear();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Du måste välja en kategori, innan du kan ändra", "Felmeddelande", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
