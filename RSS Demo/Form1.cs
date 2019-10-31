@@ -16,19 +16,15 @@ namespace RSS_Demo
 {
     public partial class Form1 : Form
     {
-        readonly private List<string> categoryList = new List<string>();
+        readonly private List<string> categoryList = CategoryRepo.LoadCategories();
         private List<Podcast> podcastList = PodcastRepo.LoadPodcasts();
         private int interval = UpdateIntervalRepo.LoadUpdateInterval();
 
         public Form1()
         {
             InitializeComponent();
-
-            categoryList = CategoryRepo.LoadCategories();
-            foreach (string category in categoryList)
-            {
-                comboBoxKategori.Items.Add(category);
-            }
+            FormSetup.CreateCategoryListview(categoryList, listaKategorier);
+            
             if (podcastList.Count > 0)
             {
                 if (interval > 0)

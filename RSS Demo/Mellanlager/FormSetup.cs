@@ -11,6 +11,17 @@ namespace RSS_Demo.Mellanlager
         }
 
         //nej
+        static public ListView CreateCategoryListview(List<string> categoryList, ListView ListView)
+        {
+            var updatedListview = ListView;
+            updatedListview.Items.Clear();
+            foreach (var category in categoryList)
+            {
+                ListViewItem categoryItem = new ListViewItem(category);
+                updatedListview.Items.Add(categoryItem);
+            }
+            return updatedListview;
+        }
         static public ListView CreateEpisodeListview(List<Episode> episodeList, ListView episodeListView)
         {
             var updatedListview = episodeListView;
