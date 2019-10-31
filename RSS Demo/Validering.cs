@@ -36,7 +36,7 @@ namespace RSS_Demo
         {
             if (!Char.IsLetter(c))
                 return false;
-            throw new RSS_Demo.ValidationException("Textfältet innehåller en eller flera siffror");
+           // throw new RSS_Demo.ValidationException("Textfältet innehåller en eller flera siffror");
         }
         return true;
               
@@ -61,11 +61,14 @@ namespace RSS_Demo
         {
            var befintligaKategorier = CategoryRepo.LoadCategories();
 
-            if(textBox.Text.Trim() == befintligaKategorier.ToString())
+            foreach(var kategori in befintligaKategorier)
+        {
+            if(textBox.Text == kategori)
             {
+                MessageBox.Show("Det finns i kategorilistan");
                 return false;
-
-           }
+            }
+        }
             return true;
 
         }

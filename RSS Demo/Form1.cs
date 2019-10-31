@@ -110,6 +110,7 @@ namespace RSS_Demo
 
         private void buttonLaggTillKategori_Click(object sender, EventArgs e)
         {
+            
             try
             {
                 if (Validering.kontrolleraOmTextfaltArTomt(textBoxKategori) == false && Validering.kontrollOmTextfaltHarSiffra(textBoxKategori) == true)
