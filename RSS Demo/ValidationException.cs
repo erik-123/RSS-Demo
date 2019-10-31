@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace RSS_Demo
 {
-    class ValidationException
+    class ValidationException: System.Exception
     {
+        public ValidationException(string message): base (message) 
+        
+        { }
     }
 }
