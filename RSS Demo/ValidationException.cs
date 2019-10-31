@@ -6,12 +6,7 @@ using System.Threading.Tasks;
 
 namespace RSS_Demo
 {
-    public interface interfaces
+    class ValidationException
     {
-       // string GetCategoryName();
-        void SetCategoryName(string category);
-        
-
-
     }
 }

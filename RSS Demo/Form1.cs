@@ -31,6 +31,8 @@ namespace RSS_Demo
         private List<Podcast> podcastList = PodcastRepo.LoadPodcasts();
         private int interval = UpdateIntervalRepo.LoadUpdateInterval();
         
+
+
         public Form1()
         {
             InitializeComponent();
@@ -126,6 +128,7 @@ namespace RSS_Demo
             {
                 if (Validering.kontrolleraOmTextfaltArTomt(textBoxKategori) == false && Validering.kontrollOmTextfaltHarSiffra(textBoxKategori) == true)
                 {
+                   
                     string kategoriInput = textBoxKategori.Text.Trim();
 
                     if (kategoriInput.Length != 0)
@@ -133,6 +136,7 @@ namespace RSS_Demo
                         listaKategorier.Items.Add(kategoriInput);
                         comboBoxKategori.Items.Add(kategoriInput);
                         categoryList.Add(kategoriInput);
+
 
                     }
                     textBoxKategori.Clear();
@@ -146,6 +150,7 @@ namespace RSS_Demo
         }
         private void buttonTaBortKategori_Click(object sender, EventArgs e)
         {
+          
             try
             {
                 comboBoxKategori.Items.RemoveAt(0);
@@ -154,20 +159,26 @@ namespace RSS_Demo
             catch (Exception) 
             { 
                 MessageBox.Show("Den valda kategorin kunde inte tas bort!"); 
+
             
             }
            
 
         }
+       
 
         private void buttonAndra_Click(object sender, EventArgs e)
         {
+            
             try
             {
                 comboBoxKategori.Items[0] = textBoxKategori.Text; ;
                 comboBoxKategori.SelectedValue = textBoxKategori.Text;
                 comboBoxKategori.Text = textBoxKategori.Text;
                 listaKategorier.SelectedItems[0].Text = textBoxKategori.Text;
+
+
+                
 
                 textBoxKategori.Clear();
             }
@@ -181,6 +192,11 @@ namespace RSS_Demo
         private void buttonSparaKategorier_Click(object sender, EventArgs e)
         {
             //XmlSerializer serializer = new XmlSerializer(typeof());
+
+            CategoryRepo.SaveCategories(categoryList);
+
+            MessageBox.Show("Kategorierna har sparats!");
+
         }
         private void OnApplicationExit(object sender, EventArgs e)
         {
@@ -188,6 +204,7 @@ namespace RSS_Demo
             // user file and close it.
             
             CategoryRepo.SaveCategories(categoryList);
+
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
