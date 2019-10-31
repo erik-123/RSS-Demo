@@ -43,9 +43,12 @@ public static class Validering
         if( cb.SelectedItem  != null)
         {
             return true;
+
         }
         else {
-            return false; 
+            MessageBox.Show("Comboboxen är tom!");
+            return false;
+            
         }
 
         //return cb.SelectedItem != null ? true : false;
