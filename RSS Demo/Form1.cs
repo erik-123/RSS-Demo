@@ -23,7 +23,15 @@ namespace RSS_Demo
         public Form1()
         {
             InitializeComponent();
+            
             FormSetup.CreateCategoryListview(categoryList, listaKategorier);
+            if(categoryList.Count > 0)
+            {
+                foreach(var category in categoryList)
+                {
+                    comboBoxKategori.Items.Add(category);
+                }
+            }
             
             if (podcastList.Count > 0)
             {
@@ -55,7 +63,7 @@ namespace RSS_Demo
         {
             try
             {
-                if (Validering.KontrolleraOmURLArGiltig(textBox1.Text).Length < 0)
+                if (Validering.KontrolleraOmURLArGiltig(textBox1.Text).Length > 0)
                 {
                     if (Validering.KontrollOmComboBoxArTom(comboBoxKategori))
                     {
@@ -63,7 +71,7 @@ namespace RSS_Demo
                         int iteration = 0;
 
 
-                        if (podcastList.Count() < 0)
+                        if (podcastList.Count() > 0)
                         {
                             foreach (var podcastInList in podcastList)
                             {
@@ -74,6 +82,7 @@ namespace RSS_Demo
                                 if (podcastLookup.Count() > 0)
                                 {
                                     MessageBox.Show("Podcasten är redan inläst");
+                                    break;
                                 }
                                 else if ((podcastLookup.Count() == 0) && (podcastList.Count() == iteration))
                                 {
@@ -109,7 +118,7 @@ namespace RSS_Demo
             
             try
             {
-                if (Validering.KontrolleraOmTextfaltArTomt(textBoxKategori)  && Validering.KontrollOmTextfaltHarSiffra(textBoxKategori))
+                if (Validering.KontrolleraOmTextfaltArTomt(textBoxKategori) && Validering.KontrollOmTextfaltHarSiffra(textBoxKategori))
                 {
                     if (Validering.kontrolleraOmKategoriFinns(textBoxKategori))
                     {
@@ -224,7 +233,7 @@ namespace RSS_Demo
             {
                 var podcastLookup = podcastList.Where(podcast => podcast.Category == listaKategorier.SelectedItems[0].Text).ToList();
 
-                if (podcastLookup != null)
+                if (podcastLookup.Count > 0)
                 {
 
                     listViewPodcasts.BeginUpdate();
@@ -289,7 +298,7 @@ namespace RSS_Demo
                 var newPodlist = podcastList;
                 newPodlist.RemoveAt(listViewPodcasts.SelectedIndices[0]);
                 PodcastRepo.SavePodcasts(newPodlist);
-                listViewPodcasts = FormSetup.CreatePodcastListview(podcastList, listViewPodcasts);
+                listViewPodcasts = FormSetup.CreatePodcastListview(newPodlist, listViewPodcasts);
             }
         }
     }

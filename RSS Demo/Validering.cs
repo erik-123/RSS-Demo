@@ -26,13 +26,16 @@ public static class Validering
    {
        var s = textBox.Text.Trim();
 
-       foreach (char c in s)
-       {
-          if (!Char.IsLetter(c))
-               return false;
-          // throw new RSS_Demo.ValidationException("Textfältet innehåller en eller flera siffror");
-       }
-       return true;
+        foreach (char c in s)
+        {
+            if (!Char.IsLetter(c))
+            {
+
+                return false;
+                throw new RSS_Demo.ValidationException("Textfältet innehåller en eller flera siffror");
+            }
+        }
+        return true;
     }
 
     public static bool KontrollOmComboBoxArTom(ComboBox cb)
