@@ -18,26 +18,35 @@ public static class Validering
         else
         {
             return false;
-            throw new RSS_Demo.ValidationException("Vänligen fyll i alla fält");
+           throw new RSS_Demo.ValidationException("Vänligen fyll i alla fält");
         }
     }
 
-    public static bool KontrollOmTextfaltHarSiffra(TextBox textBox)
-    {
-        var s = textBox.Text.Trim();
+   public static bool KontrollOmTextfaltHarSiffra(TextBox textBox)
+   {
+       var s = textBox.Text.Trim();
 
-        foreach (char c in s)
-        {
-            if (!Char.IsLetter(c))
-                return false;
-            throw new RSS_Demo.ValidationException("Textfältet innehåller en eller flera siffror");
-        }
-        return true;
+       foreach (char c in s)
+       {
+          if (!Char.IsLetter(c))
+               return false;
+          // throw new RSS_Demo.ValidationException("Textfältet innehåller en eller flera siffror");
+       }
+       return true;
     }
 
     public static bool KontrollOmComboBoxArTom(ComboBox cb)
     {
-        return cb.SelectedItem != null ? true : false;
+        if( cb.SelectedItem  != null)
+        {
+            return true;
+        }
+        else {
+            return false; 
+        }
+
+        //return cb.SelectedItem != null ? true : false;
+        
     }
 
     public static string KontrolleraOmURLArGiltig(string url)

@@ -55,7 +55,7 @@ namespace RSS_Demo
         {
             try
             {
-                if (Validering.KontrolleraOmURLArGiltig(textBox1.Text).Length > 0)
+                if (Validering.KontrolleraOmURLArGiltig(textBox1.Text).Length < 0)
                 {
                     if (Validering.KontrollOmComboBoxArTom(comboBoxKategori))
                     {
@@ -109,7 +109,7 @@ namespace RSS_Demo
             
             try
             {
-                if (Validering.KontrolleraOmTextfaltArTomt(textBoxKategori) == false && Validering.KontrollOmTextfaltHarSiffra(textBoxKategori) == true)
+                if (Validering.KontrolleraOmTextfaltArTomt(textBoxKategori)  && Validering.KontrollOmTextfaltHarSiffra(textBoxKategori))
                 {
                     if (Validering.kontrolleraOmKategoriFinns(textBoxKategori))
                     {
