@@ -30,7 +30,7 @@ namespace RSS_Demo.Data
         static public void SavePodcasts(List<Podcast> podcasts)
         {
             var xmlSerializer = new XmlSerializer(typeof(List<Podcast>));
-
+            File.Delete("./podcast.xml");
             using (var fileStream = File.OpenWrite("./podcast.xml"))
             {
                 var writer = new StreamWriter(fileStream);
