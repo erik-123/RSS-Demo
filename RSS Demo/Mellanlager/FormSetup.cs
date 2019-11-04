@@ -10,7 +10,7 @@ namespace RSS_Demo.Mellanlager
         {
         }
 
-        //nej
+       
         static public ListView CreateCategoryListview(List<string> categoryList, ListView ListView)
         {
             var updatedListview = ListView;

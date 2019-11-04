@@ -1,4 +1,6 @@
-﻿using RSS_Demo.Data;
+﻿
+using InterfaceMeddelande;
+using RSS_Demo.Data;
 using RSS_Demo.Mellanlager;
 using System;
 using System.Collections.Generic;
@@ -14,16 +16,20 @@ using System.Windows.Forms;
 
 namespace RSS_Demo
 {
-    public partial class Form1 : Form
+    public partial class Form1 : Form, IMeddelande
     {
         readonly private List<string> categoryList = CategoryRepo.LoadCategories();
         readonly private List<Podcast> podcastList = PodcastRepo.LoadPodcasts();
         private int interval = UpdateIntervalRepo.LoadUpdateInterval();
+        private MessageController ctrl;
+
 
         public Form1()
         {
             InitializeComponent();
+            ctrl = new MessageController(this); //ny
             
+
             FormSetup.CreateCategoryListview(categoryList, listaKategorier);
             if(categoryList.Count > 0)
             {
@@ -55,10 +61,18 @@ namespace RSS_Demo
 
         private void Form1_Load(object sender, EventArgs e)
         {
+         
+
 
         }
 
+        public void Meddelande()
+        {
+            MessageBox.Show("Testar om interface för meddelande fungerar!");
+        }
+        
 
+     
         private void Button1_Click(object sender, EventArgs e)
         {
             try
@@ -144,7 +158,9 @@ namespace RSS_Demo
         }
         private void ButtonTaBortKategori_Click(object sender, EventArgs e)
         {
-          
+            
+
+
             try
             {
                 comboBoxKategori.Items.RemoveAt(0);
@@ -189,6 +205,7 @@ namespace RSS_Demo
             CategoryRepo.SaveCategories(categoryList);
 
             MessageBox.Show("Kategorierna har sparats!");
+            ctrl.InterfaceMeddelande();
 
         }
         private void OnApplicationExit(object sender, EventArgs e)
@@ -198,6 +215,7 @@ namespace RSS_Demo
 
             CategoryRepo.SaveCategories(categoryList);
             PodcastRepo.SavePodcasts(podcastList);
+            
         }
 
         private void TextBox1_TextChanged(object sender, EventArgs e)

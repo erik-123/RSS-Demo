@@ -59,6 +59,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="InterfaceMeddelande.cs" />
     <Compile Include="interface.cs" />
     <Compile Include="ListitemHelper.cs" />
     <Compile Include="Mellanlager\FormSetup.cs" />
