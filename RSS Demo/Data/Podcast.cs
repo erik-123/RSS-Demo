@@ -2,7 +2,7 @@
 
 namespace RSS_Demo.Data
 {
-    public class Podcast : IInterfaces
+    public class Podcast 
     {
         public string FeedLink { get; set; }
         public string Title { get; set; }
