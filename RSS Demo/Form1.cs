@@ -295,12 +295,16 @@ namespace RSS_Demo
        
         public void OnTimedEvent(object sender, ElapsedEventArgs e)
         {
-            try{ 
-                podcastList = RssReader.GetNewEpisode(podcastList); 
-                listViewPodcasts = FormSetup.CreatePodcastListview(podcastList, listViewPodcasts);
+            
+                //var newPodcastList = RssReader.GetNewEpisode(podcastList);
+                //var isequal = newPodcastList.Equals(podcastList);
+                //if(!newPodcastList.Equals(podcastList))
+                //{
+                //    listViewPodcasts = FormSetup.CreatePodcastListview(newPodcastList, listViewPodcasts);
+                //}
+                //else { return; }
                 
-            }
-            catch(Exception) { }
+            
         }
 
         private void ButtonSaveUpdateInterval_Click(object sender, EventArgs e)
@@ -317,6 +321,12 @@ namespace RSS_Demo
                     NyttInterval = 60000;
                     break;
             }
+            UpdateIntervalRepo.SaveUpdateInterval(interval);
+            
+            var newPodcastList = RssReader.GetNewEpisode(podcastList);
+            listViewPodcasts.BeginUpdate();
+            listViewPodcasts = FormSetup.CreatePodcastListview(newPodcastList, listViewPodcasts);
+            listViewPodcasts.EndUpdate();
             UpdateIntervalRepo.SaveUpdateInterval(NyttInterval);
             //behöver funktion för att skriva över timer interval, eller skriva över hela timern med en ny
         }

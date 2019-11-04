@@ -38,34 +38,57 @@ namespace RSS_Demo.Data
             return podcast;
         }
 
-        public static List<Podcast> GetNewEpisode(List<Podcast> podcastList)
+        public static List<Podcast> GetNewEpisode(List<Podcast> newPodcastList)
         {
-            foreach (var podcast in podcastList)
+            
+            for(var i = 0; i < newPodcastList.Count(); i++)
             {
                 XNamespace ns = "http://www.itunes.com/dtds/podcast-1.0.dtd";
 
-                var podcastData = XDocument.Load(podcast.FeedLink);
+                var podcastData = XDocument.Load(newPodcastList[i].FeedLink);
 
-                var episodeData = podcastData.Descendants("item").FirstOrDefault();
+                var episodeData = podcastData.Descendants("item");
+                List<Episode> episodeList = new List<Episode>();
 
-                var episodeLookup = podcast.EpisodeList.Where(episode => episode.Title == episodeData.Element("title").Value);
-
-                if (episodeLookup.Count() == 0)
+                foreach (var item in episodeData)
                 {
                     var episode = new Episode
                     {
-                        Title = episodeData.Element("title").Value,
-                        Description = episodeData.Element("description").Value,
-                        Runtime = episodeData.Element(ns + "duration").Value,
-                        EpisodeLink = episodeData.Element("link").Value,
-                        PubDate = episodeData.Element("pubDate").Value
+                        Title = item.Element("title").Value,
+                        Description = item.Element("description").Value,
+                        Runtime = item.Element(ns + "duration").Value,
+                        EpisodeLink = item.Element("link").Value,
+                        PubDate = item.Element("pubDate").Value
                     };
-                    podcast.EpisodeList.Add(episode);
-                    podcastList[podcastList.FindIndex(ind => ind.Equals(podcast.Title))] = podcast;
-                    return podcastList;
+                    episodeList.Add(episode);
+                    
                 }
+
+                var newEpisodesList = episodeList.Except(newPodcastList[i].EpisodeList).ToList();
+                
+
+                
+                if (newEpisodesList.ElementAt(0).Title != newPodcastList[i].EpisodeList.ElementAt(0).Title)
+                {
+                    newPodcastList[i].EpisodeList = newEpisodesList;
+                    newPodcastList[newPodcastList.IndexOf(newPodcastList[i])] = newPodcastList[i];
+                }
+                //{
+                //    var episode = new Episode
+                //    {
+                //        Title = episodeData.Element("title").Value,
+                //        Description = episodeData.Element("description").Value,
+                //        Runtime = episodeData.Element(ns + "duration").Value,
+                //        EpisodeLink = episodeData.Element("link").Value,
+                //        PubDate = episodeData.Element("pubDate").Value
+                //    };
+                //    newPodcastList[i].EpisodeList.Reverse();
+                //    newPodcastList[i].EpisodeList.Add(episode);
+                //    newPodcastList[i].EpisodeList.Reverse();
+                //    //podcastList[podcastList.FindIndex(ind => ind.Equals(podcast.Title))] = podcast;
+                //}
             }
-            return null;
+            return newPodcastList;
         }
     }
 }
