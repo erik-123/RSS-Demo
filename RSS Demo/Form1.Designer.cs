@@ -403,7 +403,7 @@ namespace RSS_Demo
         private System.Windows.Forms.ComboBox comboBoxKategori;
         private System.Windows.Forms.ComboBox comboBoxUpdateInterval;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ListView listViewPodcasts;
+        public System.Windows.Forms.ListView listViewPodcasts;
         private System.Windows.Forms.ColumnHeader Title;
         private System.Windows.Forms.ColumnHeader Kategori;
         private System.Windows.Forms.ColumnHeader Avsnitt;

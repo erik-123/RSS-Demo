@@ -14,7 +14,7 @@ namespace InterfaceMeddelande
 
         public string Category { get; set; }
        // List<string> categoryList;
-        private RSS_Demo.IMeddelande messageClient;
+        private readonly RSS_Demo.IMeddelande messageClient;
        
 
         public MessageController(IMeddelande client)

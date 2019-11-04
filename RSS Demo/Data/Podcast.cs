@@ -23,21 +23,6 @@ namespace RSS_Demo.Data
         }
 
         public Podcast()
-        {
-        }
-
-        public string GetCategoryName()
-
-        {
-            return Category;
-        }
-
-        public void SetCategoryName(string category)
-        {
-            if (Category.Trim().Length > 0 && Category.Length < 10)
-            {
-                this.Category = category;
-            }
-        }
+        {        }       
     }
 }

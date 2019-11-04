@@ -1,5 +1,6 @@
 ﻿
 using InterfaceMeddelande;
+using NyTimerKlass;
 using RSS_Demo.Data;
 using RSS_Demo.Mellanlager;
 using System;
@@ -9,9 +10,8 @@ using System.Linq;
 using System.Net;
 using System.Timers;
 using System.Windows.Forms;
-
-
-
+using TimerHanterare;
+using Timer = System.Windows.Forms.Timer;
 
 
 namespace RSS_Demo
@@ -20,8 +20,8 @@ namespace RSS_Demo
     {
         readonly private List<string> categoryList = CategoryRepo.LoadCategories();
         private List<Podcast> podcastList = PodcastRepo.LoadPodcasts();
-        private int interval = UpdateIntervalRepo.LoadUpdateInterval();
-        private MessageController ctrl;
+        private int NyttInterval = UpdateIntervalRepo.LoadUpdateInterval();
+        private readonly MessageController ctrl;
 
 
         public Form1()
@@ -41,11 +41,13 @@ namespace RSS_Demo
             
             if (podcastList.Count > 0)
             {
-                if (interval > 0)
+                if (NyttInterval > 0)
                 {
-                    string uppdateringsIntervall = (interval / 1000 / 60).ToString() + " min";
+                    string uppdateringsIntervall = (NyttInterval / 1000 / 60).ToString() + " min";
                     comboBoxUpdateInterval.SelectedIndex = comboBoxUpdateInterval.FindStringExact(uppdateringsIntervall);
-                    Timer(interval);
+                   // NyTimer.Timer(NyttInterval);
+                     var NyTimer = new NyTimer();
+                     NyTimer.Timer(NyttInterval);
                 }
                 FormSetup.CreatePodcastListview(podcastList, listViewPodcasts);
                 FormSetup.CreateEpisodeListview(podcastList.First().EpisodeList, listViewEpisode);
@@ -156,7 +158,20 @@ namespace RSS_Demo
                 MessageBox.Show(ex.Message, "Något gick fel vid inläsningen av kategorin.");
             }
         }
-        private void ButtonTaBortKategori_Click(object sender, EventArgs e)
+        public void BefintligtTimer(int interval)
+        {
+            //int interval = 600000;
+           // int interval = int.Parse(comboBoxUpdateInterval.Text);
+          //  TimerHantering.Timermetod(interval);
+
+          //  TimerHantering timer = new TimerHantering.Timermetod(interval);
+            new Timer();
+
+
+
+
+        }
+    private void ButtonTaBortKategori_Click(object sender, EventArgs e)
         {
             
 
@@ -197,6 +212,7 @@ namespace RSS_Demo
             }
 
         }
+
 
         private void ButtonSparaKategorier_Click(object sender, EventArgs e)
         {
@@ -262,20 +278,22 @@ namespace RSS_Demo
             }
         }
 
-        public void Timer(int interval)
-        {
-            if (interval > 0)
-            {
-                using (System.Timers.Timer timer = new System.Timers.Timer())
-                {
-                    timer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
-                    timer.Interval = interval;
-                    timer.Enabled = true;
-                }
+       // public virtual void Timer(int interval)
+      //  {
+          //  if (interval > 0)
+           // {
+               // System.Timers.Timer timer = new System.Timers.Timer(); //using 
+               // {
+                //    timer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
+                //    timer.Interval = interval;
+                //    timer.Enabled = true;
+               // }
 
-            }
-        }
-        private void OnTimedEvent(object sender, ElapsedEventArgs e)
+           // }
+      //  }
+       
+       
+        public void OnTimedEvent(object sender, ElapsedEventArgs e)
         {
             try{ 
                 podcastList = RssReader.GetNewEpisode(podcastList); 
@@ -290,16 +308,16 @@ namespace RSS_Demo
             switch (comboBoxUpdateInterval.Text)
             {
                 case "10 min":
-                    interval = 600000;
+                    NyttInterval = 600000;
                     break;
                 case "5 min":
-                    interval = 300000;
+                    NyttInterval = 300000;
                     break;
                 case "1 min":
-                    interval = 60000;
+                    NyttInterval = 60000;
                     break;
             }
-            UpdateIntervalRepo.SaveUpdateInterval(interval);
+            UpdateIntervalRepo.SaveUpdateInterval(NyttInterval);
             //behöver funktion för att skriva över timer interval, eller skriva över hela timern med en ny
         }
 
