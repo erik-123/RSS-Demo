@@ -4,11 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace RSS_Demo
 {
-    public interface interfaces
+    public interface IMeddelande
     {
-        string GetCategoryName();
-        void SetCategoryName(string category);
+        // string GetCategoryName();
+        // void SetCategoryName(string category);
+        //void taBortKategori(string category);
+
+        void Meddelande(); 
+
+
     }
 }

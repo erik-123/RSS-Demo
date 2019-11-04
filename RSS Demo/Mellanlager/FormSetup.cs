@@ -1,22 +1,32 @@
 ﻿using RSS_Demo.Data;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace RSS_Demo.Mellanlager
 {
-    class FormSetup
+    internal class FormSetup
     {
-        public FormSetup() { }
+        public FormSetup()
+        {
+        }
+
         //nej
-        static public ListView createEpisodeListview(List<Episode> episodeList, ListView episodeListView)
+        static public ListView CreateCategoryListview(List<string> categoryList, ListView ListView)
+        {
+            var updatedListview = ListView;
+            updatedListview.Items.Clear();
+            foreach (var category in categoryList)
+            {
+                ListViewItem categoryItem = new ListViewItem(category);
+                updatedListview.Items.Add(categoryItem);
+            }
+            return updatedListview;
+        }
+        static public ListView CreateEpisodeListview(List<Episode> episodeList, ListView episodeListView)
         {
             var updatedListview = episodeListView;
             updatedListview.Items.Clear();
-            foreach(var episode in episodeList)
+            foreach (var episode in episodeList)
             {
                 ListViewItem episodeItem = new ListViewItem(episode.Title);
 
@@ -31,27 +41,30 @@ namespace RSS_Demo.Mellanlager
 
             return updatedListview;
         }
-        static public ListView createPodcastListview(List<Podcast> podcastList, ListView podcastListView)
+
+        static public ListView CreatePodcastListview(List<Podcast> podcastList, ListView podcastListView)
         {
-            var updatedListview = podcastListView;
-            updatedListview.Items.Clear();
-
-            foreach (var podcast in podcastList)
+            if (podcastList.Count > 0)
             {
-                ListViewItem podcastItem = new ListViewItem(podcast.Title);
+                var updatedListview = podcastListView;
+                updatedListview.Items.Clear();
 
-                podcastItem.SubItems.Add(podcast.Title);
+                foreach (var podcast in podcastList)
+                {
+                    ListViewItem podcastItem = new ListViewItem(podcast.Title);
 
-                podcastItem.SubItems.Add(podcast.Category);
+                    podcastItem.SubItems.Add(podcast.Title);
 
-                podcastItem.SubItems.Add(podcast.EpisodeCount.ToString());
+                    podcastItem.SubItems.Add(podcast.Category);
 
-                updatedListview.Items.Add(podcastItem);
+                    podcastItem.SubItems.Add(podcast.EpisodeCount.ToString());
+
+                    updatedListview.Items.Add(podcastItem);
+                }
+                updatedListview.Items[0].Selected = true;
+                return updatedListview;
             }
-            updatedListview.Items[0].Selected = true;
-
-            return updatedListview;
+            return podcastListView;
         }
-
     }
 }
