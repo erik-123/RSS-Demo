@@ -17,7 +17,7 @@ namespace RSS_Demo
     public partial class Form1 : Form
     {
         readonly private List<string> categoryList = CategoryRepo.LoadCategories();
-        private List<Podcast> podcastList = PodcastRepo.LoadPodcasts();
+        readonly private List<Podcast> podcastList = PodcastRepo.LoadPodcasts();
         private int interval = UpdateIntervalRepo.LoadUpdateInterval();
 
         public Form1()
@@ -248,23 +248,27 @@ namespace RSS_Demo
         {
             if (interval > 0)
             {
-                using (System.Timers.Timer timer = new System.Timers.Timer())
-                {
+                System.Timers.Timer timer = new System.Timers.Timer();
+                
                     timer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
                     timer.Interval = interval;
                     timer.Enabled = true;
-                }
+                
 
             }
         }
         private void OnTimedEvent(object sender, ElapsedEventArgs e)
         {
-            try{ 
-                podcastList = RssReader.GetNewEpisode(podcastList); 
-                listViewPodcasts = FormSetup.CreatePodcastListview(podcastList, listViewPodcasts);
+            
+                //var newPodcastList = RssReader.GetNewEpisode(podcastList);
+                //var isequal = newPodcastList.Equals(podcastList);
+                //if(!newPodcastList.Equals(podcastList))
+                //{
+                //    listViewPodcasts = FormSetup.CreatePodcastListview(newPodcastList, listViewPodcasts);
+                //}
+                //else { return; }
                 
-            }
-            catch(Exception) { }
+            
         }
 
         private void ButtonSaveUpdateInterval_Click(object sender, EventArgs e)
@@ -282,6 +286,11 @@ namespace RSS_Demo
                     break;
             }
             UpdateIntervalRepo.SaveUpdateInterval(interval);
+            
+            var newPodcastList = RssReader.GetNewEpisode(podcastList);
+            listViewPodcasts.BeginUpdate();
+            listViewPodcasts = FormSetup.CreatePodcastListview(newPodcastList, listViewPodcasts);
+            listViewPodcasts.EndUpdate();
             //behöver funktion för att skriva över timer interval, eller skriva över hela timern med en ny
         }
 

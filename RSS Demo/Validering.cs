@@ -47,8 +47,6 @@ public static class Validering
         else {
             return false; 
         }
-
-        //return cb.SelectedItem != null ? true : false;
         
     }
 
@@ -59,7 +57,7 @@ public static class Validering
         {
             MessageBox.Show("Du har skrivit in ett felaktigt url!");
             return "";
-            throw new RSS_Demo.ValidationException("Du har skrivit in ett felaktigt url!");
+            
         }
     }
         public static bool kontrolleraOmKategoriFinns(TextBox textBox)
