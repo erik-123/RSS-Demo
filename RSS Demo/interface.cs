@@ -9,9 +9,9 @@ namespace RSS_Demo
 {
     public interface IMeddelande
     {
-        // string GetCategoryName();
-        // void SetCategoryName(string category);
-        //void taBortKategori(string category);
+       // string GetCategoryName();
+       // void SetCategoryName(string category);
+       // void taBortKategori(string category);
 
         void Meddelande(); 
 

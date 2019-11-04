@@ -32,7 +32,7 @@ namespace RSS_Demo.Data
             return Category;
         }
 
-        public void SetCategoryName(string category)
+        public void SetCategoryName(string category)// Sätter kategorinamn 
         {
             if (Category.Trim().Length > 0 && Category.Length < 10)
             {

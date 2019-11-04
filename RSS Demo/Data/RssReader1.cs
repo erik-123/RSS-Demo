@@ -38,7 +38,7 @@ namespace RSS_Demo.Data
             return podcast;
         }
 
-        public static List<Podcast> GetNewEpisode(List<Podcast> podcastList)
+        public static List<Podcast> GetNewEpisode(List<Podcast> podcastList)// Får in nya episoder
         {
             foreach (var podcast in podcastList)
             {
