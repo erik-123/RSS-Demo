@@ -30,9 +30,8 @@ namespace RSS_Demo
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBoxURL = new System.Windows.Forms.TextBox();
             System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("Visa alla podcasts");
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBoxURL = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.button2 = new System.Windows.Forms.Button();
@@ -58,16 +57,16 @@ namespace RSS_Demo
             this.columnAvnittLink = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.episodeDetailsTextBox = new System.Windows.Forms.TextBox();
             this.buttonSaveUpdateInterval = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.buttonTabortPodcast = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // textBox1
+            // textBoxURL
             // 
-            this.textBoxURL.Location = new System.Drawing.Point(12, 39);
+            this.textBoxURL.Location = new System.Drawing.Point(10, 32);
             this.textBoxURL.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBoxURL.Name = "textBox1";
-            this.textBoxURL.Size = new System.Drawing.Size(171, 22);
+            this.textBoxURL.Name = "textBoxURL";
+            this.textBoxURL.Size = new System.Drawing.Size(145, 20);
             this.textBoxURL.TabIndex = 0;
             this.textBoxURL.TextChanged += new System.EventHandler(this.TextBox1_TextChanged);
             // 
@@ -213,7 +212,7 @@ namespace RSS_Demo
             this.buttonLaggTillKategori.Location = new System.Drawing.Point(717, 231);
             this.buttonLaggTillKategori.Margin = new System.Windows.Forms.Padding(4);
             this.buttonLaggTillKategori.Name = "buttonLaggTillKategori";
-            this.buttonLaggTillKategori.Size = new System.Drawing.Size(75, 23);
+            this.buttonLaggTillKategori.Size = new System.Drawing.Size(75, 25);
             this.buttonLaggTillKategori.TabIndex = 17;
             this.buttonLaggTillKategori.Text = "Lägg till";
             this.buttonLaggTillKategori.UseVisualStyleBackColor = true;
@@ -224,7 +223,7 @@ namespace RSS_Demo
             this.buttonTaBortKategori.Location = new System.Drawing.Point(800, 231);
             this.buttonTaBortKategori.Margin = new System.Windows.Forms.Padding(4);
             this.buttonTaBortKategori.Name = "buttonTaBortKategori";
-            this.buttonTaBortKategori.Size = new System.Drawing.Size(75, 23);
+            this.buttonTaBortKategori.Size = new System.Drawing.Size(75, 25);
             this.buttonTaBortKategori.TabIndex = 18;
             this.buttonTaBortKategori.Text = "Ta bort...";
             this.buttonTaBortKategori.UseVisualStyleBackColor = true;
@@ -253,7 +252,7 @@ namespace RSS_Demo
             this.buttonSparaKategorier.Location = new System.Drawing.Point(637, 231);
             this.buttonSparaKategorier.Margin = new System.Windows.Forms.Padding(2);
             this.buttonSparaKategorier.Name = "buttonSparaKategorier";
-            this.buttonSparaKategorier.Size = new System.Drawing.Size(74, 19);
+            this.buttonSparaKategorier.Size = new System.Drawing.Size(74, 25);
             this.buttonSparaKategorier.TabIndex = 22;
             this.buttonSparaKategorier.Text = "Spara";
             this.buttonSparaKategorier.UseVisualStyleBackColor = true;
@@ -312,23 +311,23 @@ namespace RSS_Demo
             this.buttonSaveUpdateInterval.UseVisualStyleBackColor = true;
             this.buttonSaveUpdateInterval.Click += new System.EventHandler(this.ButtonSaveUpdateInterval_Click);
             // 
-            // button3
+            // buttonTabortPodcast
             // 
-            this.buttonTaBortPodcast.Location = new System.Drawing.Point(461, 297);
-            this.buttonTaBortPodcast.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.buttonTaBortPodcast.Name = "buttonTaBortPodcast";
-            this.buttonTaBortPodcast.Size = new System.Drawing.Size(145, 28);
-            this.buttonTaBortPodcast.TabIndex = 30;
-            this.buttonTaBortPodcast.Text = "Ta bort podcast";
-            this.buttonTaBortPodcast.UseVisualStyleBackColor = true;
-            this.buttonTaBortPodcast.Click += new System.EventHandler(this.ButtonTaBortPodcast_Click);
+            this.buttonTabortPodcast.Location = new System.Drawing.Point(166, 236);
+            this.buttonTabortPodcast.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonTabortPodcast.Name = "buttonTabortPodcast";
+            this.buttonTabortPodcast.Size = new System.Drawing.Size(145, 28);
+            this.buttonTabortPodcast.TabIndex = 30;
+            this.buttonTabortPodcast.Text = "Ta bort podcast";
+            this.buttonTabortPodcast.UseVisualStyleBackColor = true;
+            this.buttonTabortPodcast.Click += new System.EventHandler(this.ButtonTaBortPodcast_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1024, 497);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.buttonTabortPodcast);
             this.Controls.Add(this.buttonSaveUpdateInterval);
             this.Controls.Add(this.episodeDetailsTextBox);
             this.Controls.Add(this.label3);
@@ -391,7 +390,7 @@ namespace RSS_Demo
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TextBox episodeDetailsTextBox;
         private System.Windows.Forms.Button buttonSaveUpdateInterval;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button buttonTabortPodcast;
     }
 }
 
