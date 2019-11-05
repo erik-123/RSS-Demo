@@ -65,7 +65,7 @@ namespace RSS_Demo
             MessageBox.Show("Kategorierna har sparats!");
         }
 
-        private void Button1_Click(object sender, EventArgs e)
+        private void ButtonURL_Click(object sender, EventArgs e)
         {
             try
             {
