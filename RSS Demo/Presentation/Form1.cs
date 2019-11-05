@@ -10,16 +10,16 @@ using System.Windows.Forms;
 
 namespace RSS_Demo
 {
-    public partial class Form1 : Form, IMessage
+    public partial class Form : System.Windows.Forms.Form, IMessage
     {
         private AsyncTimer timer;
         readonly private List<string> categoryList = CategoryRepo.LoadCategories();
         readonly private List<Podcast> podcastList = PodcastRepo.LoadPodcasts();
         private int interval = UpdateIntervalRepo.LoadUpdateInterval();
-        private MessageController ctrl;
-        private GreetingMsg greeting = new HolidayGreeting();
+        private readonly MessageController ctrl;
+        private readonly GreetingMsg greeting = new HolidayGreeting();
 
-        public Form1()
+        public Form()
         {
             InitializeComponent();
 
@@ -71,7 +71,7 @@ namespace RSS_Demo
             {
                 if (Validering.CheckIfURLIsValid(textBoxURL.Text).Length > 0)
                 {
-                    if (Validering.checkIfComboboxIsEmpty(comboBoxKategori))
+                    if (Validering.CheckIfComboboxIsEmpty(comboBoxKategori))
                     {
                         var podcast = RssReader.GetPodcastFromURL(textBoxURL.Text, comboBoxKategori.Text);
                         int iteration = 0;
@@ -114,9 +114,9 @@ namespace RSS_Demo
         {
             try
             {
-                if (Validering.checkIfTextfieldsIsEmpty(textBoxKategori) && Validering.checkIfTextfieldsHasANumber(textBoxKategori))
+                if (Validering.CheckIfTextfieldsIsEmpty(textBoxKategori) && Validering.CheckIfTextfieldsHasANumber(textBoxKategori))
                 {
-                    if (Validering.checkIfCategoryIsAvailable(textBoxKategori))
+                    if (Validering.CheckIfCategoryIsAvailable(textBoxKategori))
                     {
                         string kategoriInput = textBoxKategori.Text.Trim();
 
@@ -169,9 +169,7 @@ namespace RSS_Demo
             PodcastRepo.SavePodcasts(podcastList);
         }
 
-        private void TextBox1_TextChanged(object sender, EventArgs e)
-        {
-        }
+        
 
         private void ListViewPodcasts_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -285,9 +283,7 @@ namespace RSS_Demo
             StartTimer(interval);
         }
 
-        private void ComboBoxUpdateInterval_SelectedIndexChanged(object sender, EventArgs e)
-        {
-        }
+        
 
         private void ButtonTaBortPodcast_Click(object sender, EventArgs e)
         {

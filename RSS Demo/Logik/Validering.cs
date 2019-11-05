@@ -9,7 +9,7 @@ namespace RSS_Demo
 
 public static class Validering
 {
-    public static bool checkIfTextfieldsIsEmpty(TextBox textBox)
+    public static bool CheckIfTextfieldsIsEmpty(TextBox textBox)
     {
         if (textBox.Text.Length > 0)
         {
@@ -22,7 +22,7 @@ public static class Validering
         }
     }
 
-    public static bool checkIfTextfieldsHasANumber(TextBox textBox)
+    public static bool CheckIfTextfieldsHasANumber(TextBox textBox)
     {
         var s = textBox.Text.Trim();
 
@@ -37,7 +37,7 @@ public static class Validering
         return true;
     }
 
-    public static bool checkIfComboboxIsEmpty(ComboBox cb)
+    public static bool CheckIfComboboxIsEmpty(ComboBox cb)
     {
         if (cb.SelectedItem != null)
         {
@@ -68,7 +68,7 @@ public static class Validering
         }
     }
 
-    public static bool checkIfCategoryIsAvailable(TextBox textBox)
+    public static bool CheckIfCategoryIsAvailable(TextBox textBox)
     {
         var befintligaKategorier = CategoryRepo.LoadCategories();
 

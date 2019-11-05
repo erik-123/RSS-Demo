@@ -2,7 +2,7 @@
 
 namespace RSS_Demo
 {
-    partial class Form1
+    partial class Form
     {
         /// <summary>
         /// Required designer variable.
@@ -67,7 +67,7 @@ namespace RSS_Demo
             this.textBoxURL.Name = "textBoxURL";
             this.textBoxURL.Size = new System.Drawing.Size(192, 22);
             this.textBoxURL.TabIndex = 0;
-            this.textBoxURL.TextChanged += new System.EventHandler(this.TextBox1_TextChanged);
+            
             // 
             // buttonURL
             // 
@@ -147,7 +147,6 @@ namespace RSS_Demo
             this.comboBoxUpdateInterval.Name = "comboBoxUpdateInterval";
             this.comboBoxUpdateInterval.Size = new System.Drawing.Size(121, 24);
             this.comboBoxUpdateInterval.TabIndex = 2;
-            this.comboBoxUpdateInterval.SelectedIndexChanged += new System.EventHandler(this.ComboBoxUpdateInterval_SelectedIndexChanged);
             // 
             // listViewPodcasts
             // 

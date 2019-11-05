@@ -8,11 +8,11 @@ namespace RSS_Demo
     {
         private bool hasStarted;
 
-        private CancellationTokenSource cts = new CancellationTokenSource();
+        private readonly CancellationTokenSource cts = new CancellationTokenSource();
 
         private TimeSpan interval;
 
-        private Action callback;
+        private readonly Action callback;
 
         public AsyncTimer(TimeSpan interval, Action callback)
         {
@@ -29,10 +29,10 @@ namespace RSS_Demo
                 return;
             }
             hasStarted = true;
-            Task.Run(execute);
+            Task.Run(Execute);
         }
 
-        private async Task execute()
+        private async Task Execute()
         {
             while (!cts.IsCancellationRequested)
             {
