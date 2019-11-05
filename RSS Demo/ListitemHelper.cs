@@ -13,7 +13,7 @@ namespace RSS_Demo.Mellanlager
             return podcastTitel;
         }
 
-        public static int GetPodcastAntalAvsnitt(string url)
+        public static int GetPodcastNumberofSections(string url)
         {
             var xe = XElement.Load(url);
             var antalAvsnitt = xe.DescendantsAndSelf("channel").Elements("title").First().Value.Count();

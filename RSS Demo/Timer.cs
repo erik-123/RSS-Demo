@@ -43,7 +43,7 @@ namespace TimerHanterare
             }
             catch (Exception) { }
         }
-        public void TimerSkickaSaker(ListView listview) 
+        public void TimerSend(ListView listview) 
         { 
             listview = FormSetup.CreatePodcastListview(podcastList, listview);
         

@@ -1,7 +1,7 @@
 ﻿namespace RSS_Demo
 {
-    public interface IMeddelande
+    public interface IMessage
     {
-        void Meddelande();
+        void Message();
     }
 }

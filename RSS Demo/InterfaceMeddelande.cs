@@ -6,16 +6,16 @@ namespace InterfaceMeddelande
     {
         public string Category { get; set; }
        // List<string> categoryList;
-        private readonly RSS_Demo.IMeddelande messageClient;
+        private readonly RSS_Demo.IMessage messageClient;
        
 
-        public MessageController(IMeddelande client)
+        public MessageController(IMessage client)
         {
             messageClient = client;
         }
-        public void InterfaceMeddelande()
+        public void InterfaceMessage()
         {
-            messageClient.Meddelande();
+            messageClient.Message();
         }
     }
 }

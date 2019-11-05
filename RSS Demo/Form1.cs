@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace RSS_Demo
 {
-    public partial class Form1 : Form, IMeddelande
+    public partial class Form1 : Form, IMessage
     {
         private AsyncTimer timer;
         readonly private List<string> categoryList = CategoryRepo.LoadCategories();
@@ -59,7 +59,7 @@ namespace RSS_Demo
         {
         }
 
-        public void Meddelande()
+        public void Message()
         {
             MessageBox.Show("Testar om interface för meddelande fungerar!");
         }
@@ -68,9 +68,9 @@ namespace RSS_Demo
         {
             try
             {
-                if (Validering.KontrolleraOmURLArGiltig(textBoxURL.Text).Length > 0)
+                if (Validering.CheckIfURLIsValid(textBoxURL.Text).Length > 0)
                 {
-                    if (Validering.KontrollOmComboBoxArTom(comboBoxKategori))
+                    if (Validering.checkIfComboboxIsEmpty(comboBoxKategori))
                     {
                         var podcast = RssReader.GetPodcastFromURL(textBoxURL.Text, comboBoxKategori.Text);
                         int iteration = 0;
@@ -114,9 +114,9 @@ namespace RSS_Demo
         {
             try
             {
-                if (Validering.KontrolleraOmTextfaltArTomt(textBoxKategori) && Validering.KontrollOmTextfaltHarSiffra(textBoxKategori))
+                if (Validering.checkIfTextfieldsIsEmpty(textBoxKategori) && Validering.checkIfTextfieldsHasANumber(textBoxKategori))
                 {
-                    if (Validering.kontrolleraOmKategoriFinns(textBoxKategori))
+                    if (Validering.checkIfCategoryIsAvailable(textBoxKategori))
                     {
                         string kategoriInput = textBoxKategori.Text.Trim();
 
@@ -157,7 +157,7 @@ namespace RSS_Demo
             CategoryRepo.SaveCategories(categoryList);
 
             MessageBox.Show("Kategorierna har sparats!");
-            ctrl.InterfaceMeddelande();
+            ctrl.InterfaceMessage();
         }
 
         private void OnApplicationExit(object sender, EventArgs e)
