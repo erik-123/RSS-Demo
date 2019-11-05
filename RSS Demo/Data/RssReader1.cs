@@ -19,11 +19,11 @@ namespace RSS_Demo.Data
             {
                 var episode = new Episode
                 {
-                    Title = item.Element("title").Value,
-                    Description = item.Element("description").Value,
-                    Runtime = item.Element(ns + "duration").Value,
-                    EpisodeLink = item.Element("link").Value,
-                    PubDate = item.Element("pubDate").Value
+                    Title = item.Element("title")?.Value ?? "",
+                    Description = item.Element("description")?.Value ?? "",
+                    Runtime = item.Element(ns + "duration")?.Value ?? "",
+                    EpisodeLink = item.Element("link")?.Value ?? "",
+                    PubDate = item.Element("pubDate")?.Value ?? ""
                 };
                 episodeList.Add(episode);
                 i++;
@@ -40,8 +40,7 @@ namespace RSS_Demo.Data
 
         public static List<Podcast> GetNewEpisode(List<Podcast> newPodcastList)
         {
-            
-            for(var i = 0; i < newPodcastList.Count(); i++)
+            for (var i = 0; i < newPodcastList.Count(); i++)
             {
                 XNamespace ns = "http://www.itunes.com/dtds/podcast-1.0.dtd";
 
@@ -54,39 +53,23 @@ namespace RSS_Demo.Data
                 {
                     var episode = new Episode
                     {
-                        Title = item.Element("title").Value,
-                        Description = item.Element("description").Value,
-                        Runtime = item.Element(ns + "duration").Value,
-                        EpisodeLink = item.Element("link").Value,
-                        PubDate = item.Element("pubDate").Value
+                        Title = item.Element("title")?.Value ?? "",
+                        Description = item.Element("description")?.Value ?? "",
+                        Runtime = item.Element(ns + "duration")?.Value ?? "",
+                        EpisodeLink = item.Element("link")?.Value ?? "",
+                        PubDate = item.Element("pubDate")?.Value ?? ""
                     };
                     episodeList.Add(episode);
-                    
                 }
 
                 var newEpisodesList = episodeList.Except(newPodcastList[i].EpisodeList).ToList();
-                
 
-                
                 if (newEpisodesList.ElementAt(0).Title != newPodcastList[i].EpisodeList.ElementAt(0).Title)
                 {
                     newPodcastList[i].EpisodeList = newEpisodesList;
+                    newPodcastList[i].EpisodeCount = newPodcastList[i].EpisodeList.Count();
                     newPodcastList[newPodcastList.IndexOf(newPodcastList[i])] = newPodcastList[i];
                 }
-                //{
-                //    var episode = new Episode
-                //    {
-                //        Title = episodeData.Element("title").Value,
-                //        Description = episodeData.Element("description").Value,
-                //        Runtime = episodeData.Element(ns + "duration").Value,
-                //        EpisodeLink = episodeData.Element("link").Value,
-                //        PubDate = episodeData.Element("pubDate").Value
-                //    };
-                //    newPodcastList[i].EpisodeList.Reverse();
-                //    newPodcastList[i].EpisodeList.Add(episode);
-                //    newPodcastList[i].EpisodeList.Reverse();
-                //    //podcastList[podcastList.FindIndex(ind => ind.Equals(podcast.Title))] = podcast;
-                //}
             }
             return newPodcastList;
         }

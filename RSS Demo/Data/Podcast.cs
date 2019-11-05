@@ -2,7 +2,7 @@
 
 namespace RSS_Demo.Data
 {
-    public class Podcast 
+    public class Podcast
     {
         public string FeedLink { get; set; }
         public string Title { get; set; }
@@ -32,7 +32,7 @@ namespace RSS_Demo.Data
             return Category;
         }
 
-        public void SetCategoryName(string category)// Sätter kategorinamn 
+        public void SetCategoryName(string category)// Sätter kategorinamn
         {
             if (Category.Trim().Length > 0 && Category.Length < 10)
             {

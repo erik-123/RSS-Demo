@@ -18,19 +18,18 @@ public static class Validering
         else
         {
             return false;
-           throw new RSS_Demo.ValidationException("Vänligen fyll i alla fält");
+            throw new RSS_Demo.ValidationException("Vänligen fyll i alla fält");
         }
     }
 
-   public static bool KontrollOmTextfaltHarSiffra(TextBox textBox)
-   {
-       var s = textBox.Text.Trim();
+    public static bool KontrollOmTextfaltHarSiffra(TextBox textBox)
+    {
+        var s = textBox.Text.Trim();
 
         foreach (char c in s)
         {
             if (!Char.IsLetter(c))
             {
-
                 return false;
                 throw new RSS_Demo.ValidationException("Textfältet innehåller en eller flera siffror");
             }
@@ -40,44 +39,47 @@ public static class Validering
 
     public static bool KontrollOmComboBoxArTom(ComboBox cb)
     {
-        if( cb.SelectedItem  != null)
+        if (cb.SelectedItem != null)
         {
             return true;
-
         }
-        else {
+        else
+        {
             MessageBox.Show("Comboboxen är tom!");
             return false;
-            
         }
-        
     }
 
     public static string KontrolleraOmURLArGiltig(string url)
     {
-        try { var podcastData = XDocument.Load(url); return url; }
+        try
+        {
+            var podcastData = XDocument.Load(url);
+            if (podcastData.Root.Name == "rss")
+            {
+                return url;
+            }
+            return "";
+        }
         catch (Exception)
         {
-            MessageBox.Show("Du har skrivit in ett felaktigt url!");
+            MessageBox.Show("Du har skrivit in en felaktig url!");
             return "";
-            
         }
     }
-        public static bool kontrolleraOmKategoriFinns(TextBox textBox)
-        {
-           var befintligaKategorier = CategoryRepo.LoadCategories();
 
-            foreach(var kategori in befintligaKategorier)
+    public static bool kontrolleraOmKategoriFinns(TextBox textBox)
+    {
+        var befintligaKategorier = CategoryRepo.LoadCategories();
+
+        foreach (var kategori in befintligaKategorier)
         {
-            if(textBox.Text == kategori)
+            if (textBox.Text == kategori)
             {
                 MessageBox.Show("Det finns i kategorilistan");
                 return false;
             }
         }
-            return true;
-
-        }
+        return true;
     }
-
-
+}

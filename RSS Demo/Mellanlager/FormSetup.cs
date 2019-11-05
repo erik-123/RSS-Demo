@@ -10,7 +10,6 @@ namespace RSS_Demo.Mellanlager
         {
         }
 
-       
         static public ListView CreateCategoryListview(List<string> categoryList, ListView ListView)
         {
             var updatedListview = ListView;
@@ -22,6 +21,7 @@ namespace RSS_Demo.Mellanlager
             }
             return updatedListview;
         }
+
         static public ListView CreateEpisodeListview(List<Episode> episodeList, ListView episodeListView)
         {
             var updatedListview = episodeListView;
@@ -53,15 +53,13 @@ namespace RSS_Demo.Mellanlager
                 {
                     ListViewItem podcastItem = new ListViewItem(podcast.Title);
 
-                    podcastItem.SubItems.Add(podcast.Title);
-
                     podcastItem.SubItems.Add(podcast.Category);
 
                     podcastItem.SubItems.Add(podcast.EpisodeCount.ToString());
 
                     updatedListview.Items.Add(podcastItem);
                 }
-                updatedListview.Items[0].Selected = true;
+
                 return updatedListview;
             }
             return podcastListView;
