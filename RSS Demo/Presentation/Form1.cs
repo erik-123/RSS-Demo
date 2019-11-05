@@ -101,7 +101,6 @@ namespace RSS_Demo
                         {
                             podcastList.Add(podcast);
                             var lvi = new ListViewItem(new[] { podcast.Title, podcast.Category, podcast.EpisodeCount.ToString() });
-                            podcastList.Add(podcast);
                             listViewPodcasts.Items.Add(lvi);
                             PodcastRepo.SavePodcasts(podcastList);
                         }
