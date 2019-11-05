@@ -47,6 +47,7 @@ namespace RSS_Demo
                 }
                 FormSetup.CreatePodcastListview(podcastList, listViewPodcasts);
                 FormSetup.CreateEpisodeListview(podcastList.First().EpisodeList, listViewEpisode);
+                listViewPodcasts.Items[0].Selected = true;
             }
 
             Application.ApplicationExit += new EventHandler(this.OnApplicationExit);
@@ -179,7 +180,7 @@ namespace RSS_Demo
             {
                 var hej = listViewPodcasts.SelectedItems[0];
                 listViewEpisode.BeginUpdate();
-                listViewEpisode = FormSetup.CreateEpisodeListview(podcastList.Where(podcast => podcast.Title == listViewPodcasts.SelectedItems[0].Text).FirstOrDefault().EpisodeList, listViewEpisode);
+                listViewEpisode = FormSetup.CreateEpisodeListview(podcastList.Where(podcast => podcast.Title == listViewPodcasts.SelectedItems[0].Text).FirstOrDefault()?.EpisodeList, listViewEpisode);
                 listViewEpisode.EndUpdate();
                 listViewEpisode.Items[0].Selected = true;
             }
@@ -189,6 +190,7 @@ namespace RSS_Demo
         {
             if (listViewEpisode.SelectedItems.Count > 0)
             {
+
                 var podcastLookup = podcastList.Where(podcast => podcast.Title == listViewPodcasts.SelectedItems[0].Text).FirstOrDefault();
                 var episodeLookup = podcastLookup.EpisodeList.Where(episode => episode.Title == listViewEpisode.SelectedItems[0].Text).FirstOrDefault();
                 if (episodeLookup != null)
@@ -236,16 +238,31 @@ namespace RSS_Demo
                 {
                     timer.Dispose();
                 }
-                timer = new AsyncTimer(TimeSpan.FromMinutes(interval), () =>
-                {
-                    //körs varje gång timern loopar
-                    var newPodcastList = RssReader.GetNewEpisode(podcastList);
-                    listViewPodcasts.BeginUpdate();
-                    listViewPodcasts = FormSetup.CreatePodcastListview(newPodcastList, listViewPodcasts);
-                    listViewPodcasts.EndUpdate();
-                });
+                timer = new AsyncTimer(TimeSpan.FromMinutes(interval), GetNewEpisodes);
 
                 timer.Start();
+            }
+        }
+
+        public void GetNewEpisodes()
+        {
+            if (listViewPodcasts.InvokeRequired)
+            {
+
+                listViewPodcasts.Invoke((MethodInvoker)GetNewEpisodes);
+            }
+            else
+            {
+                var newPodcastList = RssReader.GetNewEpisode(podcastList);
+                listViewPodcasts.BeginUpdate();
+                listViewPodcasts = FormSetup.CreatePodcastListview(newPodcastList, listViewPodcasts);
+                listViewPodcasts.EndUpdate();
+                
+                
+                if (listViewPodcasts.Items.Count > 0)
+                {
+                    listViewPodcasts.Items[0].Selected = true;
+                }
             }
         }
 

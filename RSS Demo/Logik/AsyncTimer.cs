@@ -34,17 +34,18 @@ namespace RSS_Demo
 
         private async Task execute()
         {
-            try
+            while (!cts.IsCancellationRequested)
             {
-                while (!cts.IsCancellationRequested)
+                try
                 {
                     await Task.Delay(interval, cts.Token);
                     callback();
                 }
-            }
-            catch (Exception)
-            {
-                //Ingenting
+
+                catch (Exception)
+                {
+                    //Ingenting
+                }
             }
         }
 

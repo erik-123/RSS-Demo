@@ -17,7 +17,7 @@ namespace RSS_Demo.Data
             }
             catch (FileNotFoundException)
             {
-                return 0;
+                return 10;
             }
         }
 

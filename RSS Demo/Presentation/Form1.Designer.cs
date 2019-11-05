@@ -34,7 +34,6 @@ namespace RSS_Demo
             this.textBoxURL = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button2 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.comboBoxKategori = new System.Windows.Forms.ComboBox();
@@ -83,7 +82,6 @@ namespace RSS_Demo
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.button2);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.comboBoxKategori);
@@ -99,16 +97,6 @@ namespace RSS_Demo
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "ControlBox";
             this.groupBox1.Enter += new System.EventHandler(this.GroupBox1_Enter);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(5, 145);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(74, 30);
-            this.button2.TabIndex = 7;
-            this.button2.Text = "Ta bort";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // label2
             // 
@@ -387,7 +375,6 @@ namespace RSS_Demo
         private System.Windows.Forms.ColumnHeader columnPubliceringsdatum;
         private System.Windows.Forms.ColumnHeader columnSpeltid;
         private System.Windows.Forms.ColumnHeader columnAvnittLink;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TextBox episodeDetailsTextBox;
         private System.Windows.Forms.Button buttonSaveUpdateInterval;
         private System.Windows.Forms.Button buttonTabortPodcast;
