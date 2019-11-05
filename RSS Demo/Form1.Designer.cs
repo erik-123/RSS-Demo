@@ -30,7 +30,7 @@ namespace RSS_Demo
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBoxURL = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.button2 = new System.Windows.Forms.Button();
@@ -59,18 +59,18 @@ namespace RSS_Demo
             this.buttonSaveUpdateInterval = new System.Windows.Forms.Button();
             this.labelUpdate = new System.Windows.Forms.Label();
             this.labelUpdateCountdown = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
+            this.buttonTaBortPodcast = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(12, 39);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(171, 22);
-            this.textBox1.TabIndex = 0;
-            this.textBox1.TextChanged += new System.EventHandler(this.TextBox1_TextChanged);
+            this.textBoxURL.Location = new System.Drawing.Point(12, 39);
+            this.textBoxURL.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBoxURL.Name = "textBox1";
+            this.textBoxURL.Size = new System.Drawing.Size(171, 22);
+            this.textBoxURL.TabIndex = 0;
+            this.textBoxURL.TextChanged += new System.EventHandler(this.TextBox1_TextChanged);
             // 
             // button1
             // 
@@ -89,7 +89,7 @@ namespace RSS_Demo
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.comboBoxKategori);
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.textBoxURL);
             this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Left;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
@@ -343,23 +343,23 @@ namespace RSS_Demo
             this.labelUpdateCountdown.TabIndex = 29;
             this.labelUpdateCountdown.Text = "0";
             // 
-            // button3
+            // buttonTaBortPodcast
             // 
-            this.button3.Location = new System.Drawing.Point(461, 297);
-            this.button3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(145, 28);
-            this.button3.TabIndex = 30;
-            this.button3.Text = "Ta bort podcast";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.Button3_Click);
+            this.buttonTaBortPodcast.Location = new System.Drawing.Point(461, 297);
+            this.buttonTaBortPodcast.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonTaBortPodcast.Name = "buttonTaBortPodcast";
+            this.buttonTaBortPodcast.Size = new System.Drawing.Size(145, 28);
+            this.buttonTaBortPodcast.TabIndex = 30;
+            this.buttonTaBortPodcast.Text = "Ta bort podcast";
+            this.buttonTaBortPodcast.UseVisualStyleBackColor = true;
+            this.buttonTaBortPodcast.Click += new System.EventHandler(this.ButtonTaBortPodcast_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1365, 612);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.buttonTaBortPodcast);
             this.Controls.Add(this.labelUpdateCountdown);
             this.Controls.Add(this.labelUpdate);
             this.Controls.Add(this.buttonSaveUpdateInterval);
@@ -399,7 +399,7 @@ namespace RSS_Demo
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBoxURL;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label2;
@@ -428,7 +428,7 @@ namespace RSS_Demo
         private System.Windows.Forms.Button buttonSaveUpdateInterval;
         private System.Windows.Forms.Label labelUpdate;
         private System.Windows.Forms.Label labelUpdateCountdown;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button buttonTaBortPodcast;
     }
 }
 
