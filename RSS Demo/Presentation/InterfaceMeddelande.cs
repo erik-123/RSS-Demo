@@ -5,7 +5,6 @@ namespace InterfaceMeddelande
     public class MessageController//kategorierExtra //: RSS_Demo.IKategori
     {
         public string Category { get; set; }
-       // List<string> categoryList;
         private readonly RSS_Demo.IMessage messageClient;
        
 
