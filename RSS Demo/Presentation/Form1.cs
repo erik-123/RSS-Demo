@@ -201,7 +201,7 @@ namespace RSS_Demo
         {
             if ((listaKategorier.SelectedItems.Count > 0))
             {
-                if (listaKategorier.SelectedItems[0].Text == "Visa alla podcasts")
+                if (listaKategorier.SelectedItems[0].Text == "Visa alla podcasts" && podcastList.Count > 0)
                 {
                     listViewPodcasts.BeginUpdate();
                     listViewPodcasts = FormSetup.CreatePodcastListview(podcastList, listViewPodcasts);
@@ -292,7 +292,16 @@ namespace RSS_Demo
                 var newPodlist = podcastList;
                 newPodlist.RemoveAt(listViewPodcasts.SelectedIndices[0]);
                 PodcastRepo.SavePodcasts(newPodlist);
-                listViewPodcasts = FormSetup.CreatePodcastListview(newPodlist, listViewPodcasts);
+                if(newPodlist.Count > 0)
+                {
+                    listViewPodcasts = FormSetup.CreatePodcastListview(newPodlist, listViewPodcasts);
+                }
+                else
+                {
+                    listViewPodcasts.Items.Clear();
+                    listViewEpisode.Items.Clear();
+                    episodeDetailsTextBox.Clear();
+                }
             }
         }
     }
