@@ -25,7 +25,7 @@ namespace RSS_Demo
 
             MessageBox.Show(greeting.Greet());
 
-            ctrl = new MessageController(this); //ny
+            ctrl = new MessageController(this);
 
             FormSetup.CreateCategoryListview(categoryList, listaKategorier);
             if (categoryList.Count > 0)
@@ -62,7 +62,7 @@ namespace RSS_Demo
 
         public void Message()
         {
-            MessageBox.Show("Testar om interface för meddelande fungerar!");
+            MessageBox.Show("Kategorierna har sparats!");
         }
 
         private void Button1_Click(object sender, EventArgs e)
@@ -157,7 +157,7 @@ namespace RSS_Demo
 
             CategoryRepo.SaveCategories(categoryList);
 
-            MessageBox.Show("Kategorierna har sparats!");
+            
             ctrl.InterfaceMessage();
         }
 
