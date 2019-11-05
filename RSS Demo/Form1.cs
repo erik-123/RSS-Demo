@@ -39,7 +39,7 @@ namespace RSS_Demo
 
             if (podcastList.Count > 0)
             {
-                if (NyttInterval > 0)
+                if (interval > 0)
                 {
                     string uppdateringsIntervall = (interval).ToString() + " min";
                     comboBoxUpdateInterval.SelectedIndex = comboBoxUpdateInterval.FindStringExact(uppdateringsIntervall);
