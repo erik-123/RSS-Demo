@@ -39,7 +39,7 @@ namespace RSS_Demo
 
             if (podcastList.Count > 0)
             {
-                if (interval > 0)
+                if (NyttInterval > 0)
                 {
                     string uppdateringsIntervall = (interval).ToString() + " min";
                     comboBoxUpdateInterval.SelectedIndex = comboBoxUpdateInterval.FindStringExact(uppdateringsIntervall);
@@ -68,11 +68,11 @@ namespace RSS_Demo
         {
             try
             {
-                if (Validering.KontrolleraOmURLArGiltig(textBox1.Text).Length > 0)
+                if (Validering.KontrolleraOmURLArGiltig(textBoxURL.Text).Length > 0)
                 {
                     if (Validering.KontrollOmComboBoxArTom(comboBoxKategori))
                     {
-                        var podcast = RssReader.GetPodcastFromURL(textBox1.Text, comboBoxKategori.Text);
+                        var podcast = RssReader.GetPodcastFromURL(textBoxURL.Text, comboBoxKategori.Text);
                         int iteration = 0;
 
                         if (podcastList.Count() > 0)
@@ -273,7 +273,7 @@ namespace RSS_Demo
         {
         }
 
-        private void Button3_Click(object sender, EventArgs e)
+        private void ButtonTaBortPodcast_Click(object sender, EventArgs e)
         {
             if (listViewPodcasts.SelectedItems.Count > 0)
             {
