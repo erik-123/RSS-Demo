@@ -32,7 +32,7 @@ namespace RSS_Demo
         {
             System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("Visa alla podcasts");
             this.textBoxURL = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.buttonURL = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -69,16 +69,16 @@ namespace RSS_Demo
             this.textBoxURL.TabIndex = 0;
             this.textBoxURL.TextChanged += new System.EventHandler(this.TextBox1_TextChanged);
             // 
-            // button1
+            // buttonURL
             // 
-            this.button1.Location = new System.Drawing.Point(8, 129);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(99, 43);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Lagg till";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.Button1_Click);
+            this.buttonURL.Location = new System.Drawing.Point(8, 129);
+            this.buttonURL.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.buttonURL.Name = "buttonURL";
+            this.buttonURL.Size = new System.Drawing.Size(99, 43);
+            this.buttonURL.TabIndex = 1;
+            this.buttonURL.Text = "Lagg till";
+            this.buttonURL.UseVisualStyleBackColor = true;
+            this.buttonURL.Click += new System.EventHandler(this.ButtonURL_Click);
             // 
             // groupBox1
             // 
@@ -86,7 +86,7 @@ namespace RSS_Demo
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.comboBoxKategori);
             this.groupBox1.Controls.Add(this.textBoxURL);
-            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Controls.Add(this.buttonURL);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Left;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -353,7 +353,7 @@ namespace RSS_Demo
         #endregion
 
         private System.Windows.Forms.TextBox textBoxURL;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonURL;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
