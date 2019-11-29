@@ -1,8 +1,6 @@
 ﻿using InterfaceMeddelande;
 using RSS_Demo.Data;
 using RSS_Demo.Logik;
-using RSS_Demo.Mellanlager;
-using RSS_Demo.Presentation;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -183,7 +181,7 @@ namespace RSS_Demo
                 else if (podcastListview.Items.Count > 0 && PodcastHandler.podcastCategoryLookup(categoryListview.SelectedItems[0].Text))
                 {
                     podcastListview.BeginUpdate();
-                    podcastListview = PodcastHandler.updatePodcastListview(podcastListview, categoryCombobox.Text);
+                    podcastListview = PodcastHandler.updatePodcastListview(podcastListview, categoryListview.SelectedItems[0].Text);
                     podcastListview.EndUpdate();
                     podcastListview.Items[0].Selected = true;
                 }
@@ -293,6 +291,12 @@ namespace RSS_Demo
             {
                 MessageBox.Show("Vänligen välj en podcast att ändra");
             }
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+
+            RssReader.GetNewEpisodes(podcastList.ElementAt(0));
         }
     }
 }

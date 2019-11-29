@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace RSS_Demo.Mellanlager
+namespace RSS_Demo.Logik
 {
     internal class FormSetup
     {
@@ -64,6 +64,7 @@ namespace RSS_Demo.Mellanlager
 
                 return updatedListview;
             }
+
             return podcastListView;
         }
     }

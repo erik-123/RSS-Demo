@@ -1,4 +1,4 @@
-﻿namespace RSS_Demo.Data
+﻿namespace RSS_Demo.Logik
 {
     public class Episode
     {

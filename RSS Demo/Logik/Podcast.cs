@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace RSS_Demo.Data
+namespace RSS_Demo.Logik
 {
     public class Podcast
     {

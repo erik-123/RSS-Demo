@@ -2,7 +2,8 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace RSS_Demo
+namespace RSS_Demo.Logik
+
 {
     public sealed class AsyncTimer : IDisposable
     {

@@ -3,7 +3,7 @@ using System;
 using System.Windows.Forms;
 using System.Xml.Linq;
 
-namespace RSS_Demo
+namespace RSS_Demo.Logik
 {
 }
 
@@ -18,7 +18,7 @@ public static class Validering
         else
         {
             return false;
-            throw new RSS_Demo.ValidationException("Vänligen fyll i alla fält");
+            throw new RSS_Demo.Logik.ValidationException("Vänligen fyll i alla fält");
         }
     }
 
@@ -31,7 +31,7 @@ public static class Validering
             if (!Char.IsLetter(c))
             {
                 return false;
-                throw new RSS_Demo.ValidationException("Textfältet innehåller en eller flera siffror");
+                throw new RSS_Demo.Logik.ValidationException("Textfältet innehåller en eller flera siffror");
             }
         }
         return true;

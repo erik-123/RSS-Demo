@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace RSS_Demo
+namespace RSS_Demo.Logik
 {
     internal static class Program
     {

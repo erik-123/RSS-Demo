@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using RSS_Demo.Logik;
+using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 
@@ -72,5 +73,60 @@ namespace RSS_Demo.Data
             }
             return newPodcastList;
         }
+
+
+
+
+
+
+
+
+        public static bool GetNewEpisodes(Podcast podcast)
+        {
+                XNamespace ns = "http://www.itunes.com/dtds/podcast-1.0.dtd";
+                var podcastData = XDocument.Load(podcast.FeedLink);
+
+            
+            var podcastsToGet = XDocument.Load(podcast.FeedLink).Descendants("item").Count() - podcast.EpisodeList.Count();
+            if (podcastsToGet > 0)
+            {
+
+                for(var i = 0; i < podcastsToGet - 1; i++)
+                {
+                    var episode = createEpisode(XDocument.Load(podcast.FeedLink).Descendants("item").ElementAt(i));
+                }
+            
+                
+            }
+
+                //foreach(var episodeElement in episodeElements)
+                //{
+
+                //    if(podcast.EpisodeList.Any(episode => episode.Title == createEpisode(episodeElement).Title))
+                //    {
+                //        return true;
+                //    }
+
+                //}
+                return false;
+
+
+                
+        }
+        static private Episode createEpisode(XElement episodeElements)
+        {
+            XNamespace ns = "http://www.itunes.com/dtds/podcast-1.0.dtd";
+            var episode = new Episode
+                {
+                    Title = episodeElements.Element("title")?.Value ?? "",
+                    Description = episodeElements.Element("description")?.Value ?? "",
+                    Runtime = episodeElements.Element(ns + "duration")?.Value ?? "",
+                    EpisodeLink = episodeElements.Element("link")?.Value ?? "",
+                    PubDate = episodeElements.Element("pubDate")?.Value ?? ""
+                };
+            return episode;
+        }
+            
+        
     }
 }

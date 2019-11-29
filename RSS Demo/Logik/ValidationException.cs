@@ -1,4 +1,4 @@
-﻿namespace RSS_Demo
+﻿namespace RSS_Demo.Logik
 {
     internal class ValidationException : System.Exception
     {
