@@ -1,6 +1,8 @@
 ﻿using InterfaceMeddelande;
 using RSS_Demo.Data;
+using RSS_Demo.Logik;
 using RSS_Demo.Mellanlager;
+using RSS_Demo.Presentation;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -26,29 +28,35 @@ namespace RSS_Demo
             MessageBox.Show(greeting.Greet());
 
             ctrl = new MessageController(this);
-
-            FormSetup.CreateCategoryListview(categoryList, listaKategorier);
-            if (categoryList.Count > 0)
+            podcastListview = PodcastHandler.updatePodcastListview(podcastListview, false);
+            categoryListview = PodcastHandler.getCategoryListview(categoryListview);
+            foreach(var category in PodcastHandler.getCategories() )
             {
-                foreach (var category in categoryList)
-                {
-                    comboBoxKategori.Items.Add(category);
-                }
-                comboBoxKategori.Items.RemoveAt(0);
+                categoryCombobox.Items.Add(category);
             }
+            
+            //FormSetup.CreateCategoryListview(categoryList, listaKategorier);
+            //if (categoryList.Count > 0)
+            //{
+            //    foreach (var category in categoryList)
+            //    {
+            //        comboBoxKategori.Items.Add(category);
+            //    }
+            //    comboBoxKategori.Items.RemoveAt(0);
+            //}
 
-            if (podcastList.Count > 0)
-            {
-                if (interval > 0)
-                {
-                    string uppdateringsIntervall = (interval).ToString() + " min";
-                    comboBoxUpdateInterval.SelectedIndex = comboBoxUpdateInterval.FindStringExact(uppdateringsIntervall);
-                    StartTimer(interval);
-                }
-                FormSetup.CreatePodcastListview(podcastList, listViewPodcasts);
-                FormSetup.CreateEpisodeListview(podcastList.First().EpisodeList, listViewEpisode);
-                listViewPodcasts.Items[0].Selected = true;
-            }
+            //if (podcastList.Count > 0)
+            //{
+            //    if (interval > 0)
+            //    {
+            //        string uppdateringsIntervall = (interval).ToString() + " min";
+            //        comboBoxUpdateInterval.SelectedIndex = comboBoxUpdateInterval.FindStringExact(uppdateringsIntervall);
+            //        StartTimer(interval);
+            //    }
+            //    FormSetup.CreatePodcastListview(podcastList, podcastListview);
+            //    FormSetup.CreateEpisodeListview(podcastList.First().EpisodeList, listViewEpisode);
+            //    podcastListview.Items[0].Selected = true;
+            //}
 
             Application.ApplicationExit += new EventHandler(this.OnApplicationExit);
         }
@@ -71,39 +79,10 @@ namespace RSS_Demo
             {
                 if (Validering.CheckIfURLIsValid(textBoxURL.Text).Length > 0)
                 {
-                    if (Validering.CheckIfComboboxIsEmpty(comboBoxKategori))
+                    if (Validering.CheckIfComboboxIsEmpty(categoryCombobox))
                     {
-                        var podcast = RssReader.GetPodcastFromURL(textBoxURL.Text, comboBoxKategori.Text);
-                        int iteration = 0;
-
-                        if (podcastList.Count() > 0)
-                        {
-                            foreach (var podcastInList in podcastList)
-                            {
-                                var podcastLookup = podcastList.Where(podcastX => podcastInList.Title == podcast.Title);
-                                iteration++;
-                                if (podcastLookup.Count() > 0)
-                                {
-                                    MessageBox.Show("Podcasten är redan inläst");
-                                    break;
-                                }
-                                else if ((podcastLookup.Count() == 0) && (podcastList.Count() == iteration))
-                                {
-                                    var lvi = new ListViewItem(new[] { podcast.Title, podcast.Category, podcast.EpisodeCount.ToString() });
-                                    podcastList.Add(podcast);
-                                    listViewPodcasts.Items.Add(lvi);
-                                    PodcastRepo.SavePodcasts(podcastList);
-                                    break;
-                                }
-                            }
-                        }
-                        else
-                        {
-                            podcastList.Add(podcast);
-                            var lvi = new ListViewItem(new[] { podcast.Title, podcast.Category, podcast.EpisodeCount.ToString() });
-                            listViewPodcasts.Items.Add(lvi);
-                            PodcastRepo.SavePodcasts(podcastList);
-                        }
+                        PodcastHandler.addPodcast(textBoxURL.Text, categoryCombobox.Text, Int32.Parse(comboBoxUpdateInterval.Text.Substring(0, 1)));
+                        podcastListview = PodcastHandler.updatePodcastListview(podcastListview, false);
                     }
                 }
             }
@@ -122,8 +101,8 @@ namespace RSS_Demo
 
                         if (kategoriInput.Length != 0)
                         {
-                            listaKategorier.Items.Add(kategoriInput);
-                            comboBoxKategori.Items.Add(kategoriInput);
+                            categoryListview.Items.Add(kategoriInput);
+                            categoryCombobox.Items.Add(kategoriInput);
                             categoryList.Add(kategoriInput);
                         }
                         textBoxKategori.Clear();
@@ -140,8 +119,8 @@ namespace RSS_Demo
         {
             try
             {
-                comboBoxKategori.Items.RemoveAt(0);
-                listaKategorier.Items.Remove(listaKategorier.SelectedItems[0]);
+                categoryCombobox.Items.RemoveAt(0);
+                categoryListview.Items.Remove(categoryListview.SelectedItems[0]);
             }
             catch (Exception)
             {
@@ -154,9 +133,9 @@ namespace RSS_Demo
         private void ButtonSparaKategorier_Click(object sender, EventArgs e)
         {
 
-            CategoryRepo.SaveCategories(categoryList);
+            PodcastHandler.saveData("cat");
 
-            
+
             ctrl.InterfaceMessage();
         }
 
@@ -165,64 +144,54 @@ namespace RSS_Demo
             // When the application is exiting, write the application data to the
             // user file and close it.
 
-            CategoryRepo.SaveCategories(categoryList);
-            PodcastRepo.SavePodcasts(podcastList);
+            PodcastHandler.saveData("all");
         }
 
         
 
         private void ListViewPodcasts_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (listViewPodcasts.SelectedItems.Count > 0)
+            if (podcastListview.SelectedItems.Count > 0)
             {
-                var hej = listViewPodcasts.SelectedItems[0];
-                listViewEpisode.BeginUpdate();
-                listViewEpisode = FormSetup.CreateEpisodeListview(podcastList.Where(podcast => podcast.Title == listViewPodcasts.SelectedItems[0].Text).FirstOrDefault()?.EpisodeList, listViewEpisode);
-                listViewEpisode.EndUpdate();
-                listViewEpisode.Items[0].Selected = true;
+                var podcastData = PodcastHandler.getPodcast(podcastListview.SelectedItems.ToString());
+                episodeListview.BeginUpdate();
+                episodeListview = PodcastHandler.updateEpisodeListview(episodeListview, podcastListview);
+                episodeListview.EndUpdate();
+                episodeListview.Items[0].Selected = true;
             }
         }
 
         private void ListViewEpisode_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (listViewEpisode.SelectedItems.Count > 0)
+            if (episodeListview.SelectedItems.Count > 0)
             {
-
-                var podcastLookup = podcastList.Where(podcast => podcast.Title == listViewPodcasts.SelectedItems[0].Text).FirstOrDefault();
-                var episodeLookup = podcastLookup.EpisodeList.Where(episode => episode.Title == listViewEpisode.SelectedItems[0].Text).FirstOrDefault();
-                if (episodeLookup != null)
-                {
-                    episodeDetailsTextBox.Text = episodeLookup.Description + " " + episodeLookup.EpisodeLink;
-                }
+                episodeDetailsTextBox.Text = PodcastHandler.updateEpisodeDetails(episodeListview, podcastListview);
             }
         }
 
         private void ListaKategorier_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if ((listaKategorier.SelectedItems.Count > 0))
+            if ((categoryListview.SelectedItems.Count > 0))
             {
-                if (listaKategorier.SelectedItems[0].Text == "Visa alla podcasts" && podcastList.Count > 0)
+                if (categoryListview.SelectedItems[0].Text == "Visa alla podcasts" && podcastListview.Items.Count > 0)
                 {
-                    listViewPodcasts.BeginUpdate();
-                    listViewPodcasts = FormSetup.CreatePodcastListview(podcastList, listViewPodcasts);
-                    listViewPodcasts.EndUpdate();
-                    listViewPodcasts.Items[0].Selected = true;
+                    podcastListview.BeginUpdate();
+                    podcastListview = PodcastHandler.updatePodcastListview(podcastListview, false);
+                    podcastListview.EndUpdate();
+                    podcastListview.Items[0].Selected = true;
                 }
-                else
+                else if (podcastListview.Items.Count > 0 && PodcastHandler.podcastCategoryLookup(categoryListview.SelectedItems[0].Text))
                 {
-                    var podcastLookup = podcastList.Where(podcast => podcast.Category == listaKategorier.SelectedItems[0].Text).ToList();
+                    podcastListview.BeginUpdate();
+                    podcastListview = PodcastHandler.updatePodcastListview(podcastListview, categoryCombobox.Text);
+                    podcastListview.EndUpdate();
+                    podcastListview.Items[0].Selected = true;
+                }
+                else if (podcastListview.Items.Count == 0)
+                {
 
-                    if (podcastLookup.Count > 0)
-                    {
-                        listViewPodcasts.BeginUpdate();
-                        listViewPodcasts = FormSetup.CreatePodcastListview(podcastLookup, listViewPodcasts);
-                        listViewPodcasts.EndUpdate();
-                        listViewPodcasts.Items[0].Selected = true;
-                    }
-                    else
-                    {
-                        MessageBox.Show("För tillfället tillhör inga podcasts kategorin \"" + listaKategorier.SelectedItems[0].Text + "\"");
-                    }
+                    MessageBox.Show("Du har inte lagt till några podcasts än");
+
                 }
             }
         }
@@ -243,22 +212,22 @@ namespace RSS_Demo
 
         public void GetNewEpisodes()
         {
-            if (listViewPodcasts.InvokeRequired)
+            if (podcastListview.InvokeRequired)
             {
 
-                listViewPodcasts.Invoke((MethodInvoker)GetNewEpisodes);
+                podcastListview.Invoke((MethodInvoker)GetNewEpisodes);
             }
             else
             {
-                var newPodcastList = RssReader.GetNewEpisode(podcastList);
-                listViewPodcasts.BeginUpdate();
-                listViewPodcasts = FormSetup.CreatePodcastListview(newPodcastList, listViewPodcasts);
-                listViewPodcasts.EndUpdate();
+                
+                podcastListview.BeginUpdate();
+                podcastListview = PodcastHandler.updatePodcastListview(podcastListview, true);
+                podcastListview.EndUpdate();
                 
                 
-                if (listViewPodcasts.Items.Count > 0)
+                if (podcastListview.Items.Count > 0)
                 {
-                    listViewPodcasts.Items[0].Selected = true;
+                    podcastListview.Items[0].Selected = true;
                 }
             }
         }
@@ -287,21 +256,42 @@ namespace RSS_Demo
 
         private void ButtonTaBortPodcast_Click(object sender, EventArgs e)
         {
-            if (listViewPodcasts.SelectedItems.Count > 0)
+            if (podcastListview.SelectedItems.Count > 0)
             {
-                var newPodlist = podcastList;
-                newPodlist.RemoveAt(listViewPodcasts.SelectedIndices[0]);
-                PodcastRepo.SavePodcasts(newPodlist);
-                if(newPodlist.Count > 0)
+                PodcastHandler.removePodcast(podcastListview.SelectedIndices[0]);
+                
+                if(PodcastHandler.podcastListCount() > 0)
                 {
-                    listViewPodcasts = FormSetup.CreatePodcastListview(newPodlist, listViewPodcasts);
+                    podcastListview = PodcastHandler.updatePodcastListview(podcastListview, false);
+                    podcastListview.Items[0].Selected = true;
                 }
                 else
                 {
-                    listViewPodcasts.Items.Clear();
-                    listViewEpisode.Items.Clear();
+                    podcastListview.Items.Clear();
+                    episodeListview.Items.Clear();
                     episodeDetailsTextBox.Clear();
                 }
+            }
+        }
+        
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if(podcastListview.SelectedItems.Count > 0)
+            {
+                if(categoryCombobox.Text.Length == 0 || comboBoxUpdateInterval.Text.Length == 0)
+                {
+                    MessageBox.Show("Vänligen fyll i både kategori och uppdateringsintervall för att ändra");
+                }
+                else
+                {
+                    PodcastHandler.updatePodcast(categoryCombobox.Text, Int32.Parse(comboBoxUpdateInterval.Text.Substring(0, 1)), podcastListview.SelectedItems[0].Text);
+                    podcastListview = PodcastHandler.updatePodcastListview(podcastListview, false);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Vänligen välj en podcast att ändra");
             }
         }
     }

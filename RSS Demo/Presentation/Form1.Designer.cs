@@ -36,20 +36,20 @@ namespace RSS_Demo
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.comboBoxKategori = new System.Windows.Forms.ComboBox();
+            this.categoryCombobox = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.comboBoxUpdateInterval = new System.Windows.Forms.ComboBox();
-            this.listViewPodcasts = new System.Windows.Forms.ListView();
+            this.podcastListview = new System.Windows.Forms.ListView();
             this.Title = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Kategori = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Avsnitt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.listaKategorier = new System.Windows.Forms.ListView();
+            this.categoryListview = new System.Windows.Forms.ListView();
             this.buttonLaggTillKategori = new System.Windows.Forms.Button();
             this.buttonTaBortKategori = new System.Windows.Forms.Button();
             this.textBoxKategori = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.buttonSparaKategorier = new System.Windows.Forms.Button();
-            this.listViewEpisode = new System.Windows.Forms.ListView();
+            this.episodeListview = new System.Windows.Forms.ListView();
             this.columnAvnittNamn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnPubliceringsdatum = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnSpeltid = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -57,6 +57,8 @@ namespace RSS_Demo
             this.episodeDetailsTextBox = new System.Windows.Forms.TextBox();
             this.buttonSaveUpdateInterval = new System.Windows.Forms.Button();
             this.buttonTabortPodcast = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.Intervall = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -70,10 +72,10 @@ namespace RSS_Demo
             // 
             // buttonURL
             // 
-            this.buttonURL.Location = new System.Drawing.Point(6, 105);
+            this.buttonURL.Location = new System.Drawing.Point(166, 236);
             this.buttonURL.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonURL.Name = "buttonURL";
-            this.buttonURL.Size = new System.Drawing.Size(74, 35);
+            this.buttonURL.Size = new System.Drawing.Size(133, 28);
             this.buttonURL.TabIndex = 1;
             this.buttonURL.Text = "Lagg till";
             this.buttonURL.UseVisualStyleBackColor = true;
@@ -83,14 +85,15 @@ namespace RSS_Demo
             // 
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.comboBoxKategori);
+            this.groupBox1.Controls.Add(this.categoryCombobox);
             this.groupBox1.Controls.Add(this.textBoxURL);
-            this.groupBox1.Controls.Add(this.buttonURL);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.comboBoxUpdateInterval);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Left;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox1.Size = new System.Drawing.Size(160, 497);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
@@ -118,17 +121,17 @@ namespace RSS_Demo
             // 
             // comboBoxKategori
             // 
-            this.comboBoxKategori.FormattingEnabled = true;
-            this.comboBoxKategori.Location = new System.Drawing.Point(10, 69);
-            this.comboBoxKategori.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.comboBoxKategori.Name = "comboBoxKategori";
-            this.comboBoxKategori.Size = new System.Drawing.Size(92, 21);
-            this.comboBoxKategori.TabIndex = 3;
+            this.categoryCombobox.FormattingEnabled = true;
+            this.categoryCombobox.Location = new System.Drawing.Point(10, 69);
+            this.categoryCombobox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.categoryCombobox.Name = "comboBoxKategori";
+            this.categoryCombobox.Size = new System.Drawing.Size(92, 21);
+            this.categoryCombobox.TabIndex = 3;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(164, 0);
+            this.label3.Location = new System.Drawing.Point(7, 92);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(109, 13);
@@ -142,27 +145,28 @@ namespace RSS_Demo
             "10 min",
             "5 min ",
             "1 min"});
-            this.comboBoxUpdateInterval.Location = new System.Drawing.Point(166, 16);
-            this.comboBoxUpdateInterval.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.comboBoxUpdateInterval.Location = new System.Drawing.Point(11, 107);
+            this.comboBoxUpdateInterval.Margin = new System.Windows.Forms.Padding(2);
             this.comboBoxUpdateInterval.Name = "comboBoxUpdateInterval";
             this.comboBoxUpdateInterval.Size = new System.Drawing.Size(92, 21);
             this.comboBoxUpdateInterval.TabIndex = 2;
             // 
-            // listViewPodcasts
+            // podcastListview
             // 
-            this.listViewPodcasts.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.podcastListview.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.Title,
             this.Kategori,
-            this.Avsnitt});
-            this.listViewPodcasts.HideSelection = false;
-            this.listViewPodcasts.Location = new System.Drawing.Point(166, 43);
-            this.listViewPodcasts.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.listViewPodcasts.Name = "listViewPodcasts";
-            this.listViewPodcasts.Size = new System.Drawing.Size(438, 185);
-            this.listViewPodcasts.TabIndex = 15;
-            this.listViewPodcasts.UseCompatibleStateImageBehavior = false;
-            this.listViewPodcasts.View = System.Windows.Forms.View.Details;
-            this.listViewPodcasts.SelectedIndexChanged += new System.EventHandler(this.ListViewPodcasts_SelectedIndexChanged);
+            this.Avsnitt,
+            this.Intervall});
+            this.podcastListview.HideSelection = false;
+            this.podcastListview.Location = new System.Drawing.Point(166, 43);
+            this.podcastListview.Margin = new System.Windows.Forms.Padding(4);
+            this.podcastListview.Name = "podcastListview";
+            this.podcastListview.Size = new System.Drawing.Size(438, 185);
+            this.podcastListview.TabIndex = 15;
+            this.podcastListview.UseCompatibleStateImageBehavior = false;
+            this.podcastListview.View = System.Windows.Forms.View.Details;
+            this.podcastListview.SelectedIndexChanged += new System.EventHandler(this.ListViewPodcasts_SelectedIndexChanged);
             // 
             // Title
             // 
@@ -181,22 +185,22 @@ namespace RSS_Demo
             // 
             // listaKategorier
             // 
-            this.listaKategorier.HideSelection = false;
-            this.listaKategorier.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            this.categoryListview.HideSelection = false;
+            this.categoryListview.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
             listViewItem1});
-            this.listaKategorier.Location = new System.Drawing.Point(637, 32);
-            this.listaKategorier.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.listaKategorier.Name = "listaKategorier";
-            this.listaKategorier.Size = new System.Drawing.Size(366, 193);
-            this.listaKategorier.TabIndex = 16;
-            this.listaKategorier.UseCompatibleStateImageBehavior = false;
-            this.listaKategorier.View = System.Windows.Forms.View.List;
-            this.listaKategorier.SelectedIndexChanged += new System.EventHandler(this.ListaKategorier_SelectedIndexChanged);
+            this.categoryListview.Location = new System.Drawing.Point(637, 32);
+            this.categoryListview.Margin = new System.Windows.Forms.Padding(4);
+            this.categoryListview.Name = "listaKategorier";
+            this.categoryListview.Size = new System.Drawing.Size(366, 193);
+            this.categoryListview.TabIndex = 16;
+            this.categoryListview.UseCompatibleStateImageBehavior = false;
+            this.categoryListview.View = System.Windows.Forms.View.List;
+            this.categoryListview.SelectedIndexChanged += new System.EventHandler(this.ListaKategorier_SelectedIndexChanged);
             // 
             // buttonLaggTillKategori
             // 
             this.buttonLaggTillKategori.Location = new System.Drawing.Point(717, 231);
-            this.buttonLaggTillKategori.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonLaggTillKategori.Margin = new System.Windows.Forms.Padding(4);
             this.buttonLaggTillKategori.Name = "buttonLaggTillKategori";
             this.buttonLaggTillKategori.Size = new System.Drawing.Size(75, 25);
             this.buttonLaggTillKategori.TabIndex = 17;
@@ -207,7 +211,7 @@ namespace RSS_Demo
             // buttonTaBortKategori
             // 
             this.buttonTaBortKategori.Location = new System.Drawing.Point(800, 231);
-            this.buttonTaBortKategori.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonTaBortKategori.Margin = new System.Windows.Forms.Padding(4);
             this.buttonTaBortKategori.Name = "buttonTaBortKategori";
             this.buttonTaBortKategori.Size = new System.Drawing.Size(75, 25);
             this.buttonTaBortKategori.TabIndex = 18;
@@ -218,7 +222,7 @@ namespace RSS_Demo
             // textBoxKategori
             // 
             this.textBoxKategori.Location = new System.Drawing.Point(637, 262);
-            this.textBoxKategori.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxKategori.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxKategori.Name = "textBoxKategori";
             this.textBoxKategori.Size = new System.Drawing.Size(237, 20);
             this.textBoxKategori.TabIndex = 19;
@@ -236,7 +240,7 @@ namespace RSS_Demo
             // buttonSparaKategorier
             // 
             this.buttonSparaKategorier.Location = new System.Drawing.Point(637, 231);
-            this.buttonSparaKategorier.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonSparaKategorier.Margin = new System.Windows.Forms.Padding(2);
             this.buttonSparaKategorier.Name = "buttonSparaKategorier";
             this.buttonSparaKategorier.Size = new System.Drawing.Size(74, 25);
             this.buttonSparaKategorier.TabIndex = 22;
@@ -246,20 +250,20 @@ namespace RSS_Demo
             // 
             // listViewEpisode
             // 
-            this.listViewEpisode.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.episodeListview.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnAvnittNamn,
             this.columnPubliceringsdatum,
             this.columnSpeltid,
             this.columnAvnittLink});
-            this.listViewEpisode.HideSelection = false;
-            this.listViewEpisode.Location = new System.Drawing.Point(166, 282);
-            this.listViewEpisode.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.listViewEpisode.Name = "listViewEpisode";
-            this.listViewEpisode.Size = new System.Drawing.Size(438, 201);
-            this.listViewEpisode.TabIndex = 25;
-            this.listViewEpisode.UseCompatibleStateImageBehavior = false;
-            this.listViewEpisode.View = System.Windows.Forms.View.Details;
-            this.listViewEpisode.SelectedIndexChanged += new System.EventHandler(this.ListViewEpisode_SelectedIndexChanged);
+            this.episodeListview.HideSelection = false;
+            this.episodeListview.Location = new System.Drawing.Point(166, 282);
+            this.episodeListview.Margin = new System.Windows.Forms.Padding(4);
+            this.episodeListview.Name = "listViewEpisode";
+            this.episodeListview.Size = new System.Drawing.Size(438, 201);
+            this.episodeListview.TabIndex = 25;
+            this.episodeListview.UseCompatibleStateImageBehavior = false;
+            this.episodeListview.View = System.Windows.Forms.View.Details;
+            this.episodeListview.SelectedIndexChanged += new System.EventHandler(this.ListViewEpisode_SelectedIndexChanged);
             // 
             // columnAvnittNamn
             // 
@@ -300,8 +304,8 @@ namespace RSS_Demo
             // 
             // buttonTabortPodcast
             // 
-            this.buttonTabortPodcast.Location = new System.Drawing.Point(166, 236);
-            this.buttonTabortPodcast.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonTabortPodcast.Location = new System.Drawing.Point(459, 236);
+            this.buttonTabortPodcast.Margin = new System.Windows.Forms.Padding(4);
             this.buttonTabortPodcast.Name = "buttonTabortPodcast";
             this.buttonTabortPodcast.Size = new System.Drawing.Size(145, 28);
             this.buttonTabortPodcast.TabIndex = 30;
@@ -309,26 +313,40 @@ namespace RSS_Demo
             this.buttonTabortPodcast.UseVisualStyleBackColor = true;
             this.buttonTabortPodcast.Click += new System.EventHandler(this.ButtonTaBortPodcast_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(306, 236);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(146, 28);
+            this.button1.TabIndex = 31;
+            this.button1.Text = "Ändra Podcast";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // Intervall
+            // 
+            this.Intervall.Text = "Intervall";
+            // 
             // Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1024, 497);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.buttonTabortPodcast);
             this.Controls.Add(this.buttonSaveUpdateInterval);
             this.Controls.Add(this.episodeDetailsTextBox);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.listViewEpisode);
+            this.Controls.Add(this.episodeListview);
+            this.Controls.Add(this.buttonURL);
             this.Controls.Add(this.buttonSparaKategorier);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.comboBoxUpdateInterval);
             this.Controls.Add(this.textBoxKategori);
             this.Controls.Add(this.buttonTaBortKategori);
             this.Controls.Add(this.buttonLaggTillKategori);
-            this.Controls.Add(this.listaKategorier);
-            this.Controls.Add(this.listViewPodcasts);
+            this.Controls.Add(this.categoryListview);
+            this.Controls.Add(this.podcastListview);
             this.Controls.Add(this.groupBox1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form";
             this.Text = "Podcast";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -356,20 +374,20 @@ namespace RSS_Demo
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboBoxKategori;
+        private System.Windows.Forms.ComboBox categoryCombobox;
         private System.Windows.Forms.ComboBox comboBoxUpdateInterval;
         private System.Windows.Forms.Label label3;
-        public System.Windows.Forms.ListView listViewPodcasts;
+        public System.Windows.Forms.ListView podcastListview;
         private System.Windows.Forms.ColumnHeader Title;
         private System.Windows.Forms.ColumnHeader Kategori;
         private System.Windows.Forms.ColumnHeader Avsnitt;
-        private System.Windows.Forms.ListView listaKategorier;
+        private System.Windows.Forms.ListView categoryListview;
         private System.Windows.Forms.Button buttonLaggTillKategori;
         private System.Windows.Forms.Button buttonTaBortKategori;
         private System.Windows.Forms.TextBox textBoxKategori;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button buttonSparaKategorier;
-        private System.Windows.Forms.ListView listViewEpisode;
+        private System.Windows.Forms.ListView episodeListview;
         private System.Windows.Forms.ColumnHeader columnAvnittNamn;
         private System.Windows.Forms.ColumnHeader columnPubliceringsdatum;
         private System.Windows.Forms.ColumnHeader columnSpeltid;
@@ -377,6 +395,8 @@ namespace RSS_Demo
         private System.Windows.Forms.TextBox episodeDetailsTextBox;
         private System.Windows.Forms.Button buttonSaveUpdateInterval;
         private System.Windows.Forms.Button buttonTabortPodcast;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ColumnHeader Intervall;
     }
 }
 

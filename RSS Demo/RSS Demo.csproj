@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Logik\AsyncTimer.cs" />
+    <Compile Include="Logik\PodcastHandler.cs" />
     <Compile Include="Presentation\GreetingMsg.cs" />
     <Compile Include="Data\CategoryRepo.cs" />
     <Compile Include="Data\UpdateIntervalRepo.cs" />
@@ -65,11 +66,20 @@
     <Compile Include="Presentation\interface.cs" />
     <Compile Include="Logik\FormSetup.cs" />
     <Compile Include="Logik\Program.cs" />
+    <Compile Include="Presentation\UserControl1.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Presentation\UserControl1.Designer.cs">
+      <DependentUpon>UserControl1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Logik\ValidationException.cs" />
     <Compile Include="Logik\Validering.cs" />
     <EmbeddedResource Include="Presentation\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\UserControl1.resx">
+      <DependentUpon>UserControl1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

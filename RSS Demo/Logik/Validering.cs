@@ -79,6 +79,7 @@ public static class Validering
                 MessageBox.Show("Det finns i kategorilistan");
                 return false;
             }
+            
         }
         return true;
     }

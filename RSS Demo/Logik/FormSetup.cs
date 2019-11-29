@@ -57,6 +57,8 @@ namespace RSS_Demo.Mellanlager
 
                     podcastItem.SubItems.Add(podcast.EpisodeCount.ToString());
 
+                    podcastItem.SubItems.Add(podcast.UpdateInterval.ToString()+ " min");
+
                     updatedListview.Items.Add(podcastItem);
                 }
 

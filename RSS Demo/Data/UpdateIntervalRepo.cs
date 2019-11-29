@@ -24,6 +24,7 @@ namespace RSS_Demo.Data
         static public void SaveUpdateInterval(int updateInterval)
         {
             var xmlSerializer = new XmlSerializer(typeof(int));
+            File.Delete("./updateintervall.xml");
 
             using (var fileStream = File.OpenWrite("./updateIntervall.xml"))
             {

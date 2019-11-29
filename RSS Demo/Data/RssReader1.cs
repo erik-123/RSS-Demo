@@ -6,9 +6,8 @@ namespace RSS_Demo.Data
 {
     internal class RssReader
     {
-        public static Podcast GetPodcastFromURL(string url, string category)
+        public static Podcast GetPodcastFromURL(string url, string category, int updateInterval)
         {
-            var i = 0;
             var podcastData = XDocument.Load(url);
             XNamespace ns = "http://www.itunes.com/dtds/podcast-1.0.dtd";
             var episodeData = podcastData.Descendants("item");
@@ -26,14 +25,14 @@ namespace RSS_Demo.Data
                     PubDate = item.Element("pubDate")?.Value ?? ""
                 };
                 episodeList.Add(episode);
-                i++;
             }
             podcast.Title = podcastData.Descendants("title").FirstOrDefault().Value;
             podcast.Description = podcastData.Descendants("description").FirstOrDefault().Value;
             podcast.Link = podcastData.Descendants("link").FirstOrDefault().Value;
             podcast.FeedLink = url;
             podcast.Category = category;
-            podcast.EpisodeCount = i;
+            podcast.UpdateInterval = updateInterval;
+            podcast.EpisodeCount = episodeList.Count();
             podcast.EpisodeList = episodeList;
             return podcast;
         }
