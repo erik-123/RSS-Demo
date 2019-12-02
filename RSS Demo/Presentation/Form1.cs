@@ -13,9 +13,7 @@ namespace RSS_Demo
     public partial class Form : System.Windows.Forms.Form, IMessage
     {
         private AsyncTimer timer;
-        readonly private List<string> categoryList = CategoryRepo.LoadCategories();
-        readonly private List<Podcast> podcastList = PodcastRepo.LoadPodcasts();
-        private int interval = UpdateIntervalRepo.LoadUpdateInterval();
+        
         private readonly MessageController ctrl;
         private readonly GreetingMsg greeting = new HolidayGreeting();
         static public int timerCounter { get; set; }
@@ -54,7 +52,7 @@ namespace RSS_Demo
                 {
                     if (Validering.CheckIfComboboxIsEmpty(categoryCombobox))
                     {
-                        PodcastHandler.addPodcast(textBoxURL.Text, categoryCombobox.Text, Int32.Parse(comboBoxUpdateInterval.Text.Substring(0, 1)));
+                        PodcastHandler.addPodcast(textBoxURL.Text, categoryCombobox.Text, Int32.Parse(comboBoxUpdateInterval.Text.Substring(0, 2).Trim()));
                         podcastListview = PodcastHandler.updatePodcastListview(podcastListview);
                     }
                 }
@@ -75,7 +73,7 @@ namespace RSS_Demo
                         {
                             categoryListview.Items.Add(kategoriInput);
                             categoryCombobox.Items.Add(kategoriInput);
-                            categoryList.Add(kategoriInput);
+                            PodcastHandler.addCategory(kategoriInput);
                         }
                         categoryTextbox.Clear();
                     }
@@ -131,7 +129,7 @@ namespace RSS_Demo
             {
                 var podcastData = PodcastHandler.getPodcast(podcastListview.SelectedItems.ToString());
                 episodeListview.BeginUpdate();
-                episodeListview = PodcastHandler.updateEpisodeListview(episodeListview, podcastListview);
+                episodeListview = PodcastHandler.updateEpisodeListview(episodeListview, podcastListview.SelectedItems[0].Text);
                 episodeListview.EndUpdate();
                 episodeListview.Items[0].Selected = true;
             }
@@ -176,65 +174,42 @@ namespace RSS_Demo
 
         public void StartTimer()
         {
-            if (interval > 0)
-            {
-                if (timer != null)
-                {
-                    timer.Dispose();
-                }
-                timer = new AsyncTimer(TimeSpan.FromSeconds(1), GetNewEpisode);
+            
+                timer = new AsyncTimer(TimeSpan.FromMinutes(1), GetNewEpisode);
 
                 timer.Start();
-            }
+            
         }
 
         public void GetNewEpisode()
         {
-            //if (podcastListview.InvokeRequired)
-            //{
-
-            //    podcastListview.Invoke((MethodInvoker)GetNewEpisodes);
-            //}
-            //else
-            //{
-
-            //    podcastListview.BeginUpdate();
-            //    podcastListview = PodcastHandler.updatePodcastListview(podcastListview, true);
-            //    podcastListview.EndUpdate();
-
-
-            //    if (podcastListview.Items.Count > 0)
-            //    {
-            //        podcastListview.Items[0].Selected = true;
-            //    }
-            //}
             timerCounter++;
-            if(timerCounter == 10)
+            string updatedPodcasts = "";
+            updatedPodcasts = PodcastHandler.updateEpisodes(1);
+            if(timerCounter == 5)
             {
-                MessageBox.Show("hej");
+                updatedPodcasts += updatedPodcasts + PodcastHandler.updateEpisodes(5);
+            }
+            else if(timerCounter == 10)
+            {
+                updatedPodcasts += updatedPodcasts + PodcastHandler.updateEpisodes(5);
+                updatedPodcasts += PodcastHandler.updateEpisodes(10);
                 timerCounter = 0;
             }
-        }
-
-        private void ButtonSaveUpdateInterval_Click(object sender, EventArgs e)
-        {
-            switch (comboBoxUpdateInterval.Text)
+            if(updatedPodcasts.Length > 0)
             {
-                case "10 min":
-                    interval = 10;
-                    break;
 
-                case "5 min":
-                    interval = 5;
-                    break;
-
-                case "1 min":
-                    interval = 1;
-                    break;
+                MessageBox.Show(updatedPodcasts);
+                podcastListview = PodcastHandler.updatePodcastListview(podcastListview);
+                if (podcastListview.Items.Count > 0)
+                {
+                    podcastListview.Items[0].Selected = true;
+                }
             }
-            UpdateIntervalRepo.SaveUpdateInterval(interval);
-            StartTimer();
+
         }
+
+     
 
         
 
@@ -265,7 +240,7 @@ namespace RSS_Demo
             {
                 if(Validering.CheckIfComboboxIsEmpty(comboBoxUpdateInterval) || Validering.CheckIfComboboxIsEmpty(categoryCombobox))
                 {
-                    PodcastHandler.updatePodcast(categoryCombobox.Text, Int32.Parse(comboBoxUpdateInterval.Text.Substring(0, 1)), podcastListview.SelectedItems[0].Text);
+                    PodcastHandler.updatePodcast(categoryCombobox.Text, Int32.Parse(comboBoxUpdateInterval.Text.Substring(0, 2).Trim()), podcastListview.SelectedItems[0].Text);
                     podcastListview = PodcastHandler.updatePodcastListview(podcastListview);
                 }
             }
@@ -277,8 +252,6 @@ namespace RSS_Demo
 
         private void button2_Click_1(object sender, EventArgs e)
         {
-
-            PodcastHandler.testmetod(podcastListview, episodeListview);
         }
     }
 }

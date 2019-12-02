@@ -23,7 +23,7 @@ namespace RSS_Demo.Data
             }
         }
 
-        static public void SavePodcasts(List<Podcast> podcasts)// sparar podcast
+        static public void SavePodcasts(List<Podcast> podcasts)
         {
             var xmlSerializer = new XmlSerializer(typeof(List<Podcast>));
             File.Delete("./podcast.xml");

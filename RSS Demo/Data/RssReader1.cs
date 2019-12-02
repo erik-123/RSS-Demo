@@ -10,22 +10,13 @@ namespace RSS_Demo.Data
         public static Podcast GetPodcastFromURL(string url, string category, int updateInterval)
         {
             var podcastData = XDocument.Load(url);
-            XNamespace ns = "http://www.itunes.com/dtds/podcast-1.0.dtd";
             var episodeData = podcastData.Descendants("item");
             var podcast = new Podcast();
             List<Episode> episodeList = new List<Episode>();
 
             foreach (var item in episodeData)
             {
-                var episode = new Episode
-                {
-                    Title = item.Element("title")?.Value ?? "",
-                    Description = item.Element("description")?.Value ?? "",
-                    Runtime = item.Element(ns + "duration")?.Value ?? "",
-                    EpisodeLink = item.Element("link")?.Value ?? "",
-                    PubDate = item.Element("pubDate")?.Value ?? ""
-                };
-                episodeList.Add(episode);
+                episodeList.Add(CreateEpisode(item));
             }
             podcast.Title = podcastData.Descendants("title").FirstOrDefault().Value;
             podcast.Description = podcastData.Descendants("description").FirstOrDefault().Value;
@@ -38,70 +29,35 @@ namespace RSS_Demo.Data
             return podcast;
         }
 
-        public static List<Podcast> GetNewEpisode1(List<Podcast> newPodcastList)
+
+
+
+        public static string GetNewEpisodes(List<Podcast> podcastList)
         {
-            for (var i = 0; i < newPodcastList.Count(); i++)
+            string podcastsUpdated = "";
+            if(podcastList.Count > 0)
             {
-                XNamespace ns = "http://www.itunes.com/dtds/podcast-1.0.dtd";
-
-                var podcastData = XDocument.Load(newPodcastList[i].FeedLink);
-
-                var episodeData = podcastData.Descendants("item");
-                List<Episode> episodeList = new List<Episode>();
-
-                foreach (var item in episodeData)
+                foreach(Podcast podcast in podcastList)
                 {
-                    var episode = new Episode
+                    var episodesToGet = XDocument.Load(podcast.FeedLink).Descendants("item").Count() - podcast.EpisodeList.Count();
+                    if (episodesToGet > 0)
                     {
-                        Title = item.Element("title")?.Value ?? "",
-                        Description = item.Element("description")?.Value ?? "",
-                        Runtime = item.Element(ns + "duration")?.Value ?? "",
-                        EpisodeLink = item.Element("link")?.Value ?? "",
-                        PubDate = item.Element("pubDate")?.Value ?? ""
-                    };
-                    episodeList.Add(episode);
-                }
+                        var episodesToGetI = episodesToGet;
+                        for (var i = 0; i < episodesToGetI; episodesToGetI--)
+                        {
+                            podcast.EpisodeList.Reverse();
+                            podcast.EpisodeList.Add(CreateEpisode(XDocument.Load(podcast.FeedLink).Descendants("item").ElementAt(episodesToGetI - 1)));
+                            podcast.EpisodeList.Reverse();
 
-                var newEpisodesList = episodeList.Except(newPodcastList[i].EpisodeList).ToList();
-
-                if (newEpisodesList.ElementAt(0).Title != newPodcastList[i].EpisodeList.ElementAt(0).Title)
-                {
-                    newPodcastList[i].EpisodeList = newEpisodesList;
-                    newPodcastList[i].EpisodeCount = newPodcastList[i].EpisodeList.Count();
-                    newPodcastList[newPodcastList.IndexOf(newPodcastList[i])] = newPodcastList[i];
+                        }
+                    podcastsUpdated = podcastsUpdated + episodesToGet + " nya episoder, har hämtats för "+ podcast.Title +" \n";
+                    podcast.EpisodeCount = podcast.EpisodeList.Count;
+                    }
                 }
             }
-            return newPodcastList;
+            return podcastsUpdated;
         }
-        public static void GetNewEpisode()
-        {
-            Form.timerCounter++;
-        }
-
-
-
-
-
-
-
-
-        public static string GetNewEpisodes(Podcast podcast)
-        {
-            var podcastsToGet = XDocument.Load(podcast.FeedLink).Descendants("item").Count() - podcast.EpisodeList.Count();
-            if (podcastsToGet > 0)
-            {
-                for (var i = 0; i < podcastsToGet - 1; i++)
-                {
-                    podcast.EpisodeList.Reverse();
-                    podcast.EpisodeList.Add(createEpisode(XDocument.Load(podcast.FeedLink).Descendants("item").ElementAt(i)));
-                    podcast.EpisodeList.Reverse();
-
-                }
-                return podcast.Title + " " + podcastsToGet;
-            }
-            return "";
-        }
-        static private Episode createEpisode(XElement episodeElements)
+        static private Episode CreateEpisode(XElement episodeElements)
         {
             XNamespace ns = "http://www.itunes.com/dtds/podcast-1.0.dtd";
             var episode = new Episode
