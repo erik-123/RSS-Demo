@@ -119,6 +119,12 @@ namespace RSS_Demo.Logik
                 
             }
         }
+        static public string updateEpisodes(int interval)
+        
+        
+        {
+            return RssReader.GetNewEpisodes(getPodcasts(interval));
+        }
         static public void addPodcast(string url, string category, int interval)
         {
             var podcast = RssReader.GetPodcastFromURL(url, category, interval);
@@ -172,9 +178,9 @@ namespace RSS_Demo.Logik
         
 
         
-        static public ListView updateEpisodeListview(ListView episodeListview, ListView podcastListview)
+        static public ListView updateEpisodeListview(ListView episodeListview, string selectedPodcast)
         {
-            return FormSetup.CreateEpisodeListview(podcastList.Where(podcast => podcast.Title == podcastListview.SelectedItems[0].Text).FirstOrDefault()?.EpisodeList, episodeListview);
+            return FormSetup.CreateEpisodeListview(podcastList.Where(podcast => podcast.Title == selectedPodcast).FirstOrDefault()?.EpisodeList, episodeListview);
             
         }
         static public ListView updatePodcastListview(ListView podcastListview)

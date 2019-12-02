@@ -18,8 +18,7 @@ namespace RSS_Demo.Data
             }
             catch (FileNotFoundException)
             {
-                var categoryList = new List<string>();
-                categoryList.Add("Visa alla podcasts");
+                var categoryList = new List<string>{"Visa alla podcasts"};
                 return categoryList;
             }
         }
