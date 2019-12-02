@@ -38,7 +38,7 @@ namespace RSS_Demo.Data
             return podcast;
         }
 
-        public static List<Podcast> GetNewEpisode(List<Podcast> newPodcastList)
+        public static List<Podcast> GetNewEpisode1(List<Podcast> newPodcastList)
         {
             for (var i = 0; i < newPodcastList.Count(); i++)
             {
@@ -73,45 +73,33 @@ namespace RSS_Demo.Data
             }
             return newPodcastList;
         }
-
-
-
-
-
-
-
-
-        public static bool GetNewEpisodes(Podcast podcast)
+        public static void GetNewEpisode()
         {
-                XNamespace ns = "http://www.itunes.com/dtds/podcast-1.0.dtd";
-                var podcastData = XDocument.Load(podcast.FeedLink);
+            Form.timerCounter++;
+        }
 
-            
+
+
+
+
+
+
+
+        public static string GetNewEpisodes(Podcast podcast)
+        {
             var podcastsToGet = XDocument.Load(podcast.FeedLink).Descendants("item").Count() - podcast.EpisodeList.Count();
             if (podcastsToGet > 0)
             {
-
-                for(var i = 0; i < podcastsToGet - 1; i++)
+                for (var i = 0; i < podcastsToGet - 1; i++)
                 {
-                    var episode = createEpisode(XDocument.Load(podcast.FeedLink).Descendants("item").ElementAt(i));
+                    podcast.EpisodeList.Reverse();
+                    podcast.EpisodeList.Add(createEpisode(XDocument.Load(podcast.FeedLink).Descendants("item").ElementAt(i)));
+                    podcast.EpisodeList.Reverse();
+
                 }
-            
-                
+                return podcast.Title + " " + podcastsToGet;
             }
-
-                //foreach(var episodeElement in episodeElements)
-                //{
-
-                //    if(podcast.EpisodeList.Any(episode => episode.Title == createEpisode(episodeElement).Title))
-                //    {
-                //        return true;
-                //    }
-
-                //}
-                return false;
-
-
-                
+            return "";
         }
         static private Episode createEpisode(XElement episodeElements)
         {

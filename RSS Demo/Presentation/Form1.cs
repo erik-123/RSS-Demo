@@ -18,44 +18,19 @@ namespace RSS_Demo
         private int interval = UpdateIntervalRepo.LoadUpdateInterval();
         private readonly MessageController ctrl;
         private readonly GreetingMsg greeting = new HolidayGreeting();
+        static public int timerCounter { get; set; }
 
         public Form()
         {
             InitializeComponent();
-
+            timerCounter = 0;
+            StartTimer();
             MessageBox.Show(greeting.Greet());
 
             ctrl = new MessageController(this);
-            podcastListview = PodcastHandler.updatePodcastListview(podcastListview, false);
-            categoryListview = PodcastHandler.getCategoryListview(categoryListview);
-            foreach(var category in PodcastHandler.getCategories() )
-            {
-                categoryCombobox.Items.Add(category);
-            }
-            
-            //FormSetup.CreateCategoryListview(categoryList, listaKategorier);
-            //if (categoryList.Count > 0)
-            //{
-            //    foreach (var category in categoryList)
-            //    {
-            //        comboBoxKategori.Items.Add(category);
-            //    }
-            //    comboBoxKategori.Items.RemoveAt(0);
-            //}
-
-            //if (podcastList.Count > 0)
-            //{
-            //    if (interval > 0)
-            //    {
-            //        string uppdateringsIntervall = (interval).ToString() + " min";
-            //        comboBoxUpdateInterval.SelectedIndex = comboBoxUpdateInterval.FindStringExact(uppdateringsIntervall);
-            //        StartTimer(interval);
-            //    }
-            //    FormSetup.CreatePodcastListview(podcastList, podcastListview);
-            //    FormSetup.CreateEpisodeListview(podcastList.First().EpisodeList, listViewEpisode);
-            //    podcastListview.Items[0].Selected = true;
-            //}
-
+            podcastListview = PodcastHandler.updatePodcastListview(podcastListview);
+            categoryListview = PodcastHandler.updateCategoryListview(categoryListview);
+            categoryCombobox = PodcastHandler.updateComboBox(categoryCombobox); 
             Application.ApplicationExit += new EventHandler(this.OnApplicationExit);
         }
         private void GroupBox1_Enter(object sender, EventArgs e)
@@ -80,7 +55,7 @@ namespace RSS_Demo
                     if (Validering.CheckIfComboboxIsEmpty(categoryCombobox))
                     {
                         PodcastHandler.addPodcast(textBoxURL.Text, categoryCombobox.Text, Int32.Parse(comboBoxUpdateInterval.Text.Substring(0, 1)));
-                        podcastListview = PodcastHandler.updatePodcastListview(podcastListview, false);
+                        podcastListview = PodcastHandler.updatePodcastListview(podcastListview);
                     }
                 }
             }
@@ -91,19 +66,18 @@ namespace RSS_Demo
         {
             try
             {
-                if (Validering.CheckIfTextfieldsIsEmpty(textBoxKategori) && Validering.CheckIfTextfieldsHasANumber(textBoxKategori))
+                if (Validering.CheckIfTextfieldsIsEmpty(categoryTextbox) && Validering.CheckIfTextfieldsHasANumber(categoryTextbox))
                 {
-                    if (Validering.CheckIfCategoryIsAvailable(textBoxKategori))
+                    if (Validering.CheckIfCategoryIsAvailable(categoryTextbox))
                     {
-                        string kategoriInput = textBoxKategori.Text.Trim();
-
+                        string kategoriInput = categoryTextbox.Text.Trim();
                         if (kategoriInput.Length != 0)
                         {
                             categoryListview.Items.Add(kategoriInput);
                             categoryCombobox.Items.Add(kategoriInput);
                             categoryList.Add(kategoriInput);
                         }
-                        textBoxKategori.Clear();
+                        categoryTextbox.Clear();
                     }
                 }
             }
@@ -115,14 +89,18 @@ namespace RSS_Demo
 
         private void ButtonTaBortKategori_Click(object sender, EventArgs e)
         {
-            try
+            if(categoryListview.SelectedItems[0].Text.Length > 0)
             {
-                categoryCombobox.Items.RemoveAt(0);
-                categoryListview.Items.Remove(categoryListview.SelectedItems[0]);
+                if(Validering.validateSelectedCategory(categoryListview.SelectedItems[0].Text, "remove"))
+                {
+                        PodcastHandler.removeCategory(categoryListview.SelectedItems[0].Text);
+                        categoryCombobox = PodcastHandler.updateComboBox(categoryCombobox);
+                        categoryListview = PodcastHandler.updateCategoryListview(categoryListview);
+                }
             }
-            catch (Exception)
+            else
             {
-                MessageBox.Show("Den valda kategorin kunde inte tas bort!");
+                MessageBox.Show("Du måste välja en kategori för att ta bort den");
             }
         }
 
@@ -169,16 +147,16 @@ namespace RSS_Demo
 
         private void ListaKategorier_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if ((categoryListview.SelectedItems.Count > 0))
+            if (categoryListview.SelectedItems.Count > 0)
             {
                 if (categoryListview.SelectedItems[0].Text == "Visa alla podcasts" && podcastListview.Items.Count > 0)
                 {
                     podcastListview.BeginUpdate();
-                    podcastListview = PodcastHandler.updatePodcastListview(podcastListview, false);
+                    podcastListview = PodcastHandler.updatePodcastListview(podcastListview);
                     podcastListview.EndUpdate();
                     podcastListview.Items[0].Selected = true;
                 }
-                else if (podcastListview.Items.Count > 0 && PodcastHandler.podcastCategoryLookup(categoryListview.SelectedItems[0].Text))
+                else if (podcastListview.Items.Count > 0 && PodcastHandler.lookupTrue(categoryListview.SelectedItems[0].Text, "podcast"))
                 {
                     podcastListview.BeginUpdate();
                     podcastListview = PodcastHandler.updatePodcastListview(podcastListview, categoryListview.SelectedItems[0].Text);
@@ -187,14 +165,16 @@ namespace RSS_Demo
                 }
                 else if (podcastListview.Items.Count == 0)
                 {
-
                     MessageBox.Show("Du har inte lagt till några podcasts än");
-
+                }
+                else
+                {
+                    MessageBox.Show("Inga podcasts tillhör kategorin");
                 }
             }
         }
 
-        public void StartTimer(int interval)
+        public void StartTimer()
         {
             if (interval > 0)
             {
@@ -202,31 +182,37 @@ namespace RSS_Demo
                 {
                     timer.Dispose();
                 }
-                timer = new AsyncTimer(TimeSpan.FromMinutes(interval), GetNewEpisodes);
+                timer = new AsyncTimer(TimeSpan.FromSeconds(1), GetNewEpisode);
 
                 timer.Start();
             }
         }
 
-        public void GetNewEpisodes()
+        public void GetNewEpisode()
         {
-            if (podcastListview.InvokeRequired)
-            {
+            //if (podcastListview.InvokeRequired)
+            //{
 
-                podcastListview.Invoke((MethodInvoker)GetNewEpisodes);
-            }
-            else
+            //    podcastListview.Invoke((MethodInvoker)GetNewEpisodes);
+            //}
+            //else
+            //{
+
+            //    podcastListview.BeginUpdate();
+            //    podcastListview = PodcastHandler.updatePodcastListview(podcastListview, true);
+            //    podcastListview.EndUpdate();
+
+
+            //    if (podcastListview.Items.Count > 0)
+            //    {
+            //        podcastListview.Items[0].Selected = true;
+            //    }
+            //}
+            timerCounter++;
+            if(timerCounter == 10)
             {
-                
-                podcastListview.BeginUpdate();
-                podcastListview = PodcastHandler.updatePodcastListview(podcastListview, true);
-                podcastListview.EndUpdate();
-                
-                
-                if (podcastListview.Items.Count > 0)
-                {
-                    podcastListview.Items[0].Selected = true;
-                }
+                MessageBox.Show("hej");
+                timerCounter = 0;
             }
         }
 
@@ -247,7 +233,7 @@ namespace RSS_Demo
                     break;
             }
             UpdateIntervalRepo.SaveUpdateInterval(interval);
-            StartTimer(interval);
+            StartTimer();
         }
 
         
@@ -260,7 +246,7 @@ namespace RSS_Demo
                 
                 if(PodcastHandler.podcastListCount() > 0)
                 {
-                    podcastListview = PodcastHandler.updatePodcastListview(podcastListview, false);
+                    podcastListview = PodcastHandler.updatePodcastListview(podcastListview);
                     podcastListview.Items[0].Selected = true;
                 }
                 else
@@ -277,14 +263,10 @@ namespace RSS_Demo
         {
             if(podcastListview.SelectedItems.Count > 0)
             {
-                if(categoryCombobox.Text.Length == 0 || comboBoxUpdateInterval.Text.Length == 0)
-                {
-                    MessageBox.Show("Vänligen fyll i både kategori och uppdateringsintervall för att ändra");
-                }
-                else
+                if(Validering.CheckIfComboboxIsEmpty(comboBoxUpdateInterval) || Validering.CheckIfComboboxIsEmpty(categoryCombobox))
                 {
                     PodcastHandler.updatePodcast(categoryCombobox.Text, Int32.Parse(comboBoxUpdateInterval.Text.Substring(0, 1)), podcastListview.SelectedItems[0].Text);
-                    podcastListview = PodcastHandler.updatePodcastListview(podcastListview, false);
+                    podcastListview = PodcastHandler.updatePodcastListview(podcastListview);
                 }
             }
             else
@@ -296,7 +278,7 @@ namespace RSS_Demo
         private void button2_Click_1(object sender, EventArgs e)
         {
 
-            RssReader.GetNewEpisodes(podcastList.ElementAt(0));
+            PodcastHandler.testmetod(podcastListview, episodeListview);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using RSS_Demo.Data;
+using RSS_Demo.Logik;
 using System;
 using System.Windows.Forms;
 using System.Xml.Linq;
@@ -9,6 +10,41 @@ namespace RSS_Demo.Logik
 
 public static class Validering
 {
+    
+    public static bool validateSelectedCategory(string category, string modifier)
+    {
+        switch (modifier)
+        {
+            case "remove":
+                string podcasts = "";
+                if (PodcastHandler.lookupTrue(category, "podcast"))
+                {
+                    foreach(var podcast in PodcastHandler.getPodcasts(category))
+                    {
+                        podcasts = podcast.Title + ", " + podcasts;
+                    }
+                    MessageBox.Show("Följande podcasts tillhör "+ category +" kategorin: \n"+ podcasts +" \n ändra kategori för podcastsen för att ta bort kategorin" );
+                    break;
+                }
+                MessageBox.Show("Kategori borttagen");
+                return true;
+            case "add":
+                if(PodcastHandler.lookupTrue(category, "category"))
+                {
+                    MessageBox.Show("Kategorin finns redan i listan");
+                    break;
+                }
+                return true;
+            case "edit":
+                if (PodcastHandler.lookupTrue(category, "podcast"))
+                {
+                    MessageBox.Show("Podcasts tillhör den valda kategorin, vänligen ändra kategori för dessa podcasts");
+                    break;
+                }
+                return true;
+        }
+        return false;
+    }
     public static bool CheckIfTextfieldsIsEmpty(TextBox textBox)
     {
         if (textBox.Text.Length > 0)

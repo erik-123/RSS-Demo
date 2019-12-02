@@ -13,16 +13,29 @@ namespace RSS_Demo.Logik
     {
         static private List<string> categoryList = CategoryRepo.LoadCategories();
         static private List<Podcast> podcastList = PodcastRepo.LoadPodcasts();
-        static private Podcast newPodcast;
+        
         public PodcastHandler()
         {
         }
-
-        static public void testmetod()
+        static public ComboBox updateComboBox(ComboBox comboBox)
         {
-            if(RssReader.GetNewEpisodes(getPodcast("Giant Bomb")))
+            if (categoryList.Count > 0)
             {
-                MessageBox.Show("Yes");
+                foreach (var category in categoryList)
+                {
+                    comboBox.Items.Add(category);
+                }
+                comboBox.Items.RemoveAt(0);
+            }
+            return comboBox;
+        }
+        static public void testmetod(ListView podcastListview, ListView episodeListview)
+        {
+            if(getPodcast(podcastListview.SelectedItems[0].Text).EpisodeList.ElementAt(episodeListview.SelectedItems[0].Index).Description != "")
+            {
+
+                var grej = getPodcast(podcastListview.SelectedItems[0].Text).EpisodeList.ElementAt(episodeListview.SelectedItems[0].Index).Description;
+                MessageBox.Show("yes");
             }
         }
 
@@ -43,12 +56,11 @@ namespace RSS_Demo.Logik
             }
 
         }
-        private bool lookupTrue(string searchWord, string type)
+        static public bool lookupTrue(string searchWord, string listType)
         {
-            switch (type)
+            switch (listType)
             {
                 case "podcast":
-                    
                         if(podcastList.Where(podcastX => podcastX.Title == searchWord).Count() > 0)
                         {
                             return true;
@@ -64,11 +76,7 @@ namespace RSS_Demo.Logik
                         return true;
                     }
                     break;
-                //case "episodes":
-                //    if ((podcastlist.where(podcastx => podcastx.title == searchword).firstordefault().episodelist == rssreader.getnewepisode
-                //    {
-
-                //    }
+                
             }
             return false;
         }
@@ -76,54 +84,40 @@ namespace RSS_Demo.Logik
         {
             return podcastList.Where(podcastX => podcastX.Title == podcastTitle).FirstOrDefault();
         }
-        static public List<Podcast> getPodcasts(int interval, string podAmount, string searchWord)
+        
+        static public List<Podcast> getPodcasts(int interval)
         {
-            switch (podAmount)
-            {
-                case "one":
-                    if(podcastList.Where(podcastX => podcastX.Title == searchWord).ToList().Count > 0)
+            return podcastList.Where(podcastX => podcastX.UpdateInterval == interval).ToList();
+        }
+        static public List<Podcast> getPodcasts(string category)
+        {
+            if(lookupTrue(category, "podcast"))
                     {
-                        return podcastList.Where(podcastX => podcastX.Title == searchWord).ToList();
-                    }
-                    return podcastList;
-
-                case "many":
-                    if(podcastList.Where(podcastX => podcastX.Title == searchWord).ToList().Count > 0)
-                    {
-                        return podcastList.Where(podcastX => podcastX.Category == searchWord).ToList();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Inga podcasts tillhör kategorin: " + searchWord);
-                        return podcastList;
-                    }
-                default:
-
-                return podcastList.Where(podcast => podcast.UpdateInterval == interval).ToList();
+                return podcastList.Where(podcastX => podcastX.Category == category).ToList();
             }
+                    else
+            {
             
-
+                return podcastList;
+            }
         }
         static public void updatePodcast(string category, int interval, string selectedPodcast)
         {
-            //if (podcastList.Count() > 0)
-            //{
+            if (podcastList.Count() > 0)
+            {
+                var podcast = getPodcast(selectedPodcast);
+                    if (podcast.Category == category && podcast.UpdateInterval == interval)
+                    {
+                        MessageBox.Show("Värdena som angavs är redan satta för podcasten, inga ändringar har gjorts");
+                    }
+                    else
+                    {
+                        podcast.UpdateInterval = interval;
+                        podcast.Category = category;
+                        MessageBox.Show("Podcasten är uppdaterad");
+                    }
                 
-                
-            //    if (podcastLookup.EpisodeCount > 0)
-            //    {
-            //        if (podcastLookup.Category == category && podcastLookup.UpdateInterval == interval)
-            //        {
-            //            MessageBox.Show("Värdena som angavs är redan satta för podcasten, inga ändringar har gjorts");
-            //        }
-            //        else
-            //        {
-            //            podcastLookup.UpdateInterval = interval;
-            //            podcastLookup.Category = category;
-            //            MessageBox.Show("Podcasten är uppdaterad");
-            //        }
-            //    }
-            //}
+            }
         }
         static public void addPodcast(string url, string category, int interval)
         {
@@ -133,14 +127,14 @@ namespace RSS_Demo.Logik
             {
                 foreach (var podcastInList in podcastList)
                 {
-                    var podcastLookup = podcastList.Where(podcastX => podcastInList.Title == podcast.Title);
+                    
                     iteration++;
-                    if (podcastLookup.Count() > 0)
+                    if (lookupTrue(podcastInList.Title, "podcast"))
                     {
                         MessageBox.Show("Podcasten är redan inläst");
                         
                     }
-                    else if(podcastLookup.Count() == 0 && podcastList.Count() == iteration)
+                    else if(!lookupTrue(podcastInList.Title, "podcast") && podcastList.Count() == iteration)
                     {
                         podcastList.Add(podcast);
                         PodcastRepo.SavePodcasts(podcastList);
@@ -155,17 +149,10 @@ namespace RSS_Demo.Logik
         }
         static public void removePodcast(int podcastIndex)
         {
-            
-            var grej2 = podcastList.ElementAt(podcastIndex);
             podcastList.RemoveAt(podcastIndex);
             PodcastRepo.SavePodcasts(podcastList);
-            
         }
-        static public List<string> getCategories()
-        {
-            return categoryList;
-        }
-        static public ListView getCategoryListview(ListView categoryListview)
+        static public ListView updateCategoryListview(ListView categoryListview)
         {
             return FormSetup.CreateCategoryListview(categoryList, categoryListview);
         }
@@ -174,69 +161,39 @@ namespace RSS_Demo.Logik
             categoryList.Add(categoryName);
             MessageBox.Show("Kategori tillagd");
         }
+        static public void removeCategory(string category)
+        {
+            categoryList.Remove(category);
+        }
         static public int podcastListCount()
         {
             return podcastList.Count();
         }
-        static public bool podcastCategoryLookup(string selectedCategory)
-        {
-            var podcastLookup = podcastList.Where(podcast => podcast.Category == selectedCategory).ToList();
-            if(podcastLookup.Count > 0)
-            {
-                return true;
-            }
-            else
-            {
-                MessageBox.Show("Inga podcasts tillhör kategorin: " + selectedCategory);
-                return false;
-            }
-        }
+        
 
         
         static public ListView updateEpisodeListview(ListView episodeListview, ListView podcastListview)
         {
-            var listViewEpisode = FormSetup.CreateEpisodeListview(podcastList.Where(podcast => podcast.Title == podcastListview.SelectedItems[0].Text).FirstOrDefault()?.EpisodeList, episodeListview);
-            return listViewEpisode;
+            return FormSetup.CreateEpisodeListview(podcastList.Where(podcast => podcast.Title == podcastListview.SelectedItems[0].Text).FirstOrDefault()?.EpisodeList, episodeListview);
+            
         }
-        static public ListView updatePodcastListview(ListView podcastListview, bool episodeAdded)
+        static public ListView updatePodcastListview(ListView podcastListview)
         {
-            ListView listViewPodcasts;
-            if (episodeAdded)
-            {
-                listViewPodcasts = FormSetup.CreatePodcastListview(RssReader.GetNewEpisode(podcastList), podcastListview);
-            }
-            else
-            {
-                listViewPodcasts = FormSetup.CreatePodcastListview(podcastList, podcastListview);
-            }
-            return listViewPodcasts; 
+            return podcastListview = FormSetup.CreatePodcastListview(podcastList, podcastListview);
         }
         static public ListView updatePodcastListview(ListView podcastListview, string selectedCategory)
         {
-            var podcastLookup = podcastList.Where(podcast => podcast.Category == selectedCategory).ToList();
-                var listViewPodcasts = FormSetup.CreatePodcastListview(podcastLookup, podcastListview);
-                return listViewPodcasts;
+                return FormSetup.CreatePodcastListview(getPodcasts(selectedCategory), podcastListview);
         }
-        static public ListView updateCategoryListview(ListView categoryListview)
-        {
-
-
-
-
-            var newCategoryListview = FormSetup.CreateCategoryListview(categoryList, categoryListview);
-            
-            return newCategoryListview;
-        }
+        
         static public string updateEpisodeDetails(ListView episodeListview, ListView podcastListview)
         {
-            var podcastLookup = podcastList.Where(podcast => podcast.Title == podcastListview.SelectedItems[0].Text).FirstOrDefault();
-            var episodeLookup = podcastLookup.EpisodeList.Where(episode => episode.Title == episodeListview.SelectedItems[0].Text).FirstOrDefault();
-            if (episodeLookup != null)
-            {
-                string episodeDetailsText = episodeLookup.Description + " " + episodeLookup.EpisodeLink;
-                return episodeDetailsText;
-            }
-            return "";
+            
+            
+                var episodeInfo = getPodcast(podcastListview.SelectedItems[0].Text).EpisodeList.ElementAt(episodeListview.SelectedItems[0].Index);
+                return episodeInfo.Description + " \n" + episodeInfo.EpisodeLink;
+            
+            
         }
     }
 
