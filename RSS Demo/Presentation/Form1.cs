@@ -129,11 +129,17 @@ namespace RSS_Demo
         {
             if (podcastListview.SelectedItems.Count > 0)
             {
-                var podcastData = PodcastHandler.getPodcast(podcastListview.SelectedItems.ToString());
-                episodeListview.BeginUpdate();
-                episodeListview = PodcastHandler.updateEpisodeListview(episodeListview, podcastListview);
-                episodeListview.EndUpdate();
-                episodeListview.Items[0].Selected = true;
+                try
+                {
+                    var podcastData = PodcastHandler.getPodcast(podcastListview.SelectedItems.ToString());
+                    episodeListview.BeginUpdate();
+                    episodeListview = PodcastHandler.updateEpisodeListview(episodeListview, podcastListview);
+                    episodeListview.EndUpdate();
+                    episodeListview.Items[0].Selected = true;
+                }
+                catch (ArgumentOutOfRangeException) {
+                    MessageBox.Show("Ogiltigt val");
+                }
             }
         }
 
@@ -279,6 +285,19 @@ namespace RSS_Demo
         {
 
             PodcastHandler.testmetod(podcastListview, episodeListview);
+        }
+
+        private void buttonChangeName_Click(object sender, EventArgs e)
+        {
+            if (Validering.CheckIfTextfieldsHasANumber(categoryTextbox) && Validering.CheckIfTextfieldsIsEmpty(categoryTextbox))
+            {
+               
+                categoryListview.SelectedItems[0].Text = categoryTextbox.Text;
+                PodcastHandler.saveData("cat");
+
+
+            }
+
         }
     }
 }
