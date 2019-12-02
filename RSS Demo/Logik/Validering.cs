@@ -38,7 +38,7 @@ public static class Validering
             case "edit":
                 if (PodcastHandler.lookupTrue(category, "podcast"))
                 {
-                    MessageBox.Show("Podcasts tillhör den valda kategorin, vänligen ändra kategori för dessa podcasts");
+                    MessageBox.Show("Podcasts tillhör den valda kategorin, vänligen ändra kategori för dessa podcasts för att ändra");
                     break;
                 }
                 return true;
@@ -51,11 +51,9 @@ public static class Validering
         {
             return true;
         }
-        else
-        {
+
+            MessageBox.Show("Vänligen fyll i alla fält");
             return false;
-            throw new RSS_Demo.Logik.ValidationException("Vänligen fyll i alla fält");
-        }
     }
 
     public static bool CheckIfTextfieldsHasANumber(TextBox textBox)

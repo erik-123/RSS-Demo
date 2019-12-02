@@ -30,11 +30,10 @@ namespace RSS_Demo
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("Visa alla podcasts");
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("Visa alla podcasts");
             this.textBoxURL = new System.Windows.Forms.TextBox();
             this.buttonURL = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.categoryCombobox = new System.Windows.Forms.ComboBox();
@@ -59,6 +58,7 @@ namespace RSS_Demo
             this.episodeDetailsTextBox = new System.Windows.Forms.RichTextBox();
             this.buttonTabortPodcast = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.updateCategoryButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -99,7 +99,6 @@ namespace RSS_Demo
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "ControlBox";
             this.groupBox1.Enter += new System.EventHandler(this.GroupBox1_Enter);
-        
             // 
             // label2
             // 
@@ -192,7 +191,7 @@ namespace RSS_Demo
             // 
             this.categoryListview.HideSelection = false;
             this.categoryListview.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem3});
+            listViewItem2});
             this.categoryListview.Location = new System.Drawing.Point(637, 32);
             this.categoryListview.Margin = new System.Windows.Forms.Padding(4);
             this.categoryListview.Name = "categoryListview";
@@ -224,11 +223,11 @@ namespace RSS_Demo
             this.buttonTaBortKategori.UseVisualStyleBackColor = true;
             this.buttonTaBortKategori.Click += new System.EventHandler(this.ButtonTaBortKategori_Click);
             // 
-            // textBoxKategori
+            // categoryTextbox
             // 
             this.categoryTextbox.Location = new System.Drawing.Point(637, 262);
             this.categoryTextbox.Margin = new System.Windows.Forms.Padding(4);
-            this.categoryTextbox.Name = "textBoxKategori";
+            this.categoryTextbox.Name = "categoryTextbox";
             this.categoryTextbox.Size = new System.Drawing.Size(237, 20);
             this.categoryTextbox.TabIndex = 19;
             // 
@@ -318,11 +317,22 @@ namespace RSS_Demo
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // updateCategoryButton
+            // 
+            this.updateCategoryButton.Location = new System.Drawing.Point(882, 231);
+            this.updateCategoryButton.Name = "updateCategoryButton";
+            this.updateCategoryButton.Size = new System.Drawing.Size(75, 23);
+            this.updateCategoryButton.TabIndex = 32;
+            this.updateCategoryButton.Text = "Ändra";
+            this.updateCategoryButton.UseVisualStyleBackColor = true;
+            this.updateCategoryButton.Click += new System.EventHandler(this.updateCategoryButton_Click);
+            // 
             // Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1024, 497);
+            this.Controls.Add(this.updateCategoryButton);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.buttonTabortPodcast);
             this.Controls.Add(this.episodeDetailsTextBox);
@@ -383,12 +393,10 @@ namespace RSS_Demo
         private System.Windows.Forms.ColumnHeader columnSpeltid;
         private System.Windows.Forms.ColumnHeader columnAvnittLink;
         private System.Windows.Forms.RichTextBox episodeDetailsTextBox;
-        private System.Windows.Forms.Button buttonSaveUpdateInterval;
         private System.Windows.Forms.Button buttonTabortPodcast;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ColumnHeader Intervall;
-        private System.Windows.Forms.Button button2;
-        
+        private System.Windows.Forms.Button updateCategoryButton;
     }
 }
 

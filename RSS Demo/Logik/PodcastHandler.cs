@@ -167,6 +167,17 @@ namespace RSS_Demo.Logik
             categoryList.Add(categoryName);
             MessageBox.Show("Kategori tillagd");
         }
+        static public void updateCategory(string categoryName, int categoryIndex)
+        {
+            if(Validering.validateSelectedCategory(categoryList[categoryIndex], "edit"))
+            {
+                categoryList.RemoveAt(categoryIndex);
+                categoryList.Add(categoryName);
+                MessageBox.Show("Kategori uppdaterad");
+            }
+            
+
+        }
         static public void removeCategory(string category)
         {
             categoryList.Remove(category);

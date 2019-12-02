@@ -250,8 +250,19 @@ namespace RSS_Demo
             }
         }
 
-        private void button2_Click_1(object sender, EventArgs e)
+        
+
+        private void updateCategoryButton_Click(object sender, EventArgs e)
         {
+            
+            if (Validering.CheckIfTextfieldsIsEmpty(categoryTextbox))
+            {
+                if(categoryListview.SelectedItems[0].Index > 0)
+                {
+                    PodcastHandler.updateCategory(categoryTextbox.Text, categoryListview.SelectedItems[0].Index);
+                    categoryListview = PodcastHandler.updateCategoryListview(categoryListview);
+                }
+            }
         }
     }
 }
