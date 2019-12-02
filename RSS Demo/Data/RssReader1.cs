@@ -29,39 +29,6 @@ namespace RSS_Demo.Data
             return podcast;
         }
 
-        //public static List<Podcast> GetNewEpisode1(List<Podcast> newPodcastList)
-        //{
-        //    for (var i = 0; i < newPodcastList.Count(); i++)
-        //    {
-        //        XNamespace ns = "http://www.itunes.com/dtds/podcast-1.0.dtd";
-
-        //        var podcastData = XDocument.Load(newPodcastList[i].FeedLink);
-
-        //        var episodeData = podcastData.Descendants("item");
-        //        List<Episode> episodeList = new List<Episode>();
-
-        //        foreach (var item in episodeData)
-        //        {
-                    
-        //            episodeList.Add(createEpisode(item));
-        //        }
-
-        //        var newEpisodesList = episodeList.Except(newPodcastList[i].EpisodeList).ToList();
-
-        //        if (newEpisodesList.ElementAt(0).Title != newPodcastList[i].EpisodeList.ElementAt(0).Title)
-        //        {
-        //            newPodcastList[i].EpisodeList = newEpisodesList;
-        //            newPodcastList[i].EpisodeCount = newPodcastList[i].EpisodeList.Count();
-        //            newPodcastList[newPodcastList.IndexOf(newPodcastList[i])] = newPodcastList[i];
-        //        }
-        //    }
-        //    return newPodcastList;
-        //}
-        
-
-
-
-       
 
 
 

@@ -51,7 +51,6 @@
     <Compile Include="Logik\PodcastHandler.cs" />
     <Compile Include="Presentation\GreetingMsg.cs" />
     <Compile Include="Data\CategoryRepo.cs" />
-    <Compile Include="Data\UpdateIntervalRepo.cs" />
     <Compile Include="Data\RssReader1.cs" />
     <Compile Include="Logik\Episode.cs" />
     <Compile Include="Logik\Podcast.cs" />

@@ -34,7 +34,7 @@ namespace RSS_Demo
             this.textBoxURL = new System.Windows.Forms.TextBox();
             this.buttonURL = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button2 = new System.Windows.Forms.Button();
+            
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.categoryCombobox = new System.Windows.Forms.ComboBox();
@@ -57,7 +57,6 @@ namespace RSS_Demo
             this.columnSpeltid = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnAvnittLink = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.episodeDetailsTextBox = new System.Windows.Forms.RichTextBox();
-            this.buttonSaveUpdateInterval = new System.Windows.Forms.Button();
             this.buttonTabortPodcast = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
@@ -84,7 +83,6 @@ namespace RSS_Demo
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.button2);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.categoryCombobox);
@@ -101,16 +99,7 @@ namespace RSS_Demo
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "ControlBox";
             this.groupBox1.Enter += new System.EventHandler(this.GroupBox1_Enter);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(28, 377);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 7;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click_1);
+        
             // 
             // label2
             // 
@@ -308,16 +297,6 @@ namespace RSS_Demo
             this.episodeDetailsTextBox.TabIndex = 26;
             this.episodeDetailsTextBox.Text = "";
             // 
-            // buttonSaveUpdateInterval
-            // 
-            this.buttonSaveUpdateInterval.Location = new System.Drawing.Point(264, 13);
-            this.buttonSaveUpdateInterval.Name = "buttonSaveUpdateInterval";
-            this.buttonSaveUpdateInterval.Size = new System.Drawing.Size(164, 23);
-            this.buttonSaveUpdateInterval.TabIndex = 27;
-            this.buttonSaveUpdateInterval.Text = "Spara uppdateringsintervall";
-            this.buttonSaveUpdateInterval.UseVisualStyleBackColor = true;
-            this.buttonSaveUpdateInterval.Click += new System.EventHandler(this.ButtonSaveUpdateInterval_Click);
-            // 
             // buttonTabortPodcast
             // 
             this.buttonTabortPodcast.Location = new System.Drawing.Point(459, 236);
@@ -346,7 +325,6 @@ namespace RSS_Demo
             this.ClientSize = new System.Drawing.Size(1024, 497);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.buttonTabortPodcast);
-            this.Controls.Add(this.buttonSaveUpdateInterval);
             this.Controls.Add(this.episodeDetailsTextBox);
             this.Controls.Add(this.episodeListview);
             this.Controls.Add(this.buttonURL);

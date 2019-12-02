@@ -183,24 +183,6 @@ namespace RSS_Demo
 
         public void GetNewEpisode()
         {
-            //if (podcastListview.InvokeRequired)
-            //{
-
-            //    podcastListview.Invoke((MethodInvoker)GetNewEpisodes);
-            //}
-            //else
-            //{
-
-            //    podcastListview.BeginUpdate();
-            //    podcastListview = PodcastHandler.updatePodcastListview(podcastListview, true);
-            //    podcastListview.EndUpdate();
-
-
-            //    if (podcastListview.Items.Count > 0)
-            //    {
-            //        podcastListview.Items[0].Selected = true;
-            //    }
-            //}
             timerCounter++;
             string updatedPodcasts = "";
             updatedPodcasts = PodcastHandler.updateEpisodes(1);
@@ -227,10 +209,7 @@ namespace RSS_Demo
 
         }
 
-        private void ButtonSaveUpdateInterval_Click(object sender, EventArgs e)
-        {
-            //Gör inget
-        }
+     
 
         
 
@@ -273,9 +252,6 @@ namespace RSS_Demo
 
         private void button2_Click_1(object sender, EventArgs e)
         {
-            var hej = PodcastHandler.getPodcasts(1);
-            var hej2 = Int32.Parse( comboBoxUpdateInterval.Text.Substring(0, 2).Trim());
-            //Testknapp
         }
     }
 }

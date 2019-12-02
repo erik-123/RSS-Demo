@@ -13,7 +13,7 @@ namespace RSS_Demo.Logik
         public int EpisodeCount { get; set; }
         public List<Episode> EpisodeList { get; set; }
 
-        public Podcast(string title, string description, string category, string link, int updateInterval, int episodeCount, List<Episode> episodeList)
+        public Podcast(string title, string description, string category, string link, int UpdateInterval, int episodeCount, List<Episode> episodeList)
         {
             this.Title = title;
             this.Description = description;
