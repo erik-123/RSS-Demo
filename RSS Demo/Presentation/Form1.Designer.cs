@@ -30,7 +30,7 @@ namespace RSS_Demo
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("Visa alla podcasts");
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("Visa alla podcasts");
             this.textBoxURL = new System.Windows.Forms.TextBox();
             this.buttonURL = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -127,6 +127,7 @@ namespace RSS_Demo
             this.categoryCombobox.Name = "categoryCombobox";
             this.categoryCombobox.Size = new System.Drawing.Size(92, 21);
             this.categoryCombobox.TabIndex = 3;
+            this.categoryCombobox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             // 
             // label3
             // 
@@ -150,6 +151,8 @@ namespace RSS_Demo
             this.comboBoxUpdateInterval.Name = "comboBoxUpdateInterval";
             this.comboBoxUpdateInterval.Size = new System.Drawing.Size(92, 21);
             this.comboBoxUpdateInterval.TabIndex = 2;
+            this.comboBoxUpdateInterval.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxUpdateInterval.SelectedIndex = 0;
             // 
             // podcastListview
             // 
@@ -191,7 +194,7 @@ namespace RSS_Demo
             // 
             this.categoryListview.HideSelection = false;
             this.categoryListview.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem2});
+            listViewItem1});
             this.categoryListview.Location = new System.Drawing.Point(637, 32);
             this.categoryListview.Margin = new System.Windows.Forms.Padding(4);
             this.categoryListview.Name = "categoryListview";

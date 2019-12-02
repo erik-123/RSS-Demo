@@ -21,6 +21,7 @@ namespace RSS_Demo.Logik
         {
             if (categoryList.Count > 0)
             {
+                comboBox.Items.Clear();
                 foreach (var category in categoryList)
                 {
                     comboBox.Items.Add(category);
@@ -29,15 +30,7 @@ namespace RSS_Demo.Logik
             }
             return comboBox;
         }
-        static public void testmetod(ListView podcastListview, ListView episodeListview)
-        {
-            if(getPodcast(podcastListview.SelectedItems[0].Text).EpisodeList.ElementAt(episodeListview.SelectedItems[0].Index).Description != "")
-            {
-
-                var grej = getPodcast(podcastListview.SelectedItems[0].Text).EpisodeList.ElementAt(episodeListview.SelectedItems[0].Index).Description;
-                MessageBox.Show("yes");
-            }
-        }
+        
 
         public static void saveData(string repo)
         {

@@ -13,7 +13,7 @@ public static class Validering
     
     public static bool validateSelectedCategory(string category, string modifier)
     {
-        switch (modifier)
+        switch (modifier )
         {
             case "remove":
                 string podcasts = "";

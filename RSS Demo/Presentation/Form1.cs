@@ -28,7 +28,11 @@ namespace RSS_Demo
             ctrl = new MessageController(this);
             podcastListview = PodcastHandler.updatePodcastListview(podcastListview);
             categoryListview = PodcastHandler.updateCategoryListview(categoryListview);
-            categoryCombobox = PodcastHandler.updateComboBox(categoryCombobox); 
+            categoryCombobox = PodcastHandler.updateComboBox(categoryCombobox);
+            if (categoryCombobox.Items.Count > 0)
+            {
+                categoryCombobox.SelectedIndex = 0;
+            }
             Application.ApplicationExit += new EventHandler(this.OnApplicationExit);
         }
         private void GroupBox1_Enter(object sender, EventArgs e)
@@ -261,6 +265,7 @@ namespace RSS_Demo
                 {
                     PodcastHandler.updateCategory(categoryTextbox.Text, categoryListview.SelectedItems[0].Index);
                     categoryListview = PodcastHandler.updateCategoryListview(categoryListview);
+                    categoryCombobox = PodcastHandler.updateComboBox(categoryCombobox);
                 }
             }
         }
